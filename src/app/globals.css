@@ -8,3 +8,7 @@
 body{
   background-color:aliceblue;
 }
+
+button:hover{
+  cursor: pointer;
+}

@@ -1,9 +1,12 @@
 import { redirect } from "next/navigation";
 import "./globals.css";
 import Banner from "./components/Banner";
-
-export default function Home() {
+import JobListing from "./components/JobListing";
+import TrustedCompanies from "./components/TrustedCompanies ";
+export default async function Home() {
   return <div>
     <Banner/>
+    <TrustedCompanies/>
+    <JobListing />
   </div>
 }
