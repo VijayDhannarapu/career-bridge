@@ -1,3 +1,7 @@
+'use client'
+
+import {GetJobs} from "./actions/action";
+import JobListing from "./JobListing";
 export default function JobHero() {
   return (
     <div className="mt-6 w-full h-auto px-6">
@@ -26,7 +30,6 @@ export default function JobHero() {
           </button>
         </form>
       </div>
-      
     </div>
   );
 }
