@@ -1,8 +1,5 @@
 'use client'
-
-import {GetJobs} from "./actions/action";
-import JobListing from "./JobListing";
-export default function JobHero() {
+export default function Banner() {
   return (
     <div className="mt-6 w-full h-auto px-6">
       <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center rounded-2xl bg-gradient-to-br bg-gradient-to-br from-slate-900 via-purple-950 to-slate-900 px-4 py-10 shadow-xl sm:px-6 md:px-12 md:py-16">

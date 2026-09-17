@@ -1,7 +1,7 @@
 "use client"
 import Link from "next/link"
 import { useState } from "react";
-export default function NavBar() {
+export default function RecruiterNavBar() {
     const [isOpen, setIsOpen] = useState(false);
     return <nav className="flex items-center justify-around px-4 py-2 bg-white border-b border-gray-100 shadow-sm">
         {/* Logo / Branding */}
@@ -13,13 +13,13 @@ export default function NavBar() {
         {/* Navigation Links */}
         <ul className="hidden md:flex items-center gap-8 font-medium text-gray-600">
             <li>
-                <Link href={"/"} className="hover:text-blue-600 transition-colors py-2 border-b-2 border-transparent hover:border-blue-600">Home</Link>
+                <Link href={"/recruiter/addJob"} className="hover:text-blue-600 transition-colors py-2 border-b-2 border-transparent hover:border-blue-600">Add Job</Link>
             </li>
             <li>
-                <Link href={"/"} className="hover:text-blue-600  transition-colors py-2 border-b-2 border-transparent hover:border-blue-600">Applied Jobs</Link>
+                <Link href={"/"} className="hover:text-blue-600  transition-colors py-2 border-b-2 border-transparent hover:border-blue-600">Manage Jobs</Link>
             </li>
             <li>
-                <Link href={"/"} className="hover:text-blue-600  transition-colors py-2 border-b-2 border-transparent hover:border-blue-600">Browse Companies</Link>
+                <Link href={"/"} className="hover:text-blue-600  transition-colors py-2 border-b-2 border-transparent hover:border-blue-600">View Applications</Link>
             </li>
         </ul>
         {/* only for medium devices */}
@@ -47,13 +47,13 @@ export default function NavBar() {
   `}>
             <ul className="flex flex-col px-6 py-4 gap-4 font-medium text-gray-600">
                 <li>
-                    <a href="/" className="block py-2 hover:text-blue-600 border-b border-gray-50">Home</a>
+                    <Link href={"/recruiter/addJob"} className="hover:text-blue-600 transition-colors py-2 border-b-2 border-transparent hover:border-blue-600">Add Job</Link>
                 </li>
                 <li>
-                    <a href="/applied-jobs" className="block py-2 hover:text-blue-600 border-b border-gray-50">Applied Jobs</a>
+                    <Link href={"/"} className="hover:text-blue-600  transition-colors py-2 border-b-2 border-transparent hover:border-blue-600">Manage Jobs</Link>
                 </li>
                 <li>
-                    <a href="/applied-jobs" className="block py-2 hover:text-blue-600 border-b border-gray-50">Browse Companies</a>
+                    <Link href={"/"} className="hover:text-blue-600  transition-colors py-2 border-b-2 border-transparent hover:border-blue-600">View Applications</Link>
                 </li>
                 <li className="flex items-center gap-3 pt-2">
                     <div className="w-8 h-8 rounded-full bg-blue-100 text-blue-700 font-semibold flex items-center justify-center text-sm">
@@ -77,5 +77,4 @@ export default function NavBar() {
             </div>
         </div>
     </nav>
-
 }

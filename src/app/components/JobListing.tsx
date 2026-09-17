@@ -1,4 +1,3 @@
-import { prisma } from "@/lib/prisma"
 import Link from "next/link"
 import { GetJobs } from "./actions/action"
 type Prop = {
@@ -23,7 +22,7 @@ export default async function JobListing({ query }: Prop) {
                         <p className="mt-5 text-[15px] text-gray-500">{job.description} Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti nobis commodi praesentium consectetur sit placeat vitae ullam expedita, quasi omnis.</p>
                         <div className="flex gap-5 mt-5">
                             <button className="border-2 p-2 text-white bg-blue-700 rounded-md hover:bg-blue-800">Apply Now</button>
-                            <Link href={`/jobDetails/${job.postId}`} className="border-2 border-gray-400 text-gray-600 p-2 rounded-md hover:bg-gray-100/80">Learn More</Link>
+                            <Link href={`/user/jobDetails/${job.postId}`} className="border-2 border-gray-400 text-gray-600 p-2 rounded-md hover:bg-gray-100/80">Learn More</Link>
                         </div>
                     </div>
                 ))
