@@ -1,0 +1,83 @@
+.rte {
+    width: 60%;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    overflow: hidden;
+    background: white;
+}
+
+.toolbar {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    padding: 8px;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    background: #f9fafb;
+}
+
+.toolbar button {
+    border: none;
+    background: transparent;
+
+    padding: 6px 10px;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+.toolbar button:hover {
+    background: #e5e7eb;
+}
+
+.toolbar select {
+    border: none;
+    background: transparent;
+
+    padding: 6px;
+
+    cursor: pointer;
+}
+
+.ProseMirror {
+    min-height: 250px;
+
+    padding: 16px;
+
+    outline: none;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+}
+
+.ProseMirror p {
+    margin: 0 0 10px;
+}
+
+.ProseMirror h1 {
+    font-size: 32px;
+    margin: 20px 0 12px;
+}
+
+.ProseMirror h2 {
+    font-size: 24px;
+    margin: 18px 0 10px;
+}
+
+.ProseMirror h3 {
+    font-size: 20px;
+    margin: 16px 0 8px;
+}
+
+.ProseMirror ul,
+.ProseMirror ol {
+    padding-left: 24px;
+}
+
+.ProseMirror a {
+    text-decoration: underline;
+}
