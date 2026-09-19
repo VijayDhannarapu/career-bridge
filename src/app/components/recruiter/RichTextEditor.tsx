@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import {
     useEditor,
     EditorContent,
@@ -45,7 +45,7 @@ export default function RichTextEditor({
             <Toolbar editor={editor}/>
 
             <EditorContent editor={editor}/>
-            <input type="hidden" name={name} defaultValue={defaultValue}
+            <input type="hidden" name={name} defaultValue={html}
             />
         </div>
     );

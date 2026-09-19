@@ -52,7 +52,7 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   User: 'User',
-  Recruiture: 'Recruiture',
+  Recruiter: 'Recruiter',
   PostJob: 'PostJob',
   Application: 'Application'
 } as const
@@ -84,15 +84,18 @@ export const UserScalarFieldEnum = {
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
-export const RecruitureScalarFieldEnum = {
+export const RecruiterScalarFieldEnum = {
   recId: 'recId',
   clerkId: 'clerkId',
   name: 'name',
   email: 'email',
-  role: 'role'
+  officeName: 'officeName',
+  imgUrl: 'imgUrl',
+  role: 'role',
+  createdAt: 'createdAt'
 } as const
 
-export type RecruitureScalarFieldEnum = (typeof RecruitureScalarFieldEnum)[keyof typeof RecruitureScalarFieldEnum]
+export type RecruiterScalarFieldEnum = (typeof RecruiterScalarFieldEnum)[keyof typeof RecruiterScalarFieldEnum]
 
 
 export const PostJobScalarFieldEnum = {
@@ -103,10 +106,8 @@ export const PostJobScalarFieldEnum = {
   location: 'location',
   level: 'level',
   posted: 'posted',
-  officeName: 'officeName',
   ctc: 'ctc',
-  jobType: 'jobType',
-  recruitureId: 'recruitureId'
+  recruiterId: 'recruiterId'
 } as const
 
 export type PostJobScalarFieldEnum = (typeof PostJobScalarFieldEnum)[keyof typeof PostJobScalarFieldEnum]
@@ -136,4 +137,12 @@ export const QueryMode = {
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 

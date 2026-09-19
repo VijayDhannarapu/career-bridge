@@ -18,10 +18,12 @@
     "@tiptap/pm": "^3.31.3",
     "@tiptap/react": "^3.31.3",
     "@tiptap/starter-kit": "^3.31.3",
+    "isomorphic-dompurify": "^3.19.0",
     "next": "16.3.4",
     "pg": "^8.23.0",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react-dom": "19.2.8",
+    "react-toastify": "^11.1.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

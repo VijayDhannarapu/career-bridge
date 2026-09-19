@@ -42,10 +42,8 @@ export type PostJobMinAggregateOutputType = {
   location: string | null
   level: string | null
   posted: Date | null
-  officeName: string | null
   ctc: number | null
-  jobType: string | null
-  recruitureId: string | null
+  recruiterId: string | null
 }
 
 export type PostJobMaxAggregateOutputType = {
@@ -56,10 +54,8 @@ export type PostJobMaxAggregateOutputType = {
   location: string | null
   level: string | null
   posted: Date | null
-  officeName: string | null
   ctc: number | null
-  jobType: string | null
-  recruitureId: string | null
+  recruiterId: string | null
 }
 
 export type PostJobCountAggregateOutputType = {
@@ -70,10 +66,8 @@ export type PostJobCountAggregateOutputType = {
   location: number
   level: number
   posted: number
-  officeName: number
   ctc: number
-  jobType: number
-  recruitureId: number
+  recruiterId: number
   _all: number
 }
 
@@ -94,10 +88,8 @@ export type PostJobMinAggregateInputType = {
   location?: true
   level?: true
   posted?: true
-  officeName?: true
   ctc?: true
-  jobType?: true
-  recruitureId?: true
+  recruiterId?: true
 }
 
 export type PostJobMaxAggregateInputType = {
@@ -108,10 +100,8 @@ export type PostJobMaxAggregateInputType = {
   location?: true
   level?: true
   posted?: true
-  officeName?: true
   ctc?: true
-  jobType?: true
-  recruitureId?: true
+  recruiterId?: true
 }
 
 export type PostJobCountAggregateInputType = {
@@ -122,10 +112,8 @@ export type PostJobCountAggregateInputType = {
   location?: true
   level?: true
   posted?: true
-  officeName?: true
   ctc?: true
-  jobType?: true
-  recruitureId?: true
+  recruiterId?: true
   _all?: true
 }
 
@@ -223,10 +211,8 @@ export type PostJobGroupByOutputType = {
   location: string
   level: string
   posted: Date
-  officeName: string
   ctc: number
-  jobType: string
-  recruitureId: string
+  recruiterId: string
   _count: PostJobCountAggregateOutputType | null
   _avg: PostJobAvgAggregateOutputType | null
   _sum: PostJobSumAggregateOutputType | null
@@ -260,11 +246,9 @@ export type PostJobWhereInput = {
   location?: Prisma.StringFilter<"PostJob"> | string
   level?: Prisma.StringFilter<"PostJob"> | string
   posted?: Prisma.DateTimeFilter<"PostJob"> | Date | string
-  officeName?: Prisma.StringFilter<"PostJob"> | string
   ctc?: Prisma.FloatFilter<"PostJob"> | number
-  jobType?: Prisma.StringFilter<"PostJob"> | string
-  recruitureId?: Prisma.StringFilter<"PostJob"> | string
-  recruiter?: Prisma.XOR<Prisma.RecruitureScalarRelationFilter, Prisma.RecruitureWhereInput>
+  recruiterId?: Prisma.StringFilter<"PostJob"> | string
+  recruiter?: Prisma.XOR<Prisma.RecruiterScalarRelationFilter, Prisma.RecruiterWhereInput>
   applications?: Prisma.ApplicationListRelationFilter
 }
 
@@ -276,11 +260,9 @@ export type PostJobOrderByWithRelationInput = {
   location?: Prisma.SortOrder
   level?: Prisma.SortOrder
   posted?: Prisma.SortOrder
-  officeName?: Prisma.SortOrder
   ctc?: Prisma.SortOrder
-  jobType?: Prisma.SortOrder
-  recruitureId?: Prisma.SortOrder
-  recruiter?: Prisma.RecruitureOrderByWithRelationInput
+  recruiterId?: Prisma.SortOrder
+  recruiter?: Prisma.RecruiterOrderByWithRelationInput
   applications?: Prisma.ApplicationOrderByRelationAggregateInput
 }
 
@@ -295,11 +277,9 @@ export type PostJobWhereUniqueInput = Prisma.AtLeast<{
   location?: Prisma.StringFilter<"PostJob"> | string
   level?: Prisma.StringFilter<"PostJob"> | string
   posted?: Prisma.DateTimeFilter<"PostJob"> | Date | string
-  officeName?: Prisma.StringFilter<"PostJob"> | string
   ctc?: Prisma.FloatFilter<"PostJob"> | number
-  jobType?: Prisma.StringFilter<"PostJob"> | string
-  recruitureId?: Prisma.StringFilter<"PostJob"> | string
-  recruiter?: Prisma.XOR<Prisma.RecruitureScalarRelationFilter, Prisma.RecruitureWhereInput>
+  recruiterId?: Prisma.StringFilter<"PostJob"> | string
+  recruiter?: Prisma.XOR<Prisma.RecruiterScalarRelationFilter, Prisma.RecruiterWhereInput>
   applications?: Prisma.ApplicationListRelationFilter
 }, "postId">
 
@@ -311,10 +291,8 @@ export type PostJobOrderByWithAggregationInput = {
   location?: Prisma.SortOrder
   level?: Prisma.SortOrder
   posted?: Prisma.SortOrder
-  officeName?: Prisma.SortOrder
   ctc?: Prisma.SortOrder
-  jobType?: Prisma.SortOrder
-  recruitureId?: Prisma.SortOrder
+  recruiterId?: Prisma.SortOrder
   _count?: Prisma.PostJobCountOrderByAggregateInput
   _avg?: Prisma.PostJobAvgOrderByAggregateInput
   _max?: Prisma.PostJobMaxOrderByAggregateInput
@@ -333,10 +311,8 @@ export type PostJobScalarWhereWithAggregatesInput = {
   location?: Prisma.StringWithAggregatesFilter<"PostJob"> | string
   level?: Prisma.StringWithAggregatesFilter<"PostJob"> | string
   posted?: Prisma.DateTimeWithAggregatesFilter<"PostJob"> | Date | string
-  officeName?: Prisma.StringWithAggregatesFilter<"PostJob"> | string
   ctc?: Prisma.FloatWithAggregatesFilter<"PostJob"> | number
-  jobType?: Prisma.StringWithAggregatesFilter<"PostJob"> | string
-  recruitureId?: Prisma.StringWithAggregatesFilter<"PostJob"> | string
+  recruiterId?: Prisma.StringWithAggregatesFilter<"PostJob"> | string
 }
 
 export type PostJobCreateInput = {
@@ -347,10 +323,8 @@ export type PostJobCreateInput = {
   location: string
   level: string
   posted?: Date | string
-  officeName: string
   ctc: number
-  jobType: string
-  recruiter: Prisma.RecruitureCreateNestedOneWithoutPostJobInput
+  recruiter: Prisma.RecruiterCreateNestedOneWithoutPostJobInput
   applications?: Prisma.ApplicationCreateNestedManyWithoutPosrJobInput
 }
 
@@ -362,10 +336,8 @@ export type PostJobUncheckedCreateInput = {
   location: string
   level: string
   posted?: Date | string
-  officeName: string
   ctc: number
-  jobType: string
-  recruitureId: string
+  recruiterId: string
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutPosrJobInput
 }
 
@@ -377,10 +349,8 @@ export type PostJobUpdateInput = {
   location?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.StringFieldUpdateOperationsInput | string
   posted?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  officeName?: Prisma.StringFieldUpdateOperationsInput | string
   ctc?: Prisma.FloatFieldUpdateOperationsInput | number
-  jobType?: Prisma.StringFieldUpdateOperationsInput | string
-  recruiter?: Prisma.RecruitureUpdateOneRequiredWithoutPostJobNestedInput
+  recruiter?: Prisma.RecruiterUpdateOneRequiredWithoutPostJobNestedInput
   applications?: Prisma.ApplicationUpdateManyWithoutPosrJobNestedInput
 }
 
@@ -392,10 +362,8 @@ export type PostJobUncheckedUpdateInput = {
   location?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.StringFieldUpdateOperationsInput | string
   posted?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  officeName?: Prisma.StringFieldUpdateOperationsInput | string
   ctc?: Prisma.FloatFieldUpdateOperationsInput | number
-  jobType?: Prisma.StringFieldUpdateOperationsInput | string
-  recruitureId?: Prisma.StringFieldUpdateOperationsInput | string
+  recruiterId?: Prisma.StringFieldUpdateOperationsInput | string
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutPosrJobNestedInput
 }
 
@@ -407,10 +375,8 @@ export type PostJobCreateManyInput = {
   location: string
   level: string
   posted?: Date | string
-  officeName: string
   ctc: number
-  jobType: string
-  recruitureId: string
+  recruiterId: string
 }
 
 export type PostJobUpdateManyMutationInput = {
@@ -421,9 +387,7 @@ export type PostJobUpdateManyMutationInput = {
   location?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.StringFieldUpdateOperationsInput | string
   posted?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  officeName?: Prisma.StringFieldUpdateOperationsInput | string
   ctc?: Prisma.FloatFieldUpdateOperationsInput | number
-  jobType?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type PostJobUncheckedUpdateManyInput = {
@@ -434,10 +398,8 @@ export type PostJobUncheckedUpdateManyInput = {
   location?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.StringFieldUpdateOperationsInput | string
   posted?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  officeName?: Prisma.StringFieldUpdateOperationsInput | string
   ctc?: Prisma.FloatFieldUpdateOperationsInput | number
-  jobType?: Prisma.StringFieldUpdateOperationsInput | string
-  recruitureId?: Prisma.StringFieldUpdateOperationsInput | string
+  recruiterId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type PostJobListRelationFilter = {
@@ -458,10 +420,8 @@ export type PostJobCountOrderByAggregateInput = {
   location?: Prisma.SortOrder
   level?: Prisma.SortOrder
   posted?: Prisma.SortOrder
-  officeName?: Prisma.SortOrder
   ctc?: Prisma.SortOrder
-  jobType?: Prisma.SortOrder
-  recruitureId?: Prisma.SortOrder
+  recruiterId?: Prisma.SortOrder
 }
 
 export type PostJobAvgOrderByAggregateInput = {
@@ -476,10 +436,8 @@ export type PostJobMaxOrderByAggregateInput = {
   location?: Prisma.SortOrder
   level?: Prisma.SortOrder
   posted?: Prisma.SortOrder
-  officeName?: Prisma.SortOrder
   ctc?: Prisma.SortOrder
-  jobType?: Prisma.SortOrder
-  recruitureId?: Prisma.SortOrder
+  recruiterId?: Prisma.SortOrder
 }
 
 export type PostJobMinOrderByAggregateInput = {
@@ -490,10 +448,8 @@ export type PostJobMinOrderByAggregateInput = {
   location?: Prisma.SortOrder
   level?: Prisma.SortOrder
   posted?: Prisma.SortOrder
-  officeName?: Prisma.SortOrder
   ctc?: Prisma.SortOrder
-  jobType?: Prisma.SortOrder
-  recruitureId?: Prisma.SortOrder
+  recruiterId?: Prisma.SortOrder
 }
 
 export type PostJobSumOrderByAggregateInput = {
@@ -547,10 +503,6 @@ export type PostJobUncheckedUpdateManyWithoutRecruiterNestedInput = {
   deleteMany?: Prisma.PostJobScalarWhereInput | Prisma.PostJobScalarWhereInput[]
 }
 
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string
-}
-
 export type FloatFieldUpdateOperationsInput = {
   set?: number
   increment?: number
@@ -581,9 +533,7 @@ export type PostJobCreateWithoutRecruiterInput = {
   location: string
   level: string
   posted?: Date | string
-  officeName: string
   ctc: number
-  jobType: string
   applications?: Prisma.ApplicationCreateNestedManyWithoutPosrJobInput
 }
 
@@ -595,9 +545,7 @@ export type PostJobUncheckedCreateWithoutRecruiterInput = {
   location: string
   level: string
   posted?: Date | string
-  officeName: string
   ctc: number
-  jobType: string
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutPosrJobInput
 }
 
@@ -638,10 +586,8 @@ export type PostJobScalarWhereInput = {
   location?: Prisma.StringFilter<"PostJob"> | string
   level?: Prisma.StringFilter<"PostJob"> | string
   posted?: Prisma.DateTimeFilter<"PostJob"> | Date | string
-  officeName?: Prisma.StringFilter<"PostJob"> | string
   ctc?: Prisma.FloatFilter<"PostJob"> | number
-  jobType?: Prisma.StringFilter<"PostJob"> | string
-  recruitureId?: Prisma.StringFilter<"PostJob"> | string
+  recruiterId?: Prisma.StringFilter<"PostJob"> | string
 }
 
 export type PostJobCreateWithoutApplicationsInput = {
@@ -652,10 +598,8 @@ export type PostJobCreateWithoutApplicationsInput = {
   location: string
   level: string
   posted?: Date | string
-  officeName: string
   ctc: number
-  jobType: string
-  recruiter: Prisma.RecruitureCreateNestedOneWithoutPostJobInput
+  recruiter: Prisma.RecruiterCreateNestedOneWithoutPostJobInput
 }
 
 export type PostJobUncheckedCreateWithoutApplicationsInput = {
@@ -666,10 +610,8 @@ export type PostJobUncheckedCreateWithoutApplicationsInput = {
   location: string
   level: string
   posted?: Date | string
-  officeName: string
   ctc: number
-  jobType: string
-  recruitureId: string
+  recruiterId: string
 }
 
 export type PostJobCreateOrConnectWithoutApplicationsInput = {
@@ -696,10 +638,8 @@ export type PostJobUpdateWithoutApplicationsInput = {
   location?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.StringFieldUpdateOperationsInput | string
   posted?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  officeName?: Prisma.StringFieldUpdateOperationsInput | string
   ctc?: Prisma.FloatFieldUpdateOperationsInput | number
-  jobType?: Prisma.StringFieldUpdateOperationsInput | string
-  recruiter?: Prisma.RecruitureUpdateOneRequiredWithoutPostJobNestedInput
+  recruiter?: Prisma.RecruiterUpdateOneRequiredWithoutPostJobNestedInput
 }
 
 export type PostJobUncheckedUpdateWithoutApplicationsInput = {
@@ -710,10 +650,8 @@ export type PostJobUncheckedUpdateWithoutApplicationsInput = {
   location?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.StringFieldUpdateOperationsInput | string
   posted?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  officeName?: Prisma.StringFieldUpdateOperationsInput | string
   ctc?: Prisma.FloatFieldUpdateOperationsInput | number
-  jobType?: Prisma.StringFieldUpdateOperationsInput | string
-  recruitureId?: Prisma.StringFieldUpdateOperationsInput | string
+  recruiterId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type PostJobCreateManyRecruiterInput = {
@@ -724,9 +662,7 @@ export type PostJobCreateManyRecruiterInput = {
   location: string
   level: string
   posted?: Date | string
-  officeName: string
   ctc: number
-  jobType: string
 }
 
 export type PostJobUpdateWithoutRecruiterInput = {
@@ -737,9 +673,7 @@ export type PostJobUpdateWithoutRecruiterInput = {
   location?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.StringFieldUpdateOperationsInput | string
   posted?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  officeName?: Prisma.StringFieldUpdateOperationsInput | string
   ctc?: Prisma.FloatFieldUpdateOperationsInput | number
-  jobType?: Prisma.StringFieldUpdateOperationsInput | string
   applications?: Prisma.ApplicationUpdateManyWithoutPosrJobNestedInput
 }
 
@@ -751,9 +685,7 @@ export type PostJobUncheckedUpdateWithoutRecruiterInput = {
   location?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.StringFieldUpdateOperationsInput | string
   posted?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  officeName?: Prisma.StringFieldUpdateOperationsInput | string
   ctc?: Prisma.FloatFieldUpdateOperationsInput | number
-  jobType?: Prisma.StringFieldUpdateOperationsInput | string
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutPosrJobNestedInput
 }
 
@@ -765,9 +697,7 @@ export type PostJobUncheckedUpdateManyWithoutRecruiterInput = {
   location?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.StringFieldUpdateOperationsInput | string
   posted?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  officeName?: Prisma.StringFieldUpdateOperationsInput | string
   ctc?: Prisma.FloatFieldUpdateOperationsInput | number
-  jobType?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -809,11 +739,9 @@ export type PostJobSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   location?: boolean
   level?: boolean
   posted?: boolean
-  officeName?: boolean
   ctc?: boolean
-  jobType?: boolean
-  recruitureId?: boolean
-  recruiter?: boolean | Prisma.RecruitureDefaultArgs<ExtArgs>
+  recruiterId?: boolean
+  recruiter?: boolean | Prisma.RecruiterDefaultArgs<ExtArgs>
   applications?: boolean | Prisma.PostJob$applicationsArgs<ExtArgs>
   _count?: boolean | Prisma.PostJobCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["postJob"]>
@@ -826,11 +754,9 @@ export type PostJobSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   location?: boolean
   level?: boolean
   posted?: boolean
-  officeName?: boolean
   ctc?: boolean
-  jobType?: boolean
-  recruitureId?: boolean
-  recruiter?: boolean | Prisma.RecruitureDefaultArgs<ExtArgs>
+  recruiterId?: boolean
+  recruiter?: boolean | Prisma.RecruiterDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["postJob"]>
 
 export type PostJobSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -841,11 +767,9 @@ export type PostJobSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   location?: boolean
   level?: boolean
   posted?: boolean
-  officeName?: boolean
   ctc?: boolean
-  jobType?: boolean
-  recruitureId?: boolean
-  recruiter?: boolean | Prisma.RecruitureDefaultArgs<ExtArgs>
+  recruiterId?: boolean
+  recruiter?: boolean | Prisma.RecruiterDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["postJob"]>
 
 export type PostJobSelectScalar = {
@@ -856,29 +780,27 @@ export type PostJobSelectScalar = {
   location?: boolean
   level?: boolean
   posted?: boolean
-  officeName?: boolean
   ctc?: boolean
-  jobType?: boolean
-  recruitureId?: boolean
+  recruiterId?: boolean
 }
 
-export type PostJobOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"postId" | "title" | "description" | "category" | "location" | "level" | "posted" | "officeName" | "ctc" | "jobType" | "recruitureId", ExtArgs["result"]["postJob"]>
+export type PostJobOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"postId" | "title" | "description" | "category" | "location" | "level" | "posted" | "ctc" | "recruiterId", ExtArgs["result"]["postJob"]>
 export type PostJobInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  recruiter?: boolean | Prisma.RecruitureDefaultArgs<ExtArgs>
+  recruiter?: boolean | Prisma.RecruiterDefaultArgs<ExtArgs>
   applications?: boolean | Prisma.PostJob$applicationsArgs<ExtArgs>
   _count?: boolean | Prisma.PostJobCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PostJobIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  recruiter?: boolean | Prisma.RecruitureDefaultArgs<ExtArgs>
+  recruiter?: boolean | Prisma.RecruiterDefaultArgs<ExtArgs>
 }
 export type PostJobIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  recruiter?: boolean | Prisma.RecruitureDefaultArgs<ExtArgs>
+  recruiter?: boolean | Prisma.RecruiterDefaultArgs<ExtArgs>
 }
 
 export type $PostJobPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "PostJob"
   objects: {
-    recruiter: Prisma.$RecruiturePayload<ExtArgs>
+    recruiter: Prisma.$RecruiterPayload<ExtArgs>
     applications: Prisma.$ApplicationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -889,10 +811,8 @@ export type $PostJobPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     location: string
     level: string
     posted: Date
-    officeName: string
     ctc: number
-    jobType: string
-    recruitureId: string
+    recruiterId: string
   }, ExtArgs["result"]["postJob"]>
   composites: {}
 }
@@ -1287,7 +1207,7 @@ readonly fields: PostJobFieldRefs;
  */
 export interface Prisma__PostJobClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  recruiter<T extends Prisma.RecruitureDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RecruitureDefaultArgs<ExtArgs>>): Prisma.Prisma__RecruitureClient<runtime.Types.Result.GetResult<Prisma.$RecruiturePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  recruiter<T extends Prisma.RecruiterDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RecruiterDefaultArgs<ExtArgs>>): Prisma.Prisma__RecruiterClient<runtime.Types.Result.GetResult<Prisma.$RecruiterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   applications<T extends Prisma.PostJob$applicationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PostJob$applicationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApplicationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1325,10 +1245,8 @@ export interface PostJobFieldRefs {
   readonly location: Prisma.FieldRef<"PostJob", 'String'>
   readonly level: Prisma.FieldRef<"PostJob", 'String'>
   readonly posted: Prisma.FieldRef<"PostJob", 'DateTime'>
-  readonly officeName: Prisma.FieldRef<"PostJob", 'String'>
   readonly ctc: Prisma.FieldRef<"PostJob", 'Float'>
-  readonly jobType: Prisma.FieldRef<"PostJob", 'String'>
-  readonly recruitureId: Prisma.FieldRef<"PostJob", 'String'>
+  readonly recruiterId: Prisma.FieldRef<"PostJob", 'String'>
 }
     
 

@@ -1,5 +1,5 @@
 .rte {
-    width: 60%;
+    width: 37%;
     border: 1px solid #d1d5db;
     border-radius: 8px;
     overflow: hidden;
@@ -43,8 +43,8 @@
 }
 
 .ProseMirror {
-    min-height: 250px;
-
+    /* min-height: 250px; */
+    max-height: 350px;
     padding: 16px;
 
     outline: none;
@@ -52,8 +52,19 @@
     font-size: 15px;
 
     line-height: 1.6;
+    overflow-y:scroll;
 }
-
+.ProseMirror::-webkit-scrollbar{
+    width: 5px;
+}
+.ProseMirror::-webkit-scrollbar-track {
+  background: white;      
+  border-radius: 4px;
+}
+.ProseMirror::-webkit-scrollbar-thumb {
+  background: rgba(144, 164, 212, 0.299);     
+  border-radius: 4px;
+}
 .ProseMirror p {
     margin: 0 0 10px;
 }
@@ -73,9 +84,24 @@
     margin: 16px 0 8px;
 }
 
-.ProseMirror ul,
-.ProseMirror ol {
+.ProseMirror ul {
+    list-style-type: disc;
     padding-left: 24px;
+    margin: 0 0 10px;
+}
+
+.ProseMirror ol {
+    list-style-type: decimal;
+    padding-left: 24px;
+    margin: 0 0 10px;
+}
+
+.ProseMirror li {
+    margin: 0 0 4px;
+}
+
+.ProseMirror li p {
+    margin: 0;
 }
 
 .ProseMirror a {

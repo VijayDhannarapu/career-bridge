@@ -23,10 +23,10 @@ export * from './enums';
  */
 export type User = Prisma.UserModel
 /**
- * Model Recruiture
+ * Model Recruiter
  * 
  */
-export type Recruiture = Prisma.RecruitureModel
+export type Recruiter = Prisma.RecruiterModel
 /**
  * Model PostJob
  * 

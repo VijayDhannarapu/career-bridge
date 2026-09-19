@@ -32,13 +32,16 @@ model User {
   applications Application[]
 }
 
-model Recruiture {
-  recId   String    @id @default(uuid())
-  clerkId String    @unique
-  name    String
-  email   String    @unique
-  role    Role
-  postJob PostJob[]
+model Recruiter {
+  recId      String    @id @default(uuid())
+  clerkId    String    @unique
+  name       String
+  email      String    @unique
+  officeName String
+  imgUrl     String?
+  role       Role
+  createdAt  DateTime  @default(now())
+  postJob    PostJob[]
 }
 
 model PostJob {
@@ -49,11 +52,9 @@ model PostJob {
   location     String
   level        String
   posted       DateTime      @default(now())
-  officeName   String
   ctc          Float
-  jobType      String
-  recruitureId String
-  recruiter    Recruiture    @relation(fields: [recruitureId], references: [recId])
+  recruiterId  String
+  recruiter    Recruiter     @relation(fields: [recruiterId], references: [recId])
   applications Application[]
 }
 
