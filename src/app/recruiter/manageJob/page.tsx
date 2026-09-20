@@ -1,0 +1,39 @@
+import { GetJobs } from "@/app/components/actions/action"
+import { faEdit } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import Link from "next/link"
+export default async function ManageJobs() {
+    const jobs = await GetJobs();
+    return <div className=" mt-6 mx-auto w-full max-w-7xl overflow-x-auto rounded-lg border border-gray-200 bg-white shadow-xl">
+        <table className="w-full border-collapse text-left text-sm ">
+            <thead className=" bg-violet-500/50 text-xl">
+                <tr>
+                    <th className="px-4 py-3 font-bold">S.No</th>
+                    <th className="px-4 py-3 font-bold">Job Title</th>
+                    <th className="px-4 py-3 font-bold">Location</th>
+                    <th className="px-4 py-3 font-bold">Date</th>
+                    <th className="px-4 py-3 font-bold">Applications</th>
+                    <th className="px-4 py-3 font-bold">Edit</th>
+                </tr>
+            </thead>
+            {
+                jobs.map((job, index) => (
+                    <tbody key={index}>
+                        <tr className="border-t border-gray-300 hover:bg-gray-50">
+                            <td className="px-4 py-3">{index+1}</td>
+                            <td className="px-4 py-3">{job.title}</td>
+                            <td className="px-4 py-3">{job.location}</td>
+                            <td className="px-4 py-3">{job.posted.toDateString()}</td>
+                            <td className="px-4 py-3">---</td>
+                            <td className="px-4 py-3">
+                                <div className="flex justify-center ">
+                                    <Link href={"/"}><FontAwesomeIcon icon={faEdit} className="h-4 w-4 " /></Link>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                ))
+            }
+        </table>
+    </div>
+}

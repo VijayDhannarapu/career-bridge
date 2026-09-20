@@ -53,3 +53,15 @@ select{
 .rich-content ol { list-style-type: decimal; padding-left: 24px; margin: 0 0 10px; }
 .rich-content li p { margin: 0; }
 .rich-content strong { font-weight: 700; }
+
+table{
+  background-color: white;
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+ 
+}
+tr{
+  width: 100%;
+  padding: 10px 10px;
+}

@@ -77,6 +77,7 @@ export async function PostJob(_: any, formData: FormData) {
             }
         })
         revalidatePath("/recruiter/addJob")
+        revalidatePath("/recruiter/manageJob")
         return {
             success: true,
             message: "Job Posted Successfully",
