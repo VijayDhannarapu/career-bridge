@@ -5,11 +5,14 @@ import { revalidatePath } from "next/cache";
 
 type Prop = {
     query?: string
+    postId?: string
 }
-export async function GetJobs({ query }: Prop = {}) {
+
+export async function GetJobs({ query, postId }: Prop = {}) {
     if (!query) {
         return await prisma.postJob.findMany()
     }
+
     return await prisma.postJob.findMany({
         where: {
             OR: [
@@ -52,7 +55,7 @@ export async function PostJob(_: any, formData: FormData) {
         const location = formData.get("jobLocation") as string
         const level = formData.get("jobLevel") as string
         const ctc = Number(formData.get("jobSalary") as string)
-
+        const postId = formData.get("postId") as string
         if (!plainText) {
             return {
                 success: false,
@@ -60,7 +63,27 @@ export async function PostJob(_: any, formData: FormData) {
                 status: 400
             }
         }
-
+        if (postId) {
+            await prisma.postJob.update({
+                where: { postId },
+                data: {
+                    title,
+                    description,
+                    category,
+                    location,
+                    level,
+                    ctc,
+                }
+            })
+            revalidatePath("/recruiter/addJob")
+            revalidatePath("/recruiter/manageJob")
+            
+            return {
+                success: true,
+                message: "Job Updated Successfully",
+                status: 200
+            }
+        }
         await prisma.postJob.create({
             data: {
                 title,
@@ -84,7 +107,6 @@ export async function PostJob(_: any, formData: FormData) {
             status: 200
         }
     } catch (error) {
-        console.log("error bro")
         return {
             success: false,
             message: "Something went wrong try again",
