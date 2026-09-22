@@ -1,9 +1,9 @@
-import { GetJobs } from "@/app/components/actions/action"
+import PostedJobs from "@/app/components/action"
 import { faEdit } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Link from "next/link"
 export default async function ManageJobs() {
-    const jobs = await GetJobs() ;
+    const jobs = await PostedJobs({recId: "123recid"})
     
     return <div className=" mt-6 mx-auto w-full max-w-7xl overflow-x-auto rounded-lg border border-gray-200 bg-white shadow-xl">
         <table className="w-full border-collapse text-left text-sm ">
@@ -25,9 +25,9 @@ export default async function ManageJobs() {
                             <td className="px-4 py-3">{job.title}</td>
                             <td className="px-4 py-3">{job.location}</td>
                             <td className="px-4 py-3">{job.posted.toDateString()}</td>
-                            <td className="px-4 py-3">---</td>
+                            <td className="px-4 py-3">{job._count.applications}</td>
                             <td className="px-4 py-3">
-                                <div className="flex justify-center ">
+                                <div className="flex justify-center">
                                     <Link href={`/recruiter/editJob/?id=${job.postId}`}><FontAwesomeIcon icon={faEdit} className="h-4 w-4 " /></Link>
                                 </div>
                             </td>

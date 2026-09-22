@@ -25,47 +25,47 @@ export type AggregateApplication = {
 }
 
 export type ApplicationMinAggregateOutputType = {
-  applicationId: string | null
   status: $Enums.Status | null
   userId: string | null
   postId: string | null
+  appliedAt: Date | null
 }
 
 export type ApplicationMaxAggregateOutputType = {
-  applicationId: string | null
   status: $Enums.Status | null
   userId: string | null
   postId: string | null
+  appliedAt: Date | null
 }
 
 export type ApplicationCountAggregateOutputType = {
-  applicationId: number
   status: number
   userId: number
   postId: number
+  appliedAt: number
   _all: number
 }
 
 
 export type ApplicationMinAggregateInputType = {
-  applicationId?: true
   status?: true
   userId?: true
   postId?: true
+  appliedAt?: true
 }
 
 export type ApplicationMaxAggregateInputType = {
-  applicationId?: true
   status?: true
   userId?: true
   postId?: true
+  appliedAt?: true
 }
 
 export type ApplicationCountAggregateInputType = {
-  applicationId?: true
   status?: true
   userId?: true
   postId?: true
+  appliedAt?: true
   _all?: true
 }
 
@@ -142,10 +142,10 @@ export type ApplicationGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 export type ApplicationGroupByOutputType = {
-  applicationId: string
   status: $Enums.Status
   userId: string
   postId: string
+  appliedAt: Date
   _count: ApplicationCountAggregateOutputType | null
   _min: ApplicationMinAggregateOutputType | null
   _max: ApplicationMaxAggregateOutputType | null
@@ -170,40 +170,41 @@ export type ApplicationWhereInput = {
   AND?: Prisma.ApplicationWhereInput | Prisma.ApplicationWhereInput[]
   OR?: Prisma.ApplicationWhereInput[]
   NOT?: Prisma.ApplicationWhereInput | Prisma.ApplicationWhereInput[]
-  applicationId?: Prisma.StringFilter<"Application"> | string
   status?: Prisma.EnumStatusFilter<"Application"> | $Enums.Status
   userId?: Prisma.StringFilter<"Application"> | string
   postId?: Prisma.StringFilter<"Application"> | string
+  appliedAt?: Prisma.DateTimeFilter<"Application"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  posrJob?: Prisma.XOR<Prisma.PostJobScalarRelationFilter, Prisma.PostJobWhereInput>
+  postJob?: Prisma.XOR<Prisma.PostJobScalarRelationFilter, Prisma.PostJobWhereInput>
 }
 
 export type ApplicationOrderByWithRelationInput = {
-  applicationId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   postId?: Prisma.SortOrder
+  appliedAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
-  posrJob?: Prisma.PostJobOrderByWithRelationInput
+  postJob?: Prisma.PostJobOrderByWithRelationInput
 }
 
 export type ApplicationWhereUniqueInput = Prisma.AtLeast<{
-  applicationId?: string
+  userId_postId?: Prisma.ApplicationUserIdPostIdCompoundUniqueInput
   AND?: Prisma.ApplicationWhereInput | Prisma.ApplicationWhereInput[]
   OR?: Prisma.ApplicationWhereInput[]
   NOT?: Prisma.ApplicationWhereInput | Prisma.ApplicationWhereInput[]
   status?: Prisma.EnumStatusFilter<"Application"> | $Enums.Status
   userId?: Prisma.StringFilter<"Application"> | string
   postId?: Prisma.StringFilter<"Application"> | string
+  appliedAt?: Prisma.DateTimeFilter<"Application"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  posrJob?: Prisma.XOR<Prisma.PostJobScalarRelationFilter, Prisma.PostJobWhereInput>
-}, "applicationId">
+  postJob?: Prisma.XOR<Prisma.PostJobScalarRelationFilter, Prisma.PostJobWhereInput>
+}, "userId_postId">
 
 export type ApplicationOrderByWithAggregationInput = {
-  applicationId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   postId?: Prisma.SortOrder
+  appliedAt?: Prisma.SortOrder
   _count?: Prisma.ApplicationCountOrderByAggregateInput
   _max?: Prisma.ApplicationMaxOrderByAggregateInput
   _min?: Prisma.ApplicationMinOrderByAggregateInput
@@ -213,57 +214,57 @@ export type ApplicationScalarWhereWithAggregatesInput = {
   AND?: Prisma.ApplicationScalarWhereWithAggregatesInput | Prisma.ApplicationScalarWhereWithAggregatesInput[]
   OR?: Prisma.ApplicationScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ApplicationScalarWhereWithAggregatesInput | Prisma.ApplicationScalarWhereWithAggregatesInput[]
-  applicationId?: Prisma.StringWithAggregatesFilter<"Application"> | string
   status?: Prisma.EnumStatusWithAggregatesFilter<"Application"> | $Enums.Status
   userId?: Prisma.StringWithAggregatesFilter<"Application"> | string
   postId?: Prisma.StringWithAggregatesFilter<"Application"> | string
+  appliedAt?: Prisma.DateTimeWithAggregatesFilter<"Application"> | Date | string
 }
 
 export type ApplicationCreateInput = {
-  applicationId?: string
   status?: $Enums.Status
+  appliedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutApplicationsInput
-  posrJob: Prisma.PostJobCreateNestedOneWithoutApplicationsInput
+  postJob: Prisma.PostJobCreateNestedOneWithoutApplicationsInput
 }
 
 export type ApplicationUncheckedCreateInput = {
-  applicationId?: string
   status?: $Enums.Status
   userId: string
   postId: string
+  appliedAt?: Date | string
 }
 
 export type ApplicationUpdateInput = {
-  applicationId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutApplicationsNestedInput
-  posrJob?: Prisma.PostJobUpdateOneRequiredWithoutApplicationsNestedInput
+  postJob?: Prisma.PostJobUpdateOneRequiredWithoutApplicationsNestedInput
 }
 
 export type ApplicationUncheckedUpdateInput = {
-  applicationId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   postId?: Prisma.StringFieldUpdateOperationsInput | string
+  appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ApplicationCreateManyInput = {
-  applicationId?: string
   status?: $Enums.Status
   userId: string
   postId: string
+  appliedAt?: Date | string
 }
 
 export type ApplicationUpdateManyMutationInput = {
-  applicationId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ApplicationUncheckedUpdateManyInput = {
-  applicationId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   postId?: Prisma.StringFieldUpdateOperationsInput | string
+  appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ApplicationListRelationFilter = {
@@ -276,25 +277,30 @@ export type ApplicationOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type ApplicationUserIdPostIdCompoundUniqueInput = {
+  userId: string
+  postId: string
+}
+
 export type ApplicationCountOrderByAggregateInput = {
-  applicationId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   postId?: Prisma.SortOrder
+  appliedAt?: Prisma.SortOrder
 }
 
 export type ApplicationMaxOrderByAggregateInput = {
-  applicationId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   postId?: Prisma.SortOrder
+  appliedAt?: Prisma.SortOrder
 }
 
 export type ApplicationMinOrderByAggregateInput = {
-  applicationId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   postId?: Prisma.SortOrder
+  appliedAt?: Prisma.SortOrder
 }
 
 export type ApplicationCreateNestedManyWithoutUserInput = {
@@ -339,45 +345,45 @@ export type ApplicationUncheckedUpdateManyWithoutUserNestedInput = {
   deleteMany?: Prisma.ApplicationScalarWhereInput | Prisma.ApplicationScalarWhereInput[]
 }
 
-export type ApplicationCreateNestedManyWithoutPosrJobInput = {
-  create?: Prisma.XOR<Prisma.ApplicationCreateWithoutPosrJobInput, Prisma.ApplicationUncheckedCreateWithoutPosrJobInput> | Prisma.ApplicationCreateWithoutPosrJobInput[] | Prisma.ApplicationUncheckedCreateWithoutPosrJobInput[]
-  connectOrCreate?: Prisma.ApplicationCreateOrConnectWithoutPosrJobInput | Prisma.ApplicationCreateOrConnectWithoutPosrJobInput[]
-  createMany?: Prisma.ApplicationCreateManyPosrJobInputEnvelope
+export type ApplicationCreateNestedManyWithoutPostJobInput = {
+  create?: Prisma.XOR<Prisma.ApplicationCreateWithoutPostJobInput, Prisma.ApplicationUncheckedCreateWithoutPostJobInput> | Prisma.ApplicationCreateWithoutPostJobInput[] | Prisma.ApplicationUncheckedCreateWithoutPostJobInput[]
+  connectOrCreate?: Prisma.ApplicationCreateOrConnectWithoutPostJobInput | Prisma.ApplicationCreateOrConnectWithoutPostJobInput[]
+  createMany?: Prisma.ApplicationCreateManyPostJobInputEnvelope
   connect?: Prisma.ApplicationWhereUniqueInput | Prisma.ApplicationWhereUniqueInput[]
 }
 
-export type ApplicationUncheckedCreateNestedManyWithoutPosrJobInput = {
-  create?: Prisma.XOR<Prisma.ApplicationCreateWithoutPosrJobInput, Prisma.ApplicationUncheckedCreateWithoutPosrJobInput> | Prisma.ApplicationCreateWithoutPosrJobInput[] | Prisma.ApplicationUncheckedCreateWithoutPosrJobInput[]
-  connectOrCreate?: Prisma.ApplicationCreateOrConnectWithoutPosrJobInput | Prisma.ApplicationCreateOrConnectWithoutPosrJobInput[]
-  createMany?: Prisma.ApplicationCreateManyPosrJobInputEnvelope
+export type ApplicationUncheckedCreateNestedManyWithoutPostJobInput = {
+  create?: Prisma.XOR<Prisma.ApplicationCreateWithoutPostJobInput, Prisma.ApplicationUncheckedCreateWithoutPostJobInput> | Prisma.ApplicationCreateWithoutPostJobInput[] | Prisma.ApplicationUncheckedCreateWithoutPostJobInput[]
+  connectOrCreate?: Prisma.ApplicationCreateOrConnectWithoutPostJobInput | Prisma.ApplicationCreateOrConnectWithoutPostJobInput[]
+  createMany?: Prisma.ApplicationCreateManyPostJobInputEnvelope
   connect?: Prisma.ApplicationWhereUniqueInput | Prisma.ApplicationWhereUniqueInput[]
 }
 
-export type ApplicationUpdateManyWithoutPosrJobNestedInput = {
-  create?: Prisma.XOR<Prisma.ApplicationCreateWithoutPosrJobInput, Prisma.ApplicationUncheckedCreateWithoutPosrJobInput> | Prisma.ApplicationCreateWithoutPosrJobInput[] | Prisma.ApplicationUncheckedCreateWithoutPosrJobInput[]
-  connectOrCreate?: Prisma.ApplicationCreateOrConnectWithoutPosrJobInput | Prisma.ApplicationCreateOrConnectWithoutPosrJobInput[]
-  upsert?: Prisma.ApplicationUpsertWithWhereUniqueWithoutPosrJobInput | Prisma.ApplicationUpsertWithWhereUniqueWithoutPosrJobInput[]
-  createMany?: Prisma.ApplicationCreateManyPosrJobInputEnvelope
+export type ApplicationUpdateManyWithoutPostJobNestedInput = {
+  create?: Prisma.XOR<Prisma.ApplicationCreateWithoutPostJobInput, Prisma.ApplicationUncheckedCreateWithoutPostJobInput> | Prisma.ApplicationCreateWithoutPostJobInput[] | Prisma.ApplicationUncheckedCreateWithoutPostJobInput[]
+  connectOrCreate?: Prisma.ApplicationCreateOrConnectWithoutPostJobInput | Prisma.ApplicationCreateOrConnectWithoutPostJobInput[]
+  upsert?: Prisma.ApplicationUpsertWithWhereUniqueWithoutPostJobInput | Prisma.ApplicationUpsertWithWhereUniqueWithoutPostJobInput[]
+  createMany?: Prisma.ApplicationCreateManyPostJobInputEnvelope
   set?: Prisma.ApplicationWhereUniqueInput | Prisma.ApplicationWhereUniqueInput[]
   disconnect?: Prisma.ApplicationWhereUniqueInput | Prisma.ApplicationWhereUniqueInput[]
   delete?: Prisma.ApplicationWhereUniqueInput | Prisma.ApplicationWhereUniqueInput[]
   connect?: Prisma.ApplicationWhereUniqueInput | Prisma.ApplicationWhereUniqueInput[]
-  update?: Prisma.ApplicationUpdateWithWhereUniqueWithoutPosrJobInput | Prisma.ApplicationUpdateWithWhereUniqueWithoutPosrJobInput[]
-  updateMany?: Prisma.ApplicationUpdateManyWithWhereWithoutPosrJobInput | Prisma.ApplicationUpdateManyWithWhereWithoutPosrJobInput[]
+  update?: Prisma.ApplicationUpdateWithWhereUniqueWithoutPostJobInput | Prisma.ApplicationUpdateWithWhereUniqueWithoutPostJobInput[]
+  updateMany?: Prisma.ApplicationUpdateManyWithWhereWithoutPostJobInput | Prisma.ApplicationUpdateManyWithWhereWithoutPostJobInput[]
   deleteMany?: Prisma.ApplicationScalarWhereInput | Prisma.ApplicationScalarWhereInput[]
 }
 
-export type ApplicationUncheckedUpdateManyWithoutPosrJobNestedInput = {
-  create?: Prisma.XOR<Prisma.ApplicationCreateWithoutPosrJobInput, Prisma.ApplicationUncheckedCreateWithoutPosrJobInput> | Prisma.ApplicationCreateWithoutPosrJobInput[] | Prisma.ApplicationUncheckedCreateWithoutPosrJobInput[]
-  connectOrCreate?: Prisma.ApplicationCreateOrConnectWithoutPosrJobInput | Prisma.ApplicationCreateOrConnectWithoutPosrJobInput[]
-  upsert?: Prisma.ApplicationUpsertWithWhereUniqueWithoutPosrJobInput | Prisma.ApplicationUpsertWithWhereUniqueWithoutPosrJobInput[]
-  createMany?: Prisma.ApplicationCreateManyPosrJobInputEnvelope
+export type ApplicationUncheckedUpdateManyWithoutPostJobNestedInput = {
+  create?: Prisma.XOR<Prisma.ApplicationCreateWithoutPostJobInput, Prisma.ApplicationUncheckedCreateWithoutPostJobInput> | Prisma.ApplicationCreateWithoutPostJobInput[] | Prisma.ApplicationUncheckedCreateWithoutPostJobInput[]
+  connectOrCreate?: Prisma.ApplicationCreateOrConnectWithoutPostJobInput | Prisma.ApplicationCreateOrConnectWithoutPostJobInput[]
+  upsert?: Prisma.ApplicationUpsertWithWhereUniqueWithoutPostJobInput | Prisma.ApplicationUpsertWithWhereUniqueWithoutPostJobInput[]
+  createMany?: Prisma.ApplicationCreateManyPostJobInputEnvelope
   set?: Prisma.ApplicationWhereUniqueInput | Prisma.ApplicationWhereUniqueInput[]
   disconnect?: Prisma.ApplicationWhereUniqueInput | Prisma.ApplicationWhereUniqueInput[]
   delete?: Prisma.ApplicationWhereUniqueInput | Prisma.ApplicationWhereUniqueInput[]
   connect?: Prisma.ApplicationWhereUniqueInput | Prisma.ApplicationWhereUniqueInput[]
-  update?: Prisma.ApplicationUpdateWithWhereUniqueWithoutPosrJobInput | Prisma.ApplicationUpdateWithWhereUniqueWithoutPosrJobInput[]
-  updateMany?: Prisma.ApplicationUpdateManyWithWhereWithoutPosrJobInput | Prisma.ApplicationUpdateManyWithWhereWithoutPosrJobInput[]
+  update?: Prisma.ApplicationUpdateWithWhereUniqueWithoutPostJobInput | Prisma.ApplicationUpdateWithWhereUniqueWithoutPostJobInput[]
+  updateMany?: Prisma.ApplicationUpdateManyWithWhereWithoutPostJobInput | Prisma.ApplicationUpdateManyWithWhereWithoutPostJobInput[]
   deleteMany?: Prisma.ApplicationScalarWhereInput | Prisma.ApplicationScalarWhereInput[]
 }
 
@@ -386,15 +392,15 @@ export type EnumStatusFieldUpdateOperationsInput = {
 }
 
 export type ApplicationCreateWithoutUserInput = {
-  applicationId?: string
   status?: $Enums.Status
-  posrJob: Prisma.PostJobCreateNestedOneWithoutApplicationsInput
+  appliedAt?: Date | string
+  postJob: Prisma.PostJobCreateNestedOneWithoutApplicationsInput
 }
 
 export type ApplicationUncheckedCreateWithoutUserInput = {
-  applicationId?: string
   status?: $Enums.Status
   postId: string
+  appliedAt?: Date | string
 }
 
 export type ApplicationCreateOrConnectWithoutUserInput = {
@@ -427,159 +433,159 @@ export type ApplicationScalarWhereInput = {
   AND?: Prisma.ApplicationScalarWhereInput | Prisma.ApplicationScalarWhereInput[]
   OR?: Prisma.ApplicationScalarWhereInput[]
   NOT?: Prisma.ApplicationScalarWhereInput | Prisma.ApplicationScalarWhereInput[]
-  applicationId?: Prisma.StringFilter<"Application"> | string
   status?: Prisma.EnumStatusFilter<"Application"> | $Enums.Status
   userId?: Prisma.StringFilter<"Application"> | string
   postId?: Prisma.StringFilter<"Application"> | string
+  appliedAt?: Prisma.DateTimeFilter<"Application"> | Date | string
 }
 
-export type ApplicationCreateWithoutPosrJobInput = {
-  applicationId?: string
+export type ApplicationCreateWithoutPostJobInput = {
   status?: $Enums.Status
+  appliedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutApplicationsInput
 }
 
-export type ApplicationUncheckedCreateWithoutPosrJobInput = {
-  applicationId?: string
+export type ApplicationUncheckedCreateWithoutPostJobInput = {
   status?: $Enums.Status
   userId: string
+  appliedAt?: Date | string
 }
 
-export type ApplicationCreateOrConnectWithoutPosrJobInput = {
+export type ApplicationCreateOrConnectWithoutPostJobInput = {
   where: Prisma.ApplicationWhereUniqueInput
-  create: Prisma.XOR<Prisma.ApplicationCreateWithoutPosrJobInput, Prisma.ApplicationUncheckedCreateWithoutPosrJobInput>
+  create: Prisma.XOR<Prisma.ApplicationCreateWithoutPostJobInput, Prisma.ApplicationUncheckedCreateWithoutPostJobInput>
 }
 
-export type ApplicationCreateManyPosrJobInputEnvelope = {
-  data: Prisma.ApplicationCreateManyPosrJobInput | Prisma.ApplicationCreateManyPosrJobInput[]
+export type ApplicationCreateManyPostJobInputEnvelope = {
+  data: Prisma.ApplicationCreateManyPostJobInput | Prisma.ApplicationCreateManyPostJobInput[]
   skipDuplicates?: boolean
 }
 
-export type ApplicationUpsertWithWhereUniqueWithoutPosrJobInput = {
+export type ApplicationUpsertWithWhereUniqueWithoutPostJobInput = {
   where: Prisma.ApplicationWhereUniqueInput
-  update: Prisma.XOR<Prisma.ApplicationUpdateWithoutPosrJobInput, Prisma.ApplicationUncheckedUpdateWithoutPosrJobInput>
-  create: Prisma.XOR<Prisma.ApplicationCreateWithoutPosrJobInput, Prisma.ApplicationUncheckedCreateWithoutPosrJobInput>
+  update: Prisma.XOR<Prisma.ApplicationUpdateWithoutPostJobInput, Prisma.ApplicationUncheckedUpdateWithoutPostJobInput>
+  create: Prisma.XOR<Prisma.ApplicationCreateWithoutPostJobInput, Prisma.ApplicationUncheckedCreateWithoutPostJobInput>
 }
 
-export type ApplicationUpdateWithWhereUniqueWithoutPosrJobInput = {
+export type ApplicationUpdateWithWhereUniqueWithoutPostJobInput = {
   where: Prisma.ApplicationWhereUniqueInput
-  data: Prisma.XOR<Prisma.ApplicationUpdateWithoutPosrJobInput, Prisma.ApplicationUncheckedUpdateWithoutPosrJobInput>
+  data: Prisma.XOR<Prisma.ApplicationUpdateWithoutPostJobInput, Prisma.ApplicationUncheckedUpdateWithoutPostJobInput>
 }
 
-export type ApplicationUpdateManyWithWhereWithoutPosrJobInput = {
+export type ApplicationUpdateManyWithWhereWithoutPostJobInput = {
   where: Prisma.ApplicationScalarWhereInput
-  data: Prisma.XOR<Prisma.ApplicationUpdateManyMutationInput, Prisma.ApplicationUncheckedUpdateManyWithoutPosrJobInput>
+  data: Prisma.XOR<Prisma.ApplicationUpdateManyMutationInput, Prisma.ApplicationUncheckedUpdateManyWithoutPostJobInput>
 }
 
 export type ApplicationCreateManyUserInput = {
-  applicationId?: string
   status?: $Enums.Status
   postId: string
+  appliedAt?: Date | string
 }
 
 export type ApplicationUpdateWithoutUserInput = {
-  applicationId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
-  posrJob?: Prisma.PostJobUpdateOneRequiredWithoutApplicationsNestedInput
+  appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  postJob?: Prisma.PostJobUpdateOneRequiredWithoutApplicationsNestedInput
 }
 
 export type ApplicationUncheckedUpdateWithoutUserInput = {
-  applicationId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   postId?: Prisma.StringFieldUpdateOperationsInput | string
+  appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ApplicationUncheckedUpdateManyWithoutUserInput = {
-  applicationId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   postId?: Prisma.StringFieldUpdateOperationsInput | string
+  appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type ApplicationCreateManyPosrJobInput = {
-  applicationId?: string
+export type ApplicationCreateManyPostJobInput = {
   status?: $Enums.Status
   userId: string
+  appliedAt?: Date | string
 }
 
-export type ApplicationUpdateWithoutPosrJobInput = {
-  applicationId?: Prisma.StringFieldUpdateOperationsInput | string
+export type ApplicationUpdateWithoutPostJobInput = {
   status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutApplicationsNestedInput
 }
 
-export type ApplicationUncheckedUpdateWithoutPosrJobInput = {
-  applicationId?: Prisma.StringFieldUpdateOperationsInput | string
+export type ApplicationUncheckedUpdateWithoutPostJobInput = {
   status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type ApplicationUncheckedUpdateManyWithoutPosrJobInput = {
-  applicationId?: Prisma.StringFieldUpdateOperationsInput | string
+export type ApplicationUncheckedUpdateManyWithoutPostJobInput = {
   status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
 
 export type ApplicationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  applicationId?: boolean
   status?: boolean
   userId?: boolean
   postId?: boolean
+  appliedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  posrJob?: boolean | Prisma.PostJobDefaultArgs<ExtArgs>
+  postJob?: boolean | Prisma.PostJobDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["application"]>
 
 export type ApplicationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  applicationId?: boolean
   status?: boolean
   userId?: boolean
   postId?: boolean
+  appliedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  posrJob?: boolean | Prisma.PostJobDefaultArgs<ExtArgs>
+  postJob?: boolean | Prisma.PostJobDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["application"]>
 
 export type ApplicationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  applicationId?: boolean
   status?: boolean
   userId?: boolean
   postId?: boolean
+  appliedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  posrJob?: boolean | Prisma.PostJobDefaultArgs<ExtArgs>
+  postJob?: boolean | Prisma.PostJobDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["application"]>
 
 export type ApplicationSelectScalar = {
-  applicationId?: boolean
   status?: boolean
   userId?: boolean
   postId?: boolean
+  appliedAt?: boolean
 }
 
-export type ApplicationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"applicationId" | "status" | "userId" | "postId", ExtArgs["result"]["application"]>
+export type ApplicationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"status" | "userId" | "postId" | "appliedAt", ExtArgs["result"]["application"]>
 export type ApplicationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  posrJob?: boolean | Prisma.PostJobDefaultArgs<ExtArgs>
+  postJob?: boolean | Prisma.PostJobDefaultArgs<ExtArgs>
 }
 export type ApplicationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  posrJob?: boolean | Prisma.PostJobDefaultArgs<ExtArgs>
+  postJob?: boolean | Prisma.PostJobDefaultArgs<ExtArgs>
 }
 export type ApplicationIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  posrJob?: boolean | Prisma.PostJobDefaultArgs<ExtArgs>
+  postJob?: boolean | Prisma.PostJobDefaultArgs<ExtArgs>
 }
 
 export type $ApplicationPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Application"
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
-    posrJob: Prisma.$PostJobPayload<ExtArgs>
+    postJob: Prisma.$PostJobPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    applicationId: string
     status: $Enums.Status
     userId: string
     postId: string
+    appliedAt: Date
   }, ExtArgs["result"]["application"]>
   composites: {}
 }
@@ -663,8 +669,8 @@ export interface ApplicationDelegate<ExtArgs extends runtime.Types.Extensions.In
    * // Get first 10 Applications
    * const applications = await prisma.application.findMany({ take: 10 })
    * 
-   * // Only select the `applicationId`
-   * const applicationWithApplicationIdOnly = await prisma.application.findMany({ select: { applicationId: true } })
+   * // Only select the `userId`
+   * const applicationWithUserIdOnly = await prisma.application.findMany({ select: { userId: true } })
    * 
    */
   findMany<T extends ApplicationFindManyArgs>(args?: Prisma.SelectSubset<T, ApplicationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApplicationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -708,9 +714,9 @@ export interface ApplicationDelegate<ExtArgs extends runtime.Types.Extensions.In
    *   ]
    * })
    * 
-   * // Create many Applications and only return the `applicationId`
-   * const applicationWithApplicationIdOnly = await prisma.application.createManyAndReturn({
-   *   select: { applicationId: true },
+   * // Create many Applications and only return the `userId`
+   * const applicationWithUserIdOnly = await prisma.application.createManyAndReturn({
+   *   select: { userId: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -799,9 +805,9 @@ export interface ApplicationDelegate<ExtArgs extends runtime.Types.Extensions.In
    *   ]
    * })
    * 
-   * // Update zero or more Applications and only return the `applicationId`
-   * const applicationWithApplicationIdOnly = await prisma.application.updateManyAndReturn({
-   *   select: { applicationId: true },
+   * // Update zero or more Applications and only return the `userId`
+   * const applicationWithUserIdOnly = await prisma.application.updateManyAndReturn({
+   *   select: { userId: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -975,7 +981,7 @@ readonly fields: ApplicationFieldRefs;
 export interface Prisma__ApplicationClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  posrJob<T extends Prisma.PostJobDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PostJobDefaultArgs<ExtArgs>>): Prisma.Prisma__PostJobClient<runtime.Types.Result.GetResult<Prisma.$PostJobPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  postJob<T extends Prisma.PostJobDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PostJobDefaultArgs<ExtArgs>>): Prisma.Prisma__PostJobClient<runtime.Types.Result.GetResult<Prisma.$PostJobPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1005,10 +1011,10 @@ export interface Prisma__ApplicationClient<T, Null = never, ExtArgs extends runt
  * Fields of the Application model
  */
 export interface ApplicationFieldRefs {
-  readonly applicationId: Prisma.FieldRef<"Application", 'String'>
   readonly status: Prisma.FieldRef<"Application", 'Status'>
   readonly userId: Prisma.FieldRef<"Application", 'String'>
   readonly postId: Prisma.FieldRef<"Application", 'String'>
+  readonly appliedAt: Prisma.FieldRef<"Application", 'DateTime'>
 }
     
 

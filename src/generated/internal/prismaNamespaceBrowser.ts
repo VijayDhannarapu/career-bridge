@@ -114,10 +114,10 @@ export type PostJobScalarFieldEnum = (typeof PostJobScalarFieldEnum)[keyof typeo
 
 
 export const ApplicationScalarFieldEnum = {
-  applicationId: 'applicationId',
   status: 'status',
   userId: 'userId',
-  postId: 'postId'
+  postId: 'postId',
+  appliedAt: 'appliedAt'
 } as const
 
 export type ApplicationScalarFieldEnum = (typeof ApplicationScalarFieldEnum)[keyof typeof ApplicationScalarFieldEnum]

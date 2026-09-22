@@ -51,7 +51,7 @@ model PostJob {
   category     String
   location     String
   level        String
-  posted       DateTime      @default(now())
+  posted       DateTime      @default(now()) 
   ctc          Float
   recruiterId  String
   recruiter    Recruiter     @relation(fields: [recruiterId], references: [recId])
@@ -59,13 +59,15 @@ model PostJob {
 }
 
 model Application {
-  applicationId String @id @default(uuid())
-
   status Status @default(PENDING)
 
   userId String
   user   User   @relation(fields: [userId], references: [userId])
 
   postId  String
-  posrJob PostJob @relation(fields: [postId], references: [postId])
+  postJob PostJob @relation(fields: [postId], references: [postId])
+
+  appliedAt DateTime @default(now())
+
+  @@id([userId, postId])
 }

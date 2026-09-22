@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBriefcase, faLocation, faLocationDot, faMoneyBill, faMoneyBill1, faMoneyCheck, faMoneyCheckDollar, faUser } from "@fortawesome/free-solid-svg-icons"
 
 import DOMPurify from "isomorphic-dompurify"
+import ApplyButton from "@/app/components/ApplyBtn"
 
 type Porp = {
     params: Promise<{ postId: string }>
@@ -41,7 +42,7 @@ export default async function detailsDetails({ params }: Porp) {
                 </div>
             </div>
             <div>
-                <button className="border-2 p-2 text-white bg-blue-700 rounded-md hover:bg-blue-800">Apply Now</button>
+                <ApplyButton postId={pid} userId="123userId" />
             </div>
 
         </div>

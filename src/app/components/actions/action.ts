@@ -5,10 +5,9 @@ import { revalidatePath } from "next/cache";
 
 type Prop = {
     query?: string
-    postId?: string
 }
 
-export async function GetJobs({ query, postId }: Prop = {}) {
+export async function GetJobs({ query }: Prop = {}) {
     if (!query) {
         return await prisma.postJob.findMany()
     }
@@ -77,7 +76,7 @@ export async function PostJob(_: any, formData: FormData) {
             })
             revalidatePath("/recruiter/addJob")
             revalidatePath("/recruiter/manageJob")
-            
+
             return {
                 success: true,
                 message: "Job Updated Successfully",
@@ -111,6 +110,68 @@ export async function PostJob(_: any, formData: FormData) {
             success: false,
             message: "Something went wrong try again",
             status: 400
+        }
+    }
+}
+
+export async function ApplyJob(_prev: any, formData: FormData) {
+    const userId = formData.get("userId") as string
+    const postId = formData.get("postId") as string
+    if (!userId || !postId) {
+        return {
+            success: false,
+            message: "Something went Wrong :(",
+            status: 409
+        }
+    }
+    try {
+        const user = await prisma.user.findUnique({
+            where: { userId }
+        })
+        if (!user)
+            return { success: false, message: "User Not Found", status: 404 }
+
+        const post = await prisma.postJob.findUnique({
+            where: { postId }
+        })
+
+        if (!post)
+            return { success: false, message: "Post Not Found", status: 404 }
+
+        const existing = await prisma.application.findUnique({
+            where: {
+                userId_postId: { userId, postId }
+            }
+        })
+
+        if (existing)
+            return { success: false, message: "You already applied to this job", status: 409 }
+
+        await prisma.application.create({
+            data: {
+                user: {
+                    connect: {
+                        userId
+                    }
+                },
+                postJob: {
+                    connect: {
+                        postId
+                    }
+                }
+            }
+        })
+
+        return {
+            success: true,
+            message: "Applied Successfully",
+            status: 200
+        }
+    } catch (error: any) {
+        return {
+            success: false,
+            message: "Something went Wrong :)",
+            status: 500
         }
     }
 }

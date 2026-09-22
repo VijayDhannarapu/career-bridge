@@ -325,7 +325,7 @@ export type PostJobCreateInput = {
   posted?: Date | string
   ctc: number
   recruiter: Prisma.RecruiterCreateNestedOneWithoutPostJobInput
-  applications?: Prisma.ApplicationCreateNestedManyWithoutPosrJobInput
+  applications?: Prisma.ApplicationCreateNestedManyWithoutPostJobInput
 }
 
 export type PostJobUncheckedCreateInput = {
@@ -338,7 +338,7 @@ export type PostJobUncheckedCreateInput = {
   posted?: Date | string
   ctc: number
   recruiterId: string
-  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutPosrJobInput
+  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutPostJobInput
 }
 
 export type PostJobUpdateInput = {
@@ -351,7 +351,7 @@ export type PostJobUpdateInput = {
   posted?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ctc?: Prisma.FloatFieldUpdateOperationsInput | number
   recruiter?: Prisma.RecruiterUpdateOneRequiredWithoutPostJobNestedInput
-  applications?: Prisma.ApplicationUpdateManyWithoutPosrJobNestedInput
+  applications?: Prisma.ApplicationUpdateManyWithoutPostJobNestedInput
 }
 
 export type PostJobUncheckedUpdateInput = {
@@ -364,7 +364,7 @@ export type PostJobUncheckedUpdateInput = {
   posted?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ctc?: Prisma.FloatFieldUpdateOperationsInput | number
   recruiterId?: Prisma.StringFieldUpdateOperationsInput | string
-  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutPosrJobNestedInput
+  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutPostJobNestedInput
 }
 
 export type PostJobCreateManyInput = {
@@ -534,7 +534,7 @@ export type PostJobCreateWithoutRecruiterInput = {
   level: string
   posted?: Date | string
   ctc: number
-  applications?: Prisma.ApplicationCreateNestedManyWithoutPosrJobInput
+  applications?: Prisma.ApplicationCreateNestedManyWithoutPostJobInput
 }
 
 export type PostJobUncheckedCreateWithoutRecruiterInput = {
@@ -546,7 +546,7 @@ export type PostJobUncheckedCreateWithoutRecruiterInput = {
   level: string
   posted?: Date | string
   ctc: number
-  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutPosrJobInput
+  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutPostJobInput
 }
 
 export type PostJobCreateOrConnectWithoutRecruiterInput = {
@@ -674,7 +674,7 @@ export type PostJobUpdateWithoutRecruiterInput = {
   level?: Prisma.StringFieldUpdateOperationsInput | string
   posted?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ctc?: Prisma.FloatFieldUpdateOperationsInput | number
-  applications?: Prisma.ApplicationUpdateManyWithoutPosrJobNestedInput
+  applications?: Prisma.ApplicationUpdateManyWithoutPostJobNestedInput
 }
 
 export type PostJobUncheckedUpdateWithoutRecruiterInput = {
@@ -686,7 +686,7 @@ export type PostJobUncheckedUpdateWithoutRecruiterInput = {
   level?: Prisma.StringFieldUpdateOperationsInput | string
   posted?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ctc?: Prisma.FloatFieldUpdateOperationsInput | number
-  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutPosrJobNestedInput
+  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutPostJobNestedInput
 }
 
 export type PostJobUncheckedUpdateManyWithoutRecruiterInput = {

@@ -5,12 +5,7 @@ import { useActionState, useEffect, useState, type ChangeEvent } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import SubmitButton from "../addJob/Button";
 import { redirect } from "next/navigation";
-
-export type FormProps = {
-    success: boolean
-    message: string
-    status: number
-}
+import { initialState } from "@/app/components/utility";
 type JobProps = {
     title: string;
     description: string;
@@ -27,7 +22,6 @@ type JobProps = {
 type Props = {
     job?: JobProps
 }
-
 export default function EditForm({ job }: Props) {
     const JOB_CATEGORIES = [
         "Software Development",
@@ -50,15 +44,11 @@ export default function EditForm({ job }: Props) {
         "Intermediate level",
         "Senior level"
     ]
-    const initalState: FormProps = {
-        success: false,
-        message: "",
-        status: 0
-    }
+
     const [title, setTitle] = useState<string>((job?.title || ""))
     const [salary, setSalary] = useState<number>((Number(job?.ctc)) || 0)
     const [formKey, setFormKey] = useState(0)
-    const [state, formAction, isPending] = useActionState(PostJob, initalState)
+    const [state, formAction] = useActionState(PostJob, initialState)
 
     useEffect(() => {
         if (!state.message) return
