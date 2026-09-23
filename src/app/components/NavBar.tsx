@@ -16,7 +16,7 @@ export default function NavBar() {
                 <Link href={"/"} className="hover:text-blue-600 transition-colors py-2 border-b-2 border-transparent hover:border-blue-600">Home</Link>
             </li>
             <li>
-                <Link href={"/"} className="hover:text-blue-600  transition-colors py-2 border-b-2 border-transparent hover:border-blue-600">Applied Jobs</Link>
+                <Link href={"/user/appliedJobs"} className="hover:text-blue-600  transition-colors py-2 border-b-2 border-transparent hover:border-blue-600">Applied Jobs</Link>
             </li>
             <li>
                 <Link href={"/"} className="hover:text-blue-600  transition-colors py-2 border-b-2 border-transparent hover:border-blue-600">Browse Companies</Link>
@@ -50,7 +50,7 @@ export default function NavBar() {
                     <a href="/" className="block py-2 hover:text-blue-600 border-b border-gray-50">Home</a>
                 </li>
                 <li>
-                    <a href="/applied-jobs" className="block py-2 hover:text-blue-600 border-b border-gray-50">Applied Jobs</a>
+                    <Link href="/user/appliedJobs" className="block py-2 hover:text-blue-600 border-b border-gray-50">Applied Jobs</Link>
                 </li>
                 <li>
                     <a href="/applied-jobs" className="block py-2 hover:text-blue-600 border-b border-gray-50">Browse Companies</a>
