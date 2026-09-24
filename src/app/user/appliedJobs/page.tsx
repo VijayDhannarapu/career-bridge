@@ -1,5 +1,5 @@
 import GetAppliedJobs from "../action/action"
-
+import Link from "next/link"
 export default async function AppliedJobs(){
     const applications = await GetAppliedJobs({userId: "123userId"})
     return <div className=" mt-6 mx-auto w-full max-w-7xl overflow-x-auto rounded-lg border border-gray-200 bg-white shadow-xl">
@@ -17,7 +17,7 @@ export default async function AppliedJobs(){
                     <tbody key={index}>
                         <tr className="border-t border-gray-300 hover:bg-gray-50">
                             <td className="px-4 py-3">{index+1}</td>
-                            <td className="px-4 py-3">{job.postJob.title}</td>
+                            <td className="px-4 py-3"><Link href={`/user/jobDetails/${job.postId}`}>{job.postJob.title} </Link></td>
                             <td className="px-4 py-3">{job.postJob.location}</td>
                             <td className="px-4 py-3">{job.postJob.posted.toDateString()}</td>
                         </tr>
