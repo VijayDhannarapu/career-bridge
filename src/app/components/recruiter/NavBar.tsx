@@ -19,7 +19,7 @@ export default function RecruiterNavBar() {
                 <Link href={"/recruiter/manageJob"} className="hover:text-blue-600  transition-colors py-2 border-b-2 border-transparent hover:border-blue-600">Manage Jobs</Link>
             </li>
             <li>
-                <Link href={"/"} className="hover:text-blue-600  transition-colors py-2 border-b-2 border-transparent hover:border-blue-600">View Applications</Link>
+                <Link href={"/recruiter/applications"} className="hover:text-blue-600  transition-colors py-2 border-b-2 border-transparent hover:border-blue-600">View Applications</Link>
             </li>
         </ul>
         {/* only for medium devices */}
@@ -53,7 +53,7 @@ export default function RecruiterNavBar() {
                     <Link href={"/recruiter/manageJob"} className="hover:text-blue-600  transition-colors py-2 border-b-2 border-transparent hover:border-blue-600">Manage Jobs</Link>
                 </li>
                 <li>
-                    <Link href={"/"} className="hover:text-blue-600  transition-colors py-2 border-b-2 border-transparent hover:border-blue-600">View Applications</Link>
+                    <Link href={"/recruiter/applications"} className="hover:text-blue-600  transition-colors py-2 border-b-2 border-transparent hover:border-blue-600">View Applications</Link>
                 </li>
                 <li className="flex items-center gap-3 pt-2">
                     <div className="w-8 h-8 rounded-full bg-blue-100 text-blue-700 font-semibold flex items-center justify-center text-sm">

@@ -10,6 +10,7 @@ export default async function AppliedJobs(){
                     <th className="px-4 py-3 font-bold">Job Title</th>
                     <th className="px-4 py-3 font-bold">Location</th>
                     <th className="px-4 py-3 font-bold">Applied At</th>
+                    <th className="px-4 py-3 font-bold">Status</th>
                 </tr>
             </thead>
             {
@@ -20,6 +21,7 @@ export default async function AppliedJobs(){
                             <td className="px-4 py-3"><Link href={`/user/jobDetails/${job.postId}`}>{job.postJob.title} </Link></td>
                             <td className="px-4 py-3">{job.postJob.location}</td>
                             <td className="px-4 py-3">{job.postJob.posted.toDateString()}</td>
+                            <td className={`px-4 py-3 font-semibold ${job.status === "ACCEPTED"?"text-green-600": job.status === "REJECTED" ? "text-red-500"  : "text-orange-400"}`}>{job.status}</td>
                         </tr>
                     </tbody>
                 ))

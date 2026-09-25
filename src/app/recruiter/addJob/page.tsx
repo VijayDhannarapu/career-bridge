@@ -64,7 +64,7 @@ export default function AddJob() {
             <div className="flex gap-5">
                 <div className="selectOption">
                     <label htmlFor="jobCategory">Job Category <span className="text-red-500">*</span></label>
-                    <select name="jobCategory" id="jobCategory" >
+                    <select name="jobCategory" id="jobCategory" className="select">
                         {
                             JOB_CATEGORIES.map((jobCategory, index) => (
                                 <option key={index} value={jobCategory}>{jobCategory}</option>
@@ -74,7 +74,7 @@ export default function AddJob() {
                 </div>
                 <div className="selectOption">
                     <label htmlFor="jobLocation">Job Location <span className="text-red-500">*</span></label>
-                    <select name="jobLocation" id="jobLocation">
+                    <select name="jobLocation" id="jobLocation" className="select">
                         {
                             JOB_LOCATIONS.map((location, index) => (
                                 <option key={index} value={location}>{location}</option>
@@ -84,7 +84,7 @@ export default function AddJob() {
                 </div>
                 <div className="selectOption">
                     <label htmlFor="jobLevel">Job Location <span className="text-red-500">*</span></label>
-                    <select name="jobLevel" id="jobLevel">
+                    <select name="jobLevel" id="jobLevel" className="select">
                         {
                             JOB_LEVEL.map((level, index) => (
                                 <option key={index} value={level}>{level}</option>
