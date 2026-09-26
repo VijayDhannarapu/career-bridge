@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import "../globals.css";
 import Banner from "../components/Banner";
 import JobListing from "../components/JobListing";
-import TrustedCompanies from "../components/TrustedCompanies ";
+import TrustedCompanies from "../components/TrustedCompanies";
 import Loading from "../components/loading";
 type Prop = {
   searchParams?: Promise<{ query?: string }>

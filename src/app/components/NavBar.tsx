@@ -1,4 +1,6 @@
 "use client"
+import { SignInButton } from "@clerk/nextjs";
+import { Show, SignOutButton, UserButton } from "@clerk/react";
 import Link from "next/link"
 import { useState } from "react";
 export default function NavBar() {
@@ -56,25 +58,42 @@ export default function NavBar() {
                     <a href="/applied-jobs" className="block py-2 hover:text-blue-600 border-b border-gray-50">Browse Companies</a>
                 </li>
                 <li className="flex items-center gap-3 pt-2">
-                    <div className="w-8 h-8 rounded-full bg-blue-100 text-blue-700 font-semibold flex items-center justify-center text-sm">
-                        UN
-                    </div>
-                    <a href="/user" className="hover:text-blue-600">User Name</a>
+                    <Show when={"signed-out"} >
+                        {/* <SignInButton mode="modal" />      */}
+                        <SignInButton mode="modal" forceRedirectUrl={"recruiter/addJob"}>
+                            <button>For Recruiters</button>
+                        </SignInButton>
+                        <SignInButton mode="modal">
+                            <button className="border border-blue-600 p-1 rounded-md bg-blue-600 text-white">Log In</button>
+                        </SignInButton>
+                        <SignInButton mode="modal">
+                            <button className="border border-blue-600 p-1 rounded-md bg-blue-600 text-white">Sign Up</button>
+                        </SignInButton>
+                    </Show>
+                    <Show when={"signed-in"}>
+                        <UserButton />
+                    </Show>
                 </li>
             </ul>
         </div>
 
         {/* User Profile / Actions Area */}
         <div className="hidden md:flex items-center gap-5">
-            <button className="hidden sm:block text-sm font-semibold text-gray-600 hover:text-gray-900">
-                Post a Job
-            </button>
-            <div className="flex items-center gap-3 pl-4 border-l border-gray-200">
-                <div className="w-8 h-8 rounded-full bg-blue-100 text-blue-700 font-semibold flex items-center justify-center text-sm ring-2 ring-white shadow-sm cursor-pointer">
-                    JD
-                </div>
-                <span className="hidden lg:inline text-sm font-medium text-gray-700">John Doe</span>
-            </div>
+            <Show when={"signed-out"} >
+                {/* <SignInButton mode="modal" />      */}
+                <SignInButton mode="modal" forceRedirectUrl={"recruiter/addJob"}>
+                    <button>For Recruiters</button>
+                </SignInButton>
+                <SignInButton mode="modal">
+                    <button className="border border-blue-600 p-1 rounded-md bg-blue-600 text-white">Log In</button>
+                </SignInButton>
+                <SignInButton mode="modal">
+                    <button className="border border-blue-600 p-1 rounded-md bg-blue-600 text-white">Sign Up</button>
+                </SignInButton>
+            </Show>
+            <Show when={"signed-in"}>
+                <UserButton />
+            </Show>
         </div>
     </nav>
 
