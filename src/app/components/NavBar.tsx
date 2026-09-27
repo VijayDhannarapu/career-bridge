@@ -2,9 +2,11 @@
 import { SignInButton } from "@clerk/nextjs";
 import { Show, SignOutButton, UserButton } from "@clerk/react";
 import Link from "next/link"
+import { Role } from "@/generated/enums";
 import { useState } from "react";
 export default function NavBar() {
     const [isOpen, setIsOpen] = useState(false);
+    const [role, setRole] = useState<Role>()
     return <nav className="flex items-center justify-around px-4 py-2 bg-white border-b border-gray-100 shadow-sm">
         {/* Logo / Branding */}
         <div className="flex items-center gap-3">
@@ -59,17 +61,17 @@ export default function NavBar() {
                 </li>
                 <li className="flex items-center gap-3 pt-2">
                     <Show when={"signed-out"} >
-                        {/* <SignInButton mode="modal" />      */}
                         <SignInButton mode="modal" forceRedirectUrl={"recruiter/addJob"}>
                             <button>For Recruiters</button>
                         </SignInButton>
                         <SignInButton mode="modal">
                             <button className="border border-blue-600 p-1 rounded-md bg-blue-600 text-white">Log In</button>
                         </SignInButton>
-                        <SignInButton mode="modal">
+                        <SignInButton mode="modal" >
                             <button className="border border-blue-600 p-1 rounded-md bg-blue-600 text-white">Sign Up</button>
                         </SignInButton>
                     </Show>
+
                     <Show when={"signed-in"}>
                         <UserButton />
                     </Show>
@@ -80,7 +82,6 @@ export default function NavBar() {
         {/* User Profile / Actions Area */}
         <div className="hidden md:flex items-center gap-5">
             <Show when={"signed-out"} >
-                {/* <SignInButton mode="modal" />      */}
                 <SignInButton mode="modal" forceRedirectUrl={"recruiter/addJob"}>
                     <button>For Recruiters</button>
                 </SignInButton>

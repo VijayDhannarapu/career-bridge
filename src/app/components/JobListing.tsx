@@ -1,14 +1,17 @@
 import Link from "next/link"
 import { GetJobs } from "./actions/action"
 import ApplyButton from "./ApplyBtn";
+import { currentUser } from "@clerk/nextjs/server";
 type Prop = {
     query?: string
 }
 export default async function JobListing({ query }: Prop) {
+    const authObj = await currentUser();
     const jobs = await GetJobs({ query })
     if (jobs.length === 0) {
         return <h1>No Jobs</h1>
     }
+
     return <div className="mt-6 px-6">
         <div className="flex flex-wrap max-w-7xl m-auto items-center justify-center  rounded-md p-2 gap-5">
             {
@@ -19,10 +22,10 @@ export default async function JobListing({ query }: Prop) {
                             <p className="p-1 text-center border border-violet-500 bg-violet-300/40 ">{job.location}</p>
                             <p className="text-center p-1 border border-blue-500 bg-blue-300/40">{job.level}</p>
                         </div>
-                        
+
                         <p className="mt-5 text-[15px] text-gray-500">{job.description.replace(/<[^>]*>/g, "").slice(0, 150) + "..."} .</p>
                         <div className="flex gap-5 mt-5">
-                            <ApplyButton postId={job.postId} userId="123userId"/>
+                            <ApplyButton postId={job.postId} />
                             <Link href={`/user/jobDetails/${job.postId}`} className="border-2 border-gray-400 text-gray-600 p-2 rounded-md hover:bg-gray-100/80">Learn More</Link>
                         </div>
                     </div>

@@ -4,7 +4,6 @@ import { faBriefcase, faLocation, faLocationDot, faMoneyBill, faMoneyBill1, faMo
 
 import DOMPurify from "isomorphic-dompurify"
 import ApplyButton from "@/app/components/ApplyBtn"
-
 type Porp = {
     params: Promise<{ postId: string }>
 }
@@ -42,7 +41,7 @@ export default async function detailsDetails({ params }: Porp) {
                 </div>
             </div>
             <div>
-                <ApplyButton postId={pid} userId="123userId" />
+                <ApplyButton postId={pid}/>
             </div>
 
         </div>

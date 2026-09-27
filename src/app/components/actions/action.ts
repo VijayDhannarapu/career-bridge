@@ -1,6 +1,7 @@
 'use server'
 
 import { prisma } from "@/lib/prisma";
+import { currentUser } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 
 type Prop = {
@@ -115,22 +116,28 @@ export async function PostJob(_: any, formData: FormData) {
 }
 
 export async function ApplyJob(_prev: any, formData: FormData) {
-    const userId = formData.get("userId") as string
+    const authObj = await currentUser();
+    console.log(authObj)
+    const clerkId = authObj?.raw?.id ?? "NO_ID"
     const postId = formData.get("postId") as string
-    if (!userId || !postId) {
+    console.log("CKECING CLERK ID",clerkId)
+
+    if (!clerkId || !postId) {
         return {
             success: false,
             message: "Something went Wrong :(",
             status: 409
         }
     }
+
     try {
         const user = await prisma.user.findUnique({
-            where: { userId }
+            where: { clerkId },
+            select: { userId: true }
         })
         if (!user)
             return { success: false, message: "User Not Found", status: 404 }
-
+        const userId = user.userId;
         const post = await prisma.postJob.findUnique({
             where: { postId }
         })
