@@ -5,12 +5,20 @@ import { currentUser } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 
 type Prop = {
-    query?: string
+    query?: string,
+    page?: string
 }
 
-export async function GetJobs({ query }: Prop = {}) {
+const PAGE_SIZE = 6;
+
+export async function GetJobs({ query, page }: Prop = {}) {
+    const pageNo = Math.max(1, Number(page) || 1);
     if (!query) {
-        return await prisma.postJob.findMany()
+        return await prisma.postJob.findMany({
+            skip: (pageNo - 1) * PAGE_SIZE,
+            take: PAGE_SIZE,
+            orderBy: { postId: "asc" }
+        })
     }
 
     return await prisma.postJob.findMany({
@@ -29,8 +37,12 @@ export async function GetJobs({ query }: Prop = {}) {
                     }
                 }
             ]
-        }
+        },
+        skip: ((pageNo) - 1) * PAGE_SIZE,
+        take: PAGE_SIZE,
+        orderBy: {postId: "asc"}
     })
+
 }
 
 export async function PostJob(_: any, formData: FormData) {
@@ -120,7 +132,7 @@ export async function ApplyJob(_prev: any, formData: FormData) {
     console.log(authObj)
     const clerkId = authObj?.raw?.id ?? "NO_ID"
     const postId = formData.get("postId") as string
-    console.log("CKECING CLERK ID",clerkId)
+    console.log("CKECING CLERK ID", clerkId)
 
     if (!clerkId || !postId) {
         return {
