@@ -43,6 +43,7 @@ export type PostJobMinAggregateOutputType = {
   level: string | null
   posted: Date | null
   ctc: number | null
+  isVisible: boolean | null
   recruiterId: string | null
 }
 
@@ -55,6 +56,7 @@ export type PostJobMaxAggregateOutputType = {
   level: string | null
   posted: Date | null
   ctc: number | null
+  isVisible: boolean | null
   recruiterId: string | null
 }
 
@@ -67,6 +69,7 @@ export type PostJobCountAggregateOutputType = {
   level: number
   posted: number
   ctc: number
+  isVisible: number
   recruiterId: number
   _all: number
 }
@@ -89,6 +92,7 @@ export type PostJobMinAggregateInputType = {
   level?: true
   posted?: true
   ctc?: true
+  isVisible?: true
   recruiterId?: true
 }
 
@@ -101,6 +105,7 @@ export type PostJobMaxAggregateInputType = {
   level?: true
   posted?: true
   ctc?: true
+  isVisible?: true
   recruiterId?: true
 }
 
@@ -113,6 +118,7 @@ export type PostJobCountAggregateInputType = {
   level?: true
   posted?: true
   ctc?: true
+  isVisible?: true
   recruiterId?: true
   _all?: true
 }
@@ -212,6 +218,7 @@ export type PostJobGroupByOutputType = {
   level: string
   posted: Date
   ctc: number
+  isVisible: boolean
   recruiterId: string
   _count: PostJobCountAggregateOutputType | null
   _avg: PostJobAvgAggregateOutputType | null
@@ -247,6 +254,7 @@ export type PostJobWhereInput = {
   level?: Prisma.StringFilter<"PostJob"> | string
   posted?: Prisma.DateTimeFilter<"PostJob"> | Date | string
   ctc?: Prisma.FloatFilter<"PostJob"> | number
+  isVisible?: Prisma.BoolFilter<"PostJob"> | boolean
   recruiterId?: Prisma.StringFilter<"PostJob"> | string
   recruiter?: Prisma.XOR<Prisma.RecruiterScalarRelationFilter, Prisma.RecruiterWhereInput>
   applications?: Prisma.ApplicationListRelationFilter
@@ -261,6 +269,7 @@ export type PostJobOrderByWithRelationInput = {
   level?: Prisma.SortOrder
   posted?: Prisma.SortOrder
   ctc?: Prisma.SortOrder
+  isVisible?: Prisma.SortOrder
   recruiterId?: Prisma.SortOrder
   recruiter?: Prisma.RecruiterOrderByWithRelationInput
   applications?: Prisma.ApplicationOrderByRelationAggregateInput
@@ -278,6 +287,7 @@ export type PostJobWhereUniqueInput = Prisma.AtLeast<{
   level?: Prisma.StringFilter<"PostJob"> | string
   posted?: Prisma.DateTimeFilter<"PostJob"> | Date | string
   ctc?: Prisma.FloatFilter<"PostJob"> | number
+  isVisible?: Prisma.BoolFilter<"PostJob"> | boolean
   recruiterId?: Prisma.StringFilter<"PostJob"> | string
   recruiter?: Prisma.XOR<Prisma.RecruiterScalarRelationFilter, Prisma.RecruiterWhereInput>
   applications?: Prisma.ApplicationListRelationFilter
@@ -292,6 +302,7 @@ export type PostJobOrderByWithAggregationInput = {
   level?: Prisma.SortOrder
   posted?: Prisma.SortOrder
   ctc?: Prisma.SortOrder
+  isVisible?: Prisma.SortOrder
   recruiterId?: Prisma.SortOrder
   _count?: Prisma.PostJobCountOrderByAggregateInput
   _avg?: Prisma.PostJobAvgOrderByAggregateInput
@@ -312,6 +323,7 @@ export type PostJobScalarWhereWithAggregatesInput = {
   level?: Prisma.StringWithAggregatesFilter<"PostJob"> | string
   posted?: Prisma.DateTimeWithAggregatesFilter<"PostJob"> | Date | string
   ctc?: Prisma.FloatWithAggregatesFilter<"PostJob"> | number
+  isVisible?: Prisma.BoolWithAggregatesFilter<"PostJob"> | boolean
   recruiterId?: Prisma.StringWithAggregatesFilter<"PostJob"> | string
 }
 
@@ -324,6 +336,7 @@ export type PostJobCreateInput = {
   level: string
   posted?: Date | string
   ctc: number
+  isVisible?: boolean
   recruiter: Prisma.RecruiterCreateNestedOneWithoutPostJobInput
   applications?: Prisma.ApplicationCreateNestedManyWithoutPostJobInput
 }
@@ -337,6 +350,7 @@ export type PostJobUncheckedCreateInput = {
   level: string
   posted?: Date | string
   ctc: number
+  isVisible?: boolean
   recruiterId: string
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutPostJobInput
 }
@@ -350,6 +364,7 @@ export type PostJobUpdateInput = {
   level?: Prisma.StringFieldUpdateOperationsInput | string
   posted?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ctc?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
   recruiter?: Prisma.RecruiterUpdateOneRequiredWithoutPostJobNestedInput
   applications?: Prisma.ApplicationUpdateManyWithoutPostJobNestedInput
 }
@@ -363,6 +378,7 @@ export type PostJobUncheckedUpdateInput = {
   level?: Prisma.StringFieldUpdateOperationsInput | string
   posted?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ctc?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
   recruiterId?: Prisma.StringFieldUpdateOperationsInput | string
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutPostJobNestedInput
 }
@@ -376,6 +392,7 @@ export type PostJobCreateManyInput = {
   level: string
   posted?: Date | string
   ctc: number
+  isVisible?: boolean
   recruiterId: string
 }
 
@@ -388,6 +405,7 @@ export type PostJobUpdateManyMutationInput = {
   level?: Prisma.StringFieldUpdateOperationsInput | string
   posted?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ctc?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type PostJobUncheckedUpdateManyInput = {
@@ -399,6 +417,7 @@ export type PostJobUncheckedUpdateManyInput = {
   level?: Prisma.StringFieldUpdateOperationsInput | string
   posted?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ctc?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
   recruiterId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -421,6 +440,7 @@ export type PostJobCountOrderByAggregateInput = {
   level?: Prisma.SortOrder
   posted?: Prisma.SortOrder
   ctc?: Prisma.SortOrder
+  isVisible?: Prisma.SortOrder
   recruiterId?: Prisma.SortOrder
 }
 
@@ -437,6 +457,7 @@ export type PostJobMaxOrderByAggregateInput = {
   level?: Prisma.SortOrder
   posted?: Prisma.SortOrder
   ctc?: Prisma.SortOrder
+  isVisible?: Prisma.SortOrder
   recruiterId?: Prisma.SortOrder
 }
 
@@ -449,6 +470,7 @@ export type PostJobMinOrderByAggregateInput = {
   level?: Prisma.SortOrder
   posted?: Prisma.SortOrder
   ctc?: Prisma.SortOrder
+  isVisible?: Prisma.SortOrder
   recruiterId?: Prisma.SortOrder
 }
 
@@ -511,6 +533,10 @@ export type FloatFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
+}
+
 export type PostJobCreateNestedOneWithoutApplicationsInput = {
   create?: Prisma.XOR<Prisma.PostJobCreateWithoutApplicationsInput, Prisma.PostJobUncheckedCreateWithoutApplicationsInput>
   connectOrCreate?: Prisma.PostJobCreateOrConnectWithoutApplicationsInput
@@ -534,6 +560,7 @@ export type PostJobCreateWithoutRecruiterInput = {
   level: string
   posted?: Date | string
   ctc: number
+  isVisible?: boolean
   applications?: Prisma.ApplicationCreateNestedManyWithoutPostJobInput
 }
 
@@ -546,6 +573,7 @@ export type PostJobUncheckedCreateWithoutRecruiterInput = {
   level: string
   posted?: Date | string
   ctc: number
+  isVisible?: boolean
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutPostJobInput
 }
 
@@ -587,6 +615,7 @@ export type PostJobScalarWhereInput = {
   level?: Prisma.StringFilter<"PostJob"> | string
   posted?: Prisma.DateTimeFilter<"PostJob"> | Date | string
   ctc?: Prisma.FloatFilter<"PostJob"> | number
+  isVisible?: Prisma.BoolFilter<"PostJob"> | boolean
   recruiterId?: Prisma.StringFilter<"PostJob"> | string
 }
 
@@ -599,6 +628,7 @@ export type PostJobCreateWithoutApplicationsInput = {
   level: string
   posted?: Date | string
   ctc: number
+  isVisible?: boolean
   recruiter: Prisma.RecruiterCreateNestedOneWithoutPostJobInput
 }
 
@@ -611,6 +641,7 @@ export type PostJobUncheckedCreateWithoutApplicationsInput = {
   level: string
   posted?: Date | string
   ctc: number
+  isVisible?: boolean
   recruiterId: string
 }
 
@@ -639,6 +670,7 @@ export type PostJobUpdateWithoutApplicationsInput = {
   level?: Prisma.StringFieldUpdateOperationsInput | string
   posted?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ctc?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
   recruiter?: Prisma.RecruiterUpdateOneRequiredWithoutPostJobNestedInput
 }
 
@@ -651,6 +683,7 @@ export type PostJobUncheckedUpdateWithoutApplicationsInput = {
   level?: Prisma.StringFieldUpdateOperationsInput | string
   posted?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ctc?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
   recruiterId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -663,6 +696,7 @@ export type PostJobCreateManyRecruiterInput = {
   level: string
   posted?: Date | string
   ctc: number
+  isVisible?: boolean
 }
 
 export type PostJobUpdateWithoutRecruiterInput = {
@@ -674,6 +708,7 @@ export type PostJobUpdateWithoutRecruiterInput = {
   level?: Prisma.StringFieldUpdateOperationsInput | string
   posted?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ctc?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
   applications?: Prisma.ApplicationUpdateManyWithoutPostJobNestedInput
 }
 
@@ -686,6 +721,7 @@ export type PostJobUncheckedUpdateWithoutRecruiterInput = {
   level?: Prisma.StringFieldUpdateOperationsInput | string
   posted?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ctc?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutPostJobNestedInput
 }
 
@@ -698,6 +734,7 @@ export type PostJobUncheckedUpdateManyWithoutRecruiterInput = {
   level?: Prisma.StringFieldUpdateOperationsInput | string
   posted?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ctc?: Prisma.FloatFieldUpdateOperationsInput | number
+  isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 
@@ -740,6 +777,7 @@ export type PostJobSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   level?: boolean
   posted?: boolean
   ctc?: boolean
+  isVisible?: boolean
   recruiterId?: boolean
   recruiter?: boolean | Prisma.RecruiterDefaultArgs<ExtArgs>
   applications?: boolean | Prisma.PostJob$applicationsArgs<ExtArgs>
@@ -755,6 +793,7 @@ export type PostJobSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   level?: boolean
   posted?: boolean
   ctc?: boolean
+  isVisible?: boolean
   recruiterId?: boolean
   recruiter?: boolean | Prisma.RecruiterDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["postJob"]>
@@ -768,6 +807,7 @@ export type PostJobSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   level?: boolean
   posted?: boolean
   ctc?: boolean
+  isVisible?: boolean
   recruiterId?: boolean
   recruiter?: boolean | Prisma.RecruiterDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["postJob"]>
@@ -781,10 +821,11 @@ export type PostJobSelectScalar = {
   level?: boolean
   posted?: boolean
   ctc?: boolean
+  isVisible?: boolean
   recruiterId?: boolean
 }
 
-export type PostJobOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"postId" | "title" | "description" | "category" | "location" | "level" | "posted" | "ctc" | "recruiterId", ExtArgs["result"]["postJob"]>
+export type PostJobOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"postId" | "title" | "description" | "category" | "location" | "level" | "posted" | "ctc" | "isVisible" | "recruiterId", ExtArgs["result"]["postJob"]>
 export type PostJobInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   recruiter?: boolean | Prisma.RecruiterDefaultArgs<ExtArgs>
   applications?: boolean | Prisma.PostJob$applicationsArgs<ExtArgs>
@@ -812,6 +853,7 @@ export type $PostJobPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     level: string
     posted: Date
     ctc: number
+    isVisible: boolean
     recruiterId: string
   }, ExtArgs["result"]["postJob"]>
   composites: {}
@@ -1246,6 +1288,7 @@ export interface PostJobFieldRefs {
   readonly level: Prisma.FieldRef<"PostJob", 'String'>
   readonly posted: Prisma.FieldRef<"PostJob", 'DateTime'>
   readonly ctc: Prisma.FieldRef<"PostJob", 'Float'>
+  readonly isVisible: Prisma.FieldRef<"PostJob", 'Boolean'>
   readonly recruiterId: Prisma.FieldRef<"PostJob", 'String'>
 }
     

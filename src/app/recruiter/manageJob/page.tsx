@@ -2,6 +2,7 @@ import PostedJobs from "@/app/components/action"
 import { faEdit } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Link from "next/link"
+import JobVisibilityControl from "./JobVisibilityControl"
 export default async function ManageJobs() {
     const jobs = await PostedJobs({recId: "123recid"})
     
@@ -15,6 +16,7 @@ export default async function ManageJobs() {
                     <th className="px-4 py-3 font-bold">Date</th>
                     <th className="px-4 py-3 font-bold">Applications</th>
                     <th className="px-4 py-3 font-bold">Edit</th>
+                    <th className="px-4 py-3 font-bold">Visible</th>
                 </tr>
             </thead>
             {
@@ -30,6 +32,9 @@ export default async function ManageJobs() {
                                 <div className="flex justify-center">
                                     <Link href={`/recruiter/editJob/?id=${job.postId}`}><FontAwesomeIcon icon={faEdit} className="h-4 w-4 " /></Link>
                                 </div>
+                            </td>
+                            <td>
+                                <JobVisibilityControl isVisible={job.isVisible} postId={job.postId}/>
                             </td>
                         </tr>
                     </tbody>

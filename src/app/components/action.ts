@@ -7,6 +7,10 @@ export default async function PostedJobs({recId}: {recId: string}) {
         where: {
             recruiterId: recId
         },
+        orderBy: {
+            posted: "asc"
+        }
+        ,
         include:{
             _count: {
                 select: {applications: true}

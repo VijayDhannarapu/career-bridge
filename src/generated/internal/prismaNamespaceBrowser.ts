@@ -107,6 +107,7 @@ export const PostJobScalarFieldEnum = {
   level: 'level',
   posted: 'posted',
   ctc: 'ctc',
+  isVisible: 'isVisible',
   recruiterId: 'recruiterId'
 } as const
 

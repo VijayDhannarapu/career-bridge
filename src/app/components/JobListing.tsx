@@ -10,7 +10,6 @@ type Prop = {
 export default async function JobListing({ query, page }: Prop) {
     const pageNo = isNaN(Number(page)) ? 0 : Number(page)
     const jobs = await GetJobs({ query, page })
-    console.log(pageNo)
     if (jobs.length === 0) {
         return <div>
             <h1>No Jobs</h1>
@@ -40,9 +39,9 @@ export default async function JobListing({ query, page }: Prop) {
                 ))
             }
         </div>
-        <div className="mt-3 flex gap-5">
+        <div className="mt-3 flex gap-5 mb-6">
             <Link href={`/user?page=${pageNo <= 0 ? 1 : pageNo - 1}`} className={`p-2 rounded-md border border-gray-500 ${pageNo < 1 ? "cursor-not-allowed" : ""} `}> <FontAwesomeIcon icon={faChevronLeft} /></Link>
-            <Link href={`/user?page=${pageNo + 1}`} className="p-2 rounded-md border border-gray-500"><FontAwesomeIcon icon={faChevronRight} /></Link>
+            <Link href={`/user?page=${pageNo? pageNo + 1 : 2}`} className="p-2 rounded-md border border-gray-500"><FontAwesomeIcon icon={faChevronRight} /></Link>
         </div>
     </div>
 }

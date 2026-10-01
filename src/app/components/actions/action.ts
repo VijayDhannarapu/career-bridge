@@ -15,6 +15,7 @@ export async function GetJobs({ query, page }: Prop = {}) {
     const pageNo = Math.max(1, Number(page) || 1);
     if (!query) {
         return await prisma.postJob.findMany({
+            where:{isVisible: true},
             skip: (pageNo - 1) * PAGE_SIZE,
             take: PAGE_SIZE,
             orderBy: { postId: "asc" }

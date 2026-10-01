@@ -46,3 +46,22 @@ export async function UpdateStatus(formData: FormData) {
     }
     redirect("/recruiter/applications")
 }
+
+export async function JobVisibility({ visibility, postId }: {
+    visibility: boolean,
+    postId: string
+}) {
+    console.log(visibility,postId)
+    try {
+        await prisma.postJob.update({
+            where: {
+                postId
+            },
+            data: {
+                isVisible: visibility
+            }
+        })
+    } catch (error: any) {
+        console.log(error)
+    }
+}

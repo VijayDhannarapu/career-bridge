@@ -53,6 +53,7 @@ model PostJob {
   level        String
   posted       DateTime      @default(now())
   ctc          Float
+  isVisible    Boolean      @default(true)
   recruiterId  String
   recruiter    Recruiter     @relation(fields: [recruiterId], references: [recId])
   applications Application[]
