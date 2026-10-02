@@ -15,7 +15,7 @@ export async function GetJobs({ query, page }: Prop = {}) {
     const pageNo = Math.max(1, Number(page) || 1);
     if (!query) {
         return await prisma.postJob.findMany({
-            where:{isVisible: true},
+            where: { isVisible: true },
             skip: (pageNo - 1) * PAGE_SIZE,
             take: PAGE_SIZE,
             orderBy: { postId: "asc" }
@@ -41,26 +41,27 @@ export async function GetJobs({ query, page }: Prop = {}) {
         },
         skip: ((pageNo) - 1) * PAGE_SIZE,
         take: PAGE_SIZE,
-        orderBy: {postId: "asc"}
+        orderBy: { postId: "asc" }
     })
 
 }
 
 export async function PostJob(_: any, formData: FormData) {
+    const authObj = await currentUser();
+    const clerkId = authObj?.raw?.id
     try {
-        const recId = formData.get("recId") as string
         const recruiter = await prisma.recruiter.findUnique({
-            where: { recId }
+            where: { clerkId }
         })
-
+        
         if (!recruiter) {
             return {
                 success: false,
-                message: "Recruiter Not Found",
+                message: "recruiter id Not found",
                 status: 404
             }
         }
-
+        const recId = recruiter.recId
         const title = formData.get("title") as string
         const description = formData.get("description") as string
         const plainText = description.replace(/<[^>]*>/g, "").trim()
@@ -69,6 +70,7 @@ export async function PostJob(_: any, formData: FormData) {
         const level = formData.get("jobLevel") as string
         const ctc = Number(formData.get("jobSalary") as string)
         const postId = formData.get("postId") as string
+
         if (!plainText) {
             return {
                 success: false,
@@ -133,7 +135,6 @@ export async function ApplyJob(_prev: any, formData: FormData) {
     console.log(authObj)
     const clerkId = authObj?.raw?.id ?? "NO_ID"
     const postId = formData.get("postId") as string
-    console.log("CKECING CLERK ID", clerkId)
 
     if (!clerkId || !postId) {
         return {

@@ -2,7 +2,7 @@ import { Status } from "@/generated/enums"
 import { GetApplications, UpdateStatus } from "../actions/actions"
 export default async function JobApplications() {
     const status = ["PENDING", "ACCEPTED", "REJECTED"]
-    const applications = await GetApplications({ recId: "123recid" })
+    const applications = await GetApplications()
     return <div className="mt-6 mx-auto w-full max-w-7xl overflow-x-auto rounded-lg border border-gray-200 bg-white shadow-xl">
         <table className="w-full border-collapse text-left text-sm ">
             <thead className=" bg-violet-500/50 text-xl">
@@ -42,6 +42,16 @@ export default async function JobApplications() {
                         </tr>
                     </tbody>
                 ))
+            }
+            {
+                applications.length == 0 &&
+                <tbody>
+                    <tr>
+                        <td colSpan={7} className="text-center py-6 text-gray-500">
+                            Yet No Applications
+                        </td>
+                    </tr>
+                </tbody>
             }
         </table>
     </div>

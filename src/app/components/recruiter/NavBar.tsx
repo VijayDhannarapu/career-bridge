@@ -1,4 +1,6 @@
 "use client"
+import { UserButton } from "@clerk/nextjs";
+import { Show } from "@clerk/react";
 import Link from "next/link"
 import { useState } from "react";
 export default function RecruiterNavBar() {
@@ -56,24 +58,19 @@ export default function RecruiterNavBar() {
                     <Link href={"/recruiter/applications"} className="hover:text-blue-600  transition-colors py-2 border-b-2 border-transparent hover:border-blue-600">View Applications</Link>
                 </li>
                 <li className="flex items-center gap-3 pt-2">
-                    <div className="w-8 h-8 rounded-full bg-blue-100 text-blue-700 font-semibold flex items-center justify-center text-sm">
-                        UN
-                    </div>
-                    <a href="/user" className="hover:text-blue-600">User Name</a>
+                    <Show when={"signed-in"}>
+                        <UserButton />
+                    </Show>
                 </li>
             </ul>
         </div>
 
         {/* User Profile / Actions Area */}
         <div className="hidden md:flex items-center gap-5">
-            <button className="hidden sm:block text-sm font-semibold text-gray-600 hover:text-gray-900">
-                Post a Job
-            </button>
             <div className="flex items-center gap-3 pl-4 border-l border-gray-200">
-                <div className="w-8 h-8 rounded-full bg-blue-100 text-blue-700 font-semibold flex items-center justify-center text-sm ring-2 ring-white shadow-sm cursor-pointer">
-                    JD
-                </div>
-                <span className="hidden lg:inline text-sm font-medium text-gray-700">John Doe</span>
+                <Show when={"signed-in"}>
+                    <UserButton />
+                </Show>
             </div>
         </div>
     </nav>

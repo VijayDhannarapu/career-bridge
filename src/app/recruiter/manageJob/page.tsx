@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Link from "next/link"
 import JobVisibilityControl from "./JobVisibilityControl"
 export default async function ManageJobs() {
-    const jobs = await PostedJobs({recId: "123recid"})
-    
+    const jobs = await PostedJobs()
+
     return <div className=" mt-6 mx-auto w-full max-w-7xl overflow-x-auto rounded-lg border border-gray-200 bg-white shadow-xl">
         <table className="w-full border-collapse text-left text-sm ">
             <thead className=" bg-violet-500/50 text-xl">
@@ -23,7 +23,7 @@ export default async function ManageJobs() {
                 jobs.map((job, index) => (
                     <tbody key={index}>
                         <tr className="border-t border-gray-300 hover:bg-gray-50">
-                            <td className="px-4 py-3">{index+1}</td>
+                            <td className="px-4 py-3">{index + 1}</td>
                             <td className="px-4 py-3">{job.title}</td>
                             <td className="px-4 py-3">{job.location}</td>
                             <td className="px-4 py-3">{job.posted.toDateString()}</td>
@@ -34,11 +34,21 @@ export default async function ManageJobs() {
                                 </div>
                             </td>
                             <td>
-                                <JobVisibilityControl isVisible={job.isVisible} postId={job.postId}/>
+                                <JobVisibilityControl isVisible={job.isVisible} postId={job.postId} />
                             </td>
                         </tr>
                     </tbody>
                 ))
+            }
+            {
+                jobs.length == 0 &&
+                <tbody>
+                    <tr>
+                        <td colSpan={7} className="text-center py-6 text-gray-500">
+                            Yet Not Posted Any jobs
+                        </td>
+                    </tr>
+                </tbody>
             }
         </table>
     </div>

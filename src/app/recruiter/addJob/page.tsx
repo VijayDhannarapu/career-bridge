@@ -55,7 +55,6 @@ export default function AddJob() {
     
     return <div>
         <form action={formAction} className="mt-6 w-full p-4 flex flex-col gap-5 items-start">
-            <input type="hidden" value="123recid" name="recId" />
             <label htmlFor="title"> Job Title <span className="text-red-500">*</span></label>
             <input type="text" id="title" name="title" placeholder="Type here" required />
 
