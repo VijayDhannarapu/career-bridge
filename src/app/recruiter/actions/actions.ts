@@ -3,10 +3,10 @@
 import { Status } from "@/generated/enums"
 import cloudinary from "@/lib/cloudinary"
 import { prisma } from "@/lib/prisma"
-import { currentUser, auth } from "@clerk/nextjs/server"
+import { currentUser, auth, clerkClient } from "@clerk/nextjs/server"
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
-
+import { Role } from "@/generated/enums"
 export async function GetApplications() {
     const authObj = await currentUser()
     const clerkId = authObj?.raw?.id
@@ -35,7 +35,6 @@ export async function UpdateStatus(formData: FormData) {
     const postId = formData.get("postId") as string
     const userId = formData.get("userId") as string
     const status = formData.get("status") as Status
-    console.log(userId, postId, status)
     try {
         if (!postId || !userId) {
             throw new Error("Something wert Wrong")
@@ -61,7 +60,6 @@ export async function JobVisibility({ visibility, postId }: {
     visibility: boolean,
     postId: string
 }) {
-    console.log(visibility, postId)
     try {
         await prisma.postJob.update({
             where: {
@@ -79,14 +77,14 @@ export async function JobVisibility({ visibility, postId }: {
 export async function createRecruiter(formData: FormData) {
     try {
         const { userId: clerkId } = await auth();
-        if (!clerkId) {
-            console.log("redicting to howe")
+        if (!clerkId)
             redirect("/");
-        }
+
         const existing = await prisma.recruiter.findUnique({
-            where: {clerkId}
+            where: { clerkId }
         })
-        if(existing){
+
+        if (existing) {
             redirect("/recruiter/addJob")
         }
         const fileData = formData.get("uploaded_image") as File
@@ -113,6 +111,7 @@ export async function createRecruiter(formData: FormData) {
             })
             imgUrl = uploadResult.secure_url
         }
+
         const recruiter = await currentUser()
         const name = `${recruiter?.firstName ?? ""} ${recruiter?.lastName ?? ""}`.trim()
         const email = recruiter?.emailAddresses[0]?.emailAddress ?? ""
@@ -128,6 +127,14 @@ export async function createRecruiter(formData: FormData) {
                 role: "RECRUITER"
             }
         })
+        const client = await clerkClient()
+        const role: Role = "RECRUITER"
+        await client.users.updateUser(clerkId, {
+            publicMetadata: {
+                role
+            }
+        })
+
     } catch (error: any) {
         console.log(error)
         throw new Error(error.message)

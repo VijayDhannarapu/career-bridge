@@ -1,6 +1,6 @@
 "use client"
 import { SignInButton } from "@clerk/nextjs";
-import { Show, SignOutButton, SignUpButton, UserButton } from "@clerk/react";
+import { Show, SignUpButton, UserButton } from "@clerk/nextjs";
 import Link from "next/link"
 import { Role } from "@/generated/enums";
 import { useState } from "react";
@@ -81,7 +81,7 @@ export default function NavBar() {
         {/* User Profile / Actions Area */}
         <div className="hidden md:flex items-center gap-5">
             <Show when={"signed-out"} >
-                <SignInButton mode="modal" forceRedirectUrl={"recruiter/onboarding"}>
+                <SignInButton mode="modal" forceRedirectUrl={"/recruiter/onboarding"}>
                     <button>For Recruiters</button>
                 </SignInButton>
                 <SignInButton mode="modal">

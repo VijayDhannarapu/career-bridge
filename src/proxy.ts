@@ -1,6 +1,19 @@
 import { clerkMiddleware } from '@clerk/nextjs/server';
+import { Role } from './generated/enums';
+import { NextRequest, NextResponse } from 'next/server';
+import { redirect } from 'next/navigation';
 
-export const proxy = clerkMiddleware();
+export default clerkMiddleware(async (auth, req) => {
+  const isRecruiter = ((await auth()).sessionClaims?.metadata as { role?: Role } | undefined)?.role === "RECRUITER";
+
+  const { pathname } = req.nextUrl;
+  const isRecruiterRoute = pathname.startsWith("/recruiter");
+
+  if (isRecruiterRoute && !isRecruiter) {
+    const url = new URL("/", req.url);
+    return NextResponse.redirect(url);
+  }
+});
 
 export const config = {
   matcher: [
