@@ -132,7 +132,6 @@ export async function PostJob(_: any, formData: FormData) {
 
 export async function ApplyJob(_prev: any, formData: FormData) {
     const authObj = await currentUser();
-    console.log(authObj)
     const clerkId = authObj?.raw?.id ?? "NO_ID"
     const postId = formData.get("postId") as string
 

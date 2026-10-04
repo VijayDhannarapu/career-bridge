@@ -1,5 +1,8 @@
 import { Status } from "@/generated/enums"
 import { GetApplications, UpdateStatus } from "../actions/actions"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faFilePdf } from "@fortawesome/free-solid-svg-icons"
+
 export default async function JobApplications() {
     const status = ["PENDING", "ACCEPTED", "REJECTED"]
     const applications = await GetApplications()
@@ -11,6 +14,7 @@ export default async function JobApplications() {
                     <th className="px-4 py-3 font-bold">User</th>
                     <th className="px-4 py-3 font-bold">Job Title</th>
                     <th className="px-4 py-3 font-bold">Location</th>
+                    <th className="px-4 py-3 font-bold">Resume</th>
                     <th className="px-4 py-3 font-bold">Action</th>
                 </tr>
             </thead>
@@ -22,11 +26,20 @@ export default async function JobApplications() {
                             <td className="px-4 py-3">{job.user.name}</td>
                             <td className="px-4 py-3">{job.postJob.title}</td>
                             <td className="px-4 py-3">{job.postJob.location}</td>
+                            <td className="px-4 py-3">
+                                <a
+                                    href={job.user.resumeUrl ?? ""}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-blue-600 hover:underline"
+                                >
+                                    {job.user.resumeUrl?.split("/").slice(job.user.resumeUrl?.split("/").length-1)}
+                                </a>
+                            </td>
                             <td className="px-4 py-3" >
                                 <form action={UpdateStatus}>
                                     <input type="hidden" name="postId" value={job.postId} />
                                     <input type="hidden" name="userId" value={job.userId} />
-
                                     <select name="status" id="status" defaultValue={job.status}
                                         className="border border-gray-400 p-1 rounded-md outline-0"
                                     >

@@ -29,6 +29,13 @@ model User {
   name         String
   email        String        @unique
   role         Role
+  college      String?
+  branch       String?
+  startYear    Int?
+  passoutYear  Int?
+  phone        String?
+  skills       String?
+  resumeUrl    String?
   applications Application[]
 }
 
@@ -53,7 +60,7 @@ model PostJob {
   level        String
   posted       DateTime      @default(now())
   ctc          Float
-  isVisible    Boolean      @default(true)
+  isVisible    Boolean       @default(true)
   recruiterId  String
   recruiter    Recruiter     @relation(fields: [recruiterId], references: [recId])
   applications Application[]

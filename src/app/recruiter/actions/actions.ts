@@ -87,6 +87,7 @@ export async function createRecruiter(formData: FormData) {
         if (existing) {
             redirect("/recruiter/addJob")
         }
+
         const fileData = formData.get("uploaded_image") as File
         let imgUrl: string | undefined
 
@@ -98,6 +99,7 @@ export async function createRecruiter(formData: FormData) {
             if (fileData.size > 2 * 1024 * 1024) {
                 throw new Error("Image must be under 2MB.");
             }
+            
             const arrayBuffer = await fileData.arrayBuffer()
             const buffer = Buffer.from(arrayBuffer)
             const uploadResult = await new Promise<any>((resolve, reject) => {

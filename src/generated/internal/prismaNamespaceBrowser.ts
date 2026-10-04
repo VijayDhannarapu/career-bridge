@@ -78,7 +78,14 @@ export const UserScalarFieldEnum = {
   clerkId: 'clerkId',
   name: 'name',
   email: 'email',
-  role: 'role'
+  role: 'role',
+  college: 'college',
+  branch: 'branch',
+  startYear: 'startYear',
+  passoutYear: 'passoutYear',
+  phone: 'phone',
+  skills: 'skills',
+  resumeUrl: 'resumeUrl'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]

@@ -25,6 +25,9 @@ export default function NavBar() {
             <li>
                 <Link href={"/"} className="hover:text-blue-600  transition-colors py-2 border-b-2 border-transparent hover:border-blue-600">Browse Companies</Link>
             </li>
+            <li>
+                <Link href={"/user/onboarding"} className="hover:text-blue-600  transition-colors py-2 border-b-2 border-transparent hover:border-blue-600">Profile</Link>
+            </li>
         </ul>
         {/* only for medium devices */}
         <div className="md:hidden flex items-center">
@@ -47,7 +50,7 @@ export default function NavBar() {
         <div className={`
     md:hidden fixed top-[100px] left-0 w-full bg-white border-b border-gray-200 shadow-lg
     transition-all duration-300 ease-in-out 
-    ${isOpen ? 'max-h-64 opacity-100 scale-y-100 visible' : 'max-h-0 opacity-0 scale-y-95 invisible'}
+    ${isOpen ? 'max-h-74 opacity-100 scale-y-100 visible' : 'max-h-0 opacity-0 scale-y-95 invisible'}
   `}>
             <ul className="flex flex-col px-6 py-4 gap-4 font-medium text-gray-600">
                 <li>
@@ -59,15 +62,18 @@ export default function NavBar() {
                 <li>
                     <a href="/applied-jobs" className="block py-2 hover:text-blue-600 border-b border-gray-50">Browse Companies</a>
                 </li>
+                <li>
+                    <Link href={"/user/onboarding"} className="hover:text-blue-600  transition-colors py-2 border-b-2 border-transparent hover:border-blue-600">Profile</Link>
+                </li>
                 <li className="flex items-center gap-3 pt-2">
                     <Show when={"signed-out"} >
                         <SignInButton mode="modal" forceRedirectUrl={"/recruiter/onboarding"}>
                             <button>For Recruiters</button>
                         </SignInButton>
-                        <SignInButton mode="modal">
+                        <SignInButton mode="modal" forceRedirectUrl={"/user/onboarding"}>
                             <button className="border border-blue-600 p-1 rounded-md bg-blue-600 text-white">Log In</button>
                         </SignInButton>
-                        <SignUpButton mode="modal" >
+                        <SignUpButton mode="modal" forceRedirectUrl={"/user/onboarding"}>
                             <button className="border border-blue-600 p-1 rounded-md bg-blue-600 text-white">Sign Up</button>
                         </SignUpButton>
                     </Show>
@@ -84,10 +90,10 @@ export default function NavBar() {
                 <SignInButton mode="modal" forceRedirectUrl={"/recruiter/onboarding"}>
                     <button>For Recruiters</button>
                 </SignInButton>
-                <SignInButton mode="modal">
+                <SignInButton mode="modal" forceRedirectUrl={"/user/onboarding"}>
                     <button className="border border-blue-600 p-1 rounded-md bg-blue-600 text-white">Log In</button>
                 </SignInButton>
-                <SignInButton mode="modal">
+                <SignInButton mode="modal" forceRedirectUrl={"/user/onboarding"}>
                     <button className="border border-blue-600 p-1 rounded-md bg-blue-600 text-white">Sign Up</button>
                 </SignInButton>
             </Show>

@@ -20,8 +20,20 @@ export type UserModel = runtime.Types.Result.DefaultSelection<Prisma.$UserPayloa
 
 export type AggregateUser = {
   _count: UserCountAggregateOutputType | null
+  _avg: UserAvgAggregateOutputType | null
+  _sum: UserSumAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
+}
+
+export type UserAvgAggregateOutputType = {
+  startYear: number | null
+  passoutYear: number | null
+}
+
+export type UserSumAggregateOutputType = {
+  startYear: number | null
+  passoutYear: number | null
 }
 
 export type UserMinAggregateOutputType = {
@@ -30,6 +42,13 @@ export type UserMinAggregateOutputType = {
   name: string | null
   email: string | null
   role: $Enums.Role | null
+  college: string | null
+  branch: string | null
+  startYear: number | null
+  passoutYear: number | null
+  phone: string | null
+  skills: string | null
+  resumeUrl: string | null
 }
 
 export type UserMaxAggregateOutputType = {
@@ -38,6 +57,13 @@ export type UserMaxAggregateOutputType = {
   name: string | null
   email: string | null
   role: $Enums.Role | null
+  college: string | null
+  branch: string | null
+  startYear: number | null
+  passoutYear: number | null
+  phone: string | null
+  skills: string | null
+  resumeUrl: string | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -46,9 +72,26 @@ export type UserCountAggregateOutputType = {
   name: number
   email: number
   role: number
+  college: number
+  branch: number
+  startYear: number
+  passoutYear: number
+  phone: number
+  skills: number
+  resumeUrl: number
   _all: number
 }
 
+
+export type UserAvgAggregateInputType = {
+  startYear?: true
+  passoutYear?: true
+}
+
+export type UserSumAggregateInputType = {
+  startYear?: true
+  passoutYear?: true
+}
 
 export type UserMinAggregateInputType = {
   userId?: true
@@ -56,6 +99,13 @@ export type UserMinAggregateInputType = {
   name?: true
   email?: true
   role?: true
+  college?: true
+  branch?: true
+  startYear?: true
+  passoutYear?: true
+  phone?: true
+  skills?: true
+  resumeUrl?: true
 }
 
 export type UserMaxAggregateInputType = {
@@ -64,6 +114,13 @@ export type UserMaxAggregateInputType = {
   name?: true
   email?: true
   role?: true
+  college?: true
+  branch?: true
+  startYear?: true
+  passoutYear?: true
+  phone?: true
+  skills?: true
+  resumeUrl?: true
 }
 
 export type UserCountAggregateInputType = {
@@ -72,6 +129,13 @@ export type UserCountAggregateInputType = {
   name?: true
   email?: true
   role?: true
+  college?: true
+  branch?: true
+  startYear?: true
+  passoutYear?: true
+  phone?: true
+  skills?: true
+  resumeUrl?: true
   _all?: true
 }
 
@@ -113,6 +177,18 @@ export type UserAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: UserAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: UserSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: UserMinAggregateInputType
@@ -143,6 +219,8 @@ export type UserGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
   take?: number
   skip?: number
   _count?: UserCountAggregateInputType | true
+  _avg?: UserAvgAggregateInputType
+  _sum?: UserSumAggregateInputType
   _min?: UserMinAggregateInputType
   _max?: UserMaxAggregateInputType
 }
@@ -153,7 +231,16 @@ export type UserGroupByOutputType = {
   name: string
   email: string
   role: $Enums.Role
+  college: string | null
+  branch: string | null
+  startYear: number | null
+  passoutYear: number | null
+  phone: string | null
+  skills: string | null
+  resumeUrl: string | null
   _count: UserCountAggregateOutputType | null
+  _avg: UserAvgAggregateOutputType | null
+  _sum: UserSumAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
 }
@@ -182,6 +269,13 @@ export type UserWhereInput = {
   name?: Prisma.StringFilter<"User"> | string
   email?: Prisma.StringFilter<"User"> | string
   role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
+  college?: Prisma.StringNullableFilter<"User"> | string | null
+  branch?: Prisma.StringNullableFilter<"User"> | string | null
+  startYear?: Prisma.IntNullableFilter<"User"> | number | null
+  passoutYear?: Prisma.IntNullableFilter<"User"> | number | null
+  phone?: Prisma.StringNullableFilter<"User"> | string | null
+  skills?: Prisma.StringNullableFilter<"User"> | string | null
+  resumeUrl?: Prisma.StringNullableFilter<"User"> | string | null
   applications?: Prisma.ApplicationListRelationFilter
 }
 
@@ -191,6 +285,13 @@ export type UserOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  college?: Prisma.SortOrderInput | Prisma.SortOrder
+  branch?: Prisma.SortOrderInput | Prisma.SortOrder
+  startYear?: Prisma.SortOrderInput | Prisma.SortOrder
+  passoutYear?: Prisma.SortOrderInput | Prisma.SortOrder
+  phone?: Prisma.SortOrderInput | Prisma.SortOrder
+  skills?: Prisma.SortOrderInput | Prisma.SortOrder
+  resumeUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   applications?: Prisma.ApplicationOrderByRelationAggregateInput
 }
 
@@ -203,6 +304,13 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   name?: Prisma.StringFilter<"User"> | string
   role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
+  college?: Prisma.StringNullableFilter<"User"> | string | null
+  branch?: Prisma.StringNullableFilter<"User"> | string | null
+  startYear?: Prisma.IntNullableFilter<"User"> | number | null
+  passoutYear?: Prisma.IntNullableFilter<"User"> | number | null
+  phone?: Prisma.StringNullableFilter<"User"> | string | null
+  skills?: Prisma.StringNullableFilter<"User"> | string | null
+  resumeUrl?: Prisma.StringNullableFilter<"User"> | string | null
   applications?: Prisma.ApplicationListRelationFilter
 }, "userId" | "clerkId" | "email">
 
@@ -212,9 +320,18 @@ export type UserOrderByWithAggregationInput = {
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  college?: Prisma.SortOrderInput | Prisma.SortOrder
+  branch?: Prisma.SortOrderInput | Prisma.SortOrder
+  startYear?: Prisma.SortOrderInput | Prisma.SortOrder
+  passoutYear?: Prisma.SortOrderInput | Prisma.SortOrder
+  phone?: Prisma.SortOrderInput | Prisma.SortOrder
+  skills?: Prisma.SortOrderInput | Prisma.SortOrder
+  resumeUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
+  _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
   _min?: Prisma.UserMinOrderByAggregateInput
+  _sum?: Prisma.UserSumOrderByAggregateInput
 }
 
 export type UserScalarWhereWithAggregatesInput = {
@@ -226,6 +343,13 @@ export type UserScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"User"> | string
   email?: Prisma.StringWithAggregatesFilter<"User"> | string
   role?: Prisma.EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
+  college?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  branch?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  startYear?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
+  passoutYear?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
+  phone?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  skills?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  resumeUrl?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
 }
 
 export type UserCreateInput = {
@@ -234,6 +358,13 @@ export type UserCreateInput = {
   name: string
   email: string
   role: $Enums.Role
+  college?: string | null
+  branch?: string | null
+  startYear?: number | null
+  passoutYear?: number | null
+  phone?: string | null
+  skills?: string | null
+  resumeUrl?: string | null
   applications?: Prisma.ApplicationCreateNestedManyWithoutUserInput
 }
 
@@ -243,6 +374,13 @@ export type UserUncheckedCreateInput = {
   name: string
   email: string
   role: $Enums.Role
+  college?: string | null
+  branch?: string | null
+  startYear?: number | null
+  passoutYear?: number | null
+  phone?: string | null
+  skills?: string | null
+  resumeUrl?: string | null
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -252,6 +390,13 @@ export type UserUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  college?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  passoutYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  skills?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   applications?: Prisma.ApplicationUpdateManyWithoutUserNestedInput
 }
 
@@ -261,6 +406,13 @@ export type UserUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  college?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  passoutYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  skills?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -270,6 +422,13 @@ export type UserCreateManyInput = {
   name: string
   email: string
   role: $Enums.Role
+  college?: string | null
+  branch?: string | null
+  startYear?: number | null
+  passoutYear?: number | null
+  phone?: string | null
+  skills?: string | null
+  resumeUrl?: string | null
 }
 
 export type UserUpdateManyMutationInput = {
@@ -278,6 +437,13 @@ export type UserUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  college?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  passoutYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  skills?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserUncheckedUpdateManyInput = {
@@ -286,6 +452,13 @@ export type UserUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  college?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  passoutYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  skills?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserCountOrderByAggregateInput = {
@@ -294,6 +467,18 @@ export type UserCountOrderByAggregateInput = {
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  college?: Prisma.SortOrder
+  branch?: Prisma.SortOrder
+  startYear?: Prisma.SortOrder
+  passoutYear?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
+  skills?: Prisma.SortOrder
+  resumeUrl?: Prisma.SortOrder
+}
+
+export type UserAvgOrderByAggregateInput = {
+  startYear?: Prisma.SortOrder
+  passoutYear?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
@@ -302,6 +487,13 @@ export type UserMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  college?: Prisma.SortOrder
+  branch?: Prisma.SortOrder
+  startYear?: Prisma.SortOrder
+  passoutYear?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
+  skills?: Prisma.SortOrder
+  resumeUrl?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
@@ -310,6 +502,18 @@ export type UserMinOrderByAggregateInput = {
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  college?: Prisma.SortOrder
+  branch?: Prisma.SortOrder
+  startYear?: Prisma.SortOrder
+  passoutYear?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
+  skills?: Prisma.SortOrder
+  resumeUrl?: Prisma.SortOrder
+}
+
+export type UserSumOrderByAggregateInput = {
+  startYear?: Prisma.SortOrder
+  passoutYear?: Prisma.SortOrder
 }
 
 export type UserScalarRelationFilter = {
@@ -323,6 +527,18 @@ export type StringFieldUpdateOperationsInput = {
 
 export type EnumRoleFieldUpdateOperationsInput = {
   set?: $Enums.Role
+}
+
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type UserCreateNestedOneWithoutApplicationsInput = {
@@ -345,6 +561,13 @@ export type UserCreateWithoutApplicationsInput = {
   name: string
   email: string
   role: $Enums.Role
+  college?: string | null
+  branch?: string | null
+  startYear?: number | null
+  passoutYear?: number | null
+  phone?: string | null
+  skills?: string | null
+  resumeUrl?: string | null
 }
 
 export type UserUncheckedCreateWithoutApplicationsInput = {
@@ -353,6 +576,13 @@ export type UserUncheckedCreateWithoutApplicationsInput = {
   name: string
   email: string
   role: $Enums.Role
+  college?: string | null
+  branch?: string | null
+  startYear?: number | null
+  passoutYear?: number | null
+  phone?: string | null
+  skills?: string | null
+  resumeUrl?: string | null
 }
 
 export type UserCreateOrConnectWithoutApplicationsInput = {
@@ -377,6 +607,13 @@ export type UserUpdateWithoutApplicationsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  college?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  passoutYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  skills?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserUncheckedUpdateWithoutApplicationsInput = {
@@ -385,6 +622,13 @@ export type UserUncheckedUpdateWithoutApplicationsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  college?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  passoutYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  skills?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -424,6 +668,13 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   name?: boolean
   email?: boolean
   role?: boolean
+  college?: boolean
+  branch?: boolean
+  startYear?: boolean
+  passoutYear?: boolean
+  phone?: boolean
+  skills?: boolean
+  resumeUrl?: boolean
   applications?: boolean | Prisma.User$applicationsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
@@ -434,6 +685,13 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   name?: boolean
   email?: boolean
   role?: boolean
+  college?: boolean
+  branch?: boolean
+  startYear?: boolean
+  passoutYear?: boolean
+  phone?: boolean
+  skills?: boolean
+  resumeUrl?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -442,6 +700,13 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   name?: boolean
   email?: boolean
   role?: boolean
+  college?: boolean
+  branch?: boolean
+  startYear?: boolean
+  passoutYear?: boolean
+  phone?: boolean
+  skills?: boolean
+  resumeUrl?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
@@ -450,9 +715,16 @@ export type UserSelectScalar = {
   name?: boolean
   email?: boolean
   role?: boolean
+  college?: boolean
+  branch?: boolean
+  startYear?: boolean
+  passoutYear?: boolean
+  phone?: boolean
+  skills?: boolean
+  resumeUrl?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"userId" | "clerkId" | "name" | "email" | "role", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"userId" | "clerkId" | "name" | "email" | "role" | "college" | "branch" | "startYear" | "passoutYear" | "phone" | "skills" | "resumeUrl", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   applications?: boolean | Prisma.User$applicationsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -471,6 +743,13 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     name: string
     email: string
     role: $Enums.Role
+    college: string | null
+    branch: string | null
+    startYear: number | null
+    passoutYear: number | null
+    phone: string | null
+    skills: string | null
+    resumeUrl: string | null
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -900,6 +1179,13 @@ export interface UserFieldRefs {
   readonly name: Prisma.FieldRef<"User", 'String'>
   readonly email: Prisma.FieldRef<"User", 'String'>
   readonly role: Prisma.FieldRef<"User", 'Role'>
+  readonly college: Prisma.FieldRef<"User", 'String'>
+  readonly branch: Prisma.FieldRef<"User", 'String'>
+  readonly startYear: Prisma.FieldRef<"User", 'Int'>
+  readonly passoutYear: Prisma.FieldRef<"User", 'Int'>
+  readonly phone: Prisma.FieldRef<"User", 'String'>
+  readonly skills: Prisma.FieldRef<"User", 'String'>
+  readonly resumeUrl: Prisma.FieldRef<"User", 'String'>
 }
     
 

@@ -4,6 +4,7 @@ import { useActionState, useEffect } from "react"
 import { initialState } from "./utility"
 import { ApplyJob } from "./actions/action"
 import { toast, ToastContainer } from "react-toastify"
+import { RedirectToSignIn, SignInButton } from "@clerk/nextjs"
 type ButtonProps = {
     postId: string
 }
@@ -23,5 +24,8 @@ export default function ApplyButton({ postId }: ButtonProps) {
         <input type="hidden" name="postId" value={postId} />
         <button type="submit" className="border-2 p-2 text-white bg-blue-700 rounded-md hover:bg-blue-800 ">Apply Now</button>
         <ToastContainer />
+        {
+            state.message === "User Not Found" && <RedirectToSignIn />
+        }
     </form>
 }
