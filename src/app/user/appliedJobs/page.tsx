@@ -9,32 +9,83 @@ export default async function AppliedJobs() {
     const applications = await GetAppliedJobs({ clerkId: authObj.id })
 
     if (!applications || applications.length <= 0)
-        return <h1>No Applied Jobs</h1>
+        return (
+            <div className="flex flex-col items-center justify-center mt-16 text-center">
+                <h1 className="text-lg font-semibold text-gray-700">
+                    No Applied Jobs
+                </h1>
+                <p className="text-sm text-gray-400 mt-1">
+                    Jobs you apply to will show up here.
+                </p>
+            </div>
+        )
 
-    return <div className=" mt-6 mx-auto w-full max-w-7xl overflow-x-auto rounded-lg border border-gray-200 bg-white shadow-xl">
-        <table className="w-full border-collapse text-left text-sm ">
-            <thead className=" bg-violet-500/50 text-xl">
-                <tr>
-                    <th className="px-4 py-3 font-bold">S.No</th>
-                    <th className="px-4 py-3 font-bold">Job Title</th>
-                    <th className="px-4 py-3 font-bold">Location</th>
-                    <th className="px-4 py-3 font-bold">Applied At</th>
-                    <th className="px-4 py-3 font-bold">Status</th>
-                </tr>
-            </thead>
-            {
-                applications.map((job, index) => (
-                    <tbody key={index}>
-                        <tr className="border-t border-gray-300 hover:bg-gray-50">
-                            <td className="px-4 py-3">{index + 1}</td>
-                            <td className="px-4 py-3"><Link href={`/user/jobDetails/${job.postId}`}>{job.postJob.title} </Link></td>
-                            <td className="px-4 py-3">{job.postJob.location}</td>
-                            <td className="px-4 py-3">{job.postJob.posted.toDateString()}</td>
-                            <td className={`px-4 py-3 font-semibold ${job.status === "ACCEPTED" ? "text-green-600" : job.status === "REJECTED" ? "text-red-500" : "text-orange-400"}`}>{job.status}</td>
+    return (
+        <div className="mt-6 mx-auto w-full max-w-7xl overflow-x-auto rounded-xl border border-gray-300 shadow-md">
+            <table className="w-full border-collapse text-left text-sm">
+                <thead className="bg-blue-700 border-b-2 border-[#1049e5]">
+                    <tr>
+                        <th className="px-4 py-4 font-semibold text-white text-[18px]">
+                            S.No
+                        </th>
+                        <th className="px-4 py-4 font-semibold text-white text-[18px]">
+                            Job Title
+                        </th>
+                        <th className="px-4 py-4 font-semibold text-white text-[18px]">
+                            Location
+                        </th>
+                        <th className="px-4 py-4 font-semibold text-white text-[18px]">
+                            Applied At
+                        </th>
+                        <th className="px-4 py-4 font-semibold text-white text-[18px]">
+                            Status
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody className="divide-y divide-gray-300">
+                    {applications.map((job, index) => (
+                        <tr
+                            key={index}
+                            className="transition-colors duration-200 hover:bg-blue-50/40"
+                        >
+                            <td className="px-4 py-4 text-gray-500">
+                                {index + 1}
+                            </td>
+
+                            <td className="px-4 py-4">
+                                <Link
+                                    href={`/user/jobDetails/${job.postId}`}
+                                    className="font-medium text-gray-800 transition-colors hover:text-[#1049e5] hover:underline"
+                                >
+                                    {job.postJob.title}
+                                </Link>
+                            </td>
+
+                            <td className="px-4 py-4 text-gray-600">
+                                {job.postJob.location}
+                            </td>
+
+                            <td className="px-4 py-4 text-gray-600">
+                                {job.postJob.posted.toDateString()}
+                            </td>
+
+                            <td className="px-4 py-4">
+                                <span
+                                    className={`inline-block rounded-full border px-3 py-1 text-xs font-semibold ${job.status === "ACCEPTED"
+                                        ? "bg-green-50 text-green-700 border-green-200"
+                                        : job.status === "REJECTED"
+                                            ? "bg-red-50 text-red-600 border-red-200"
+                                            : "bg-orange-50 text-[#d2842c] border-orange-200"
+                                        }`}
+                                >
+                                    {job.status}
+                                </span>
+                            </td>
                         </tr>
-                    </tbody>
-                ))
-            }
-        </table>
-    </div>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    )
 }

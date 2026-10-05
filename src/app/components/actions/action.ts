@@ -3,6 +3,7 @@
 import { prisma } from "@/lib/prisma";
 import { currentUser } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 type Prop = {
     query?: string,
@@ -146,10 +147,13 @@ export async function ApplyJob(_prev: any, formData: FormData) {
     try {
         const user = await prisma.user.findUnique({
             where: { clerkId },
-            select: { userId: true }
+            select: { userId: true , resumeUrl: true}
         })
         if (!user)
             return { success: false, message: "User Not Found", status: 404 }
+        if(!user.resumeUrl){
+            return {success: false, message: "Uploade Resume", status: 400}
+        }
         const userId = user.userId;
         const post = await prisma.postJob.findUnique({
             where: { postId }

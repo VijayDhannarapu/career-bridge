@@ -4,7 +4,9 @@ import { Show, SignUpButton, UserButton } from "@clerk/nextjs";
 import Link from "next/link"
 import { Role } from "@/generated/enums";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 export default function NavBar() {
+    const pathName = usePathname();
     const [isOpen, setIsOpen] = useState(false);
     const [role, setRole] = useState<Role>()
     return <nav className="flex items-center justify-around px-4 py-2 bg-white border-b border-gray-100 shadow-sm">
@@ -17,16 +19,16 @@ export default function NavBar() {
         {/* Navigation Links */}
         <ul className="hidden md:flex items-center gap-8 font-medium text-gray-600">
             <li>
-                <Link href={"/"} className="hover:text-blue-600 transition-colors py-2 border-b-2 border-transparent hover:border-blue-600">Home</Link>
+                <Link href={"/"} className={`hover:text-blue-600 transition-colors py-2 border-b-2 hover:border-blue-600 ${pathName === "/user" ? 'border-blue-600' : 'border-transparent'}`}>Home</Link>
             </li>
             <li>
-                <Link href={"/user/appliedJobs"} className="hover:text-blue-600  transition-colors py-2 border-b-2 border-transparent hover:border-blue-600">Applied Jobs</Link>
+                <Link href={"/user/appliedJobs"} className={`hover:text-blue-600 transition-colors py-2 border-b-2 hover:border-blue-600 ${pathName.endsWith("/appliedJobs") ? 'border-blue-600' : 'border-transparent'}`}>Applied Jobs</Link>
             </li>
             <li>
-                <Link href={"/"} className="hover:text-blue-600  transition-colors py-2 border-b-2 border-transparent hover:border-blue-600">Browse Companies</Link>
+                <Link href={"/"} className={`hover:text-blue-600 transition-colors py-2 border-b-2 hover:border-blue-600 ${pathName.endsWith("/browsecompanies") ? 'border-blue-600' : 'border-transparent'}`}>Browse Companies</Link>
             </li>
             <li>
-                <Link href={"/user/onboarding"} className="hover:text-blue-600  transition-colors py-2 border-b-2 border-transparent hover:border-blue-600">Profile</Link>
+                <Link href={"/user/onboarding"} className={`hover:text-blue-600 transition-colors py-2 border-b-2 hover:border-blue-600 ${pathName.endsWith("/onboarding") ? 'border-blue-600' : 'border-transparent'}`}>Profile</Link>
             </li>
         </ul>
         {/* only for medium devices */}
@@ -63,7 +65,7 @@ export default function NavBar() {
                     <a href="/applied-jobs" className="block py-2 hover:text-blue-600 border-b border-gray-50">Browse Companies</a>
                 </li>
                 <li>
-                    <Link href={"/user/onboarding"} className="hover:text-blue-600  transition-colors py-2 border-b-2 border-transparent hover:border-blue-600">Profile</Link>
+                    <Link href={"/user/onboarding"} className={`hover:text-blue-600 transition-colors py-2 border-b-2 hover:border-blue-600 ${pathName === "/user" ? 'border-blue-600' : 'border-transparent'}`}>Profile</Link>
                 </li>
                 <li className="flex items-center gap-3 pt-2">
                     <Show when={"signed-out"} >

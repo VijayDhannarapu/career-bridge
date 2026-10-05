@@ -19,29 +19,72 @@ export default async function JobListing({ query, page }: Prop) {
             </div>
         </div>
     }
-    return <div className="mt-6 px-6 flex flex-col items-center">
-        <div className="flex flex-wrap max-w-7xl m-auto items-center justify-center  rounded-md p-2 gap-5">
-            {
-                jobs.map((job) => (
-                    <div key={job.postId} className="w-[350px] h-[320px] shadow-xl/20 shadow-gray-500 rounded-md border border-gray-300 p-3">
-                        <h1 className="text-3xl font-semibold mt-5">{job.title}</h1>
-                        <div className="flex gap-4 mt-5">
-                            <p className="p-1 text-center border border-violet-500 bg-violet-300/40 ">{job.location}</p>
-                            <p className="text-center p-1 border border-blue-500 bg-blue-300/40">{job.level}</p>
-                        </div>
+    return <div className="mt-10 px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+        <div className="w-full max-w-7xl mb-8">
+            <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">
+                Latest jobs
+            </h1>
+            <p className="text-gray-500 mt-2 text-sm sm:text-base">
+                Get your desired job from top companies
+            </p>
+            <div className="w-16 h-1 bg-blue-600 rounded-full mt-4"></div>
+        </div>
 
-                        <p className="mt-5 text-[15px] text-gray-500">{job.description.replace(/<[^>]*>/g, "").slice(0, 150) + "..."} .</p>
-                        <div className="flex gap-5 mt-5">
-                            <ApplyButton postId={job.postId} />
-                            <Link href={`/user/jobDetails/${job.postId}`} className="border-2 border-gray-400 text-gray-600 p-2 rounded-md hover:bg-gray-100/80">Learn More</Link>
+        <div className="w-full max-w-7xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {jobs.map((job) => (
+                <div
+                    key={job.postId}
+                    className="group flex flex-col bg-white min-h-[320px] rounded-2xl border border-gray-200 p-5 sm:p-6 shadow-sm hover:shadow-lg hover:border-blue-300 transition-all duration-300"
+                >
+                    <div>
+                        <h1 className="text-xl sm:text-2xl font-bold text-gray-800 leading-snug group-hover:text-blue-600 transition-colors duration-200">
+                            {job.title}
+                        </h1>
+
+                        <div className="flex flex-wrap gap-2 mt-4">
+                            <p className="px-3 py-1.5 text-xs sm:text-sm font-medium text-violet-700 bg-violet-50 border border-violet-200 rounded-full">
+                                {job.location}
+                            </p>
+                            <p className="px-3 py-1.5 text-xs sm:text-sm font-medium text-blue-700 bg-blue-50 border border-blue-200 rounded-full">
+                                {job.level}
+                            </p>
                         </div>
                     </div>
-                ))
-            }
+
+                    <p className="mt-5 text-sm leading-6 text-gray-500 flex-grow">
+                        {job.description.replace(/<[^>]*>/g, "").slice(0, 150) + "..."} .
+                    </p>
+
+                    <div className="flex flex-wrap items-center gap-3 mt-6 pt-4 border-t border-gray-100">
+                        <ApplyButton postId={job.postId} />
+                        <Link
+                            href={`/user/jobDetails/${job.postId}`}
+                            className="flex-1 text-center border border-gray-300 text-gray-700 font-medium px-4 py-2.5 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 text-sm"
+                        >
+                            Learn More
+                        </Link>
+                    </div>
+                </div>
+            ))}
         </div>
-        <div className="mt-3 flex gap-5 mb-6">
-            <Link href={`/user?page=${pageNo <= 0 ? 1 : pageNo - 1}`} className={`p-2 rounded-md border border-gray-500 ${pageNo < 1 ? "cursor-not-allowed" : ""} `}> <FontAwesomeIcon icon={faChevronLeft} /></Link>
-            <Link href={`/user?page=${pageNo? pageNo + 1 : 2}`} className="p-2 rounded-md border border-gray-500"><FontAwesomeIcon icon={faChevronRight} /></Link>
+
+        <div className="mt-10 mb-8 flex items-center gap-3">
+            <Link
+                href={`/user?page=${pageNo <= 0 ? 1 : pageNo - 1}`}
+                className={`flex items-center justify-center w-10 h-10 rounded-lg border border-gray-300 text-gray-600 hover:bg-blue-50 hover:text-blue-600 hover:border-blue-300 transition-all duration-200 ${pageNo < 1 ? "cursor-not-allowed opacity-50" : ""
+                    }`}
+            >
+                <FontAwesomeIcon icon={faChevronLeft} />
+            </Link>
+
+            <Link
+                href={`/user?page=${pageNo ? pageNo + 1 : 2}`}
+                className="flex items-center justify-center w-10 h-10 rounded-lg border border-gray-300 text-gray-600 hover:bg-blue-50 hover:text-blue-600 hover:border-blue-300 transition-all duration-200"
+            >
+                <FontAwesomeIcon icon={faChevronRight} />
+            </Link>
         </div>
     </div>
+
+
 }

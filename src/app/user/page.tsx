@@ -17,4 +17,4 @@ export default async function Home({ searchParams }: Prop) {
       <JobListing query={query} page={page} />
     </Suspense>
   </div>
-}
+} 
