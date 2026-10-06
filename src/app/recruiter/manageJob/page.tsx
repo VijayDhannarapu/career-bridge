@@ -8,7 +8,7 @@ export default async function ManageJobs() {
 
     return <div className=" mt-6 mx-auto w-full max-w-7xl overflow-x-auto rounded-lg border border-gray-200 bg-white shadow-xl">
         <table className="w-full border-collapse text-left text-sm ">
-            <thead className=" bg-violet-500/50 text-xl">
+            <thead className=" bg-blue-700 text-xl text-white">
                 <tr>
                     <th className="px-4 py-3 font-bold">S.No</th>
                     <th className="px-4 py-3 font-bold">Job Title</th>

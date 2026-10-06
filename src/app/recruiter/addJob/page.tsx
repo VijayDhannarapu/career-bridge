@@ -44,58 +44,155 @@ export default function AddJob() {
 
     useEffect(() => {
         if (!state.message) return
-       if(state.success){
-        toast.success(state.message)
-        setFormKey((k) => k+1)
-       }
-       else{
-        toast.error(state.message)
-       }
+        if (state.success) {
+            toast.success(state.message)
+            setFormKey((k) => k + 1)
+        }
+        else {
+            toast.error(state.message)
+        }
     }, [state])
-    
-    return <div>
-        <form action={formAction} className="mt-6 w-full p-4 flex flex-col gap-5 items-start">
-            <label htmlFor="title"> Job Title <span className="text-red-500">*</span></label>
-            <input type="text" id="title" name="title" placeholder="Type here" required />
 
-            <p>Job Description <span className="text-red-500">*</span></p>
-            <RichTextEditor key={formKey} name="description" />
-            <div className="flex gap-5">
-                <div className="selectOption">
-                    <label htmlFor="jobCategory">Job Category <span className="text-red-500">*</span></label>
-                    <select name="jobCategory" id="jobCategory" className="select">
-                        {
-                            JOB_CATEGORIES.map((jobCategory, index) => (
-                                <option key={index} value={jobCategory}>{jobCategory}</option>
-                            ))
-                        }
-                    </select>
+
+    return <div className="w-full max-w-4xl mx-auto mt-6 sm:mt-8 lg:mt-10 mb-8 sm:mb-10 px-3 sm:px-5 lg:px-6">
+        <div className="bg-white rounded-xl border border-gray-200 shadow-md p-4 sm:p-6 lg:p-8">
+
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-900 mb-1">
+                Post a New Job
+            </h1>
+
+            <p className="text-sm text-gray-500 mb-6 sm:mb-8">
+                Fill in the details below to publish your job listing.
+            </p>
+
+            <form action={formAction} className="flex flex-col gap-5 sm:gap-6">
+
+                {/* Job Title */}
+                <div className="flex flex-col gap-1.5">
+                    <label
+                        htmlFor="title"
+                        className="text-sm font-medium text-gray-700"
+                    >
+                        Job Title <span className="text-red-500">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="title"
+                        name="title"
+                        placeholder="e.g. Frontend Developer"
+                        required
+                        className="w-full h-11 border border-gray-300 rounded-lg px-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                    />
                 </div>
-                <div className="selectOption">
-                    <label htmlFor="jobLocation">Job Location <span className="text-red-500">*</span></label>
-                    <select name="jobLocation" id="jobLocation" className="select">
-                        {
-                            JOB_LOCATIONS.map((location, index) => (
-                                <option key={index} value={location}>{location}</option>
-                            ))
-                        }
-                    </select>
+
+                {/* Job Description */}
+                <div className="flex flex-col gap-1.5">
+                    <label className="text-sm font-medium text-gray-700">
+                        Job Description <span className="text-red-500">*</span>
+                    </label>
+
+                    <div className="w-full">
+                        <RichTextEditor key={formKey} name="description" />
+                    </div>
                 </div>
-                <div className="selectOption">
-                    <label htmlFor="jobLevel">Job Location <span className="text-red-500">*</span></label>
-                    <select name="jobLevel" id="jobLevel" className="select">
-                        {
-                            JOB_LEVEL.map((level, index) => (
-                                <option key={index} value={level}>{level}</option>
-                            ))
-                        }
-                    </select>
+
+                {/* Category / Location / Level */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+
+                    {/* Job Category */}
+                    <div className="flex flex-col gap-1.5">
+                        <label
+                            htmlFor="jobCategory"
+                            className="text-sm font-medium text-gray-700"
+                        >
+                            Job Category <span className="text-red-500">*</span>
+                        </label>
+
+                        <select
+                            name="jobCategory"
+                            id="jobCategory"
+                            className="w-full h-11 border border-gray-300 rounded-lg px-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                        >
+                            {JOB_CATEGORIES.map((jobCategory, index) => (
+                                <option key={index} value={jobCategory}>
+                                    {jobCategory}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
+                    {/* Job Location */}
+                    <div className="flex flex-col gap-1.5">
+                        <label
+                            htmlFor="jobLocation"
+                            className="text-sm font-medium text-gray-700"
+                        >
+                            Job Location <span className="text-red-500">*</span>
+                        </label>
+
+                        <select
+                            name="jobLocation"
+                            id="jobLocation"
+                            className="w-full h-11 border border-gray-300 rounded-lg px-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                        >
+                            {JOB_LOCATIONS.map((location, index) => (
+                                <option key={index} value={location}>
+                                    {location}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
+                    {/* Job Level */}
+                    <div className="flex flex-col gap-1.5">
+                        <label
+                            htmlFor="jobLevel"
+                            className="text-sm font-medium text-gray-700"
+                        >
+                            Job Level <span className="text-red-500">*</span>
+                        </label>
+
+                        <select
+                            name="jobLevel"
+                            id="jobLevel"
+                            className="w-full h-11 border border-gray-300 rounded-lg px-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                        >
+                            {JOB_LEVEL.map((level, index) => (
+                                <option key={index} value={level}>
+                                    {level}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
                 </div>
-            </div>
-            <label htmlFor="jobSalary">Job Salary <span className="text-red-500">*</span></label>
-            <input type="number" name="jobSalary" id="jobSalary" placeholder="12000" required />
-            <SubmitButton name="Post"/>
-            <ToastContainer />
-        </form>
+                {/* Salary */}
+                <div className="flex flex-col gap-1.5 w-full sm:w-3/4 lg:w-3/4">
+                    <label
+                        htmlFor="jobSalary"
+                        className="text-sm font-medium text-gray-700"
+                    >
+                        Job Salary <span className="text-red-500">*</span>
+                    </label>
+
+                    <input
+                        type="number"
+                        name="jobSalary"
+                        id="jobSalary"
+                        placeholder="12000"
+                        required
+                        className="w-full h-11 border border-gray-300 rounded-lg px-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                    />
+                </div>
+
+                {/* Submit */}
+                <div className="pt-1 sm:pt-2">
+                    <SubmitButton name="Post" />
+                </div>
+                <ToastContainer />
+            </form>
+        </div>
     </div>
+
 } 

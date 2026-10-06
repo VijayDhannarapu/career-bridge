@@ -84,9 +84,6 @@ export async function createRecruiter(formData: FormData) {
             where: { clerkId }
         })
 
-        if (existing) {
-            redirect("/recruiter/addJob")
-        }
 
         const fileData = formData.get("uploaded_image") as File
         let imgUrl: string | undefined
@@ -99,7 +96,7 @@ export async function createRecruiter(formData: FormData) {
             if (fileData.size > 2 * 1024 * 1024) {
                 throw new Error("Image must be under 2MB.");
             }
-            
+
             const arrayBuffer = await fileData.arrayBuffer()
             const buffer = Buffer.from(arrayBuffer)
             const uploadResult = await new Promise<any>((resolve, reject) => {
@@ -119,23 +116,38 @@ export async function createRecruiter(formData: FormData) {
         const email = recruiter?.emailAddresses[0]?.emailAddress ?? ""
         const officeName = formData.get("officeName") as string
 
-        await prisma.recruiter.create({
-            data: {
-                clerkId,
-                name,
-                email,
-                imgUrl,
-                officeName,
-                role: "RECRUITER"
-            }
-        })
-        const client = await clerkClient()
-        const role: Role = "RECRUITER"
-        await client.users.updateUser(clerkId, {
-            publicMetadata: {
-                role
-            }
-        })
+        if (existing) {
+            await prisma.recruiter.update({
+                where: { clerkId },
+                data: {
+                    clerkId,
+                    name,
+                    email,
+                    imgUrl,
+                    officeName,
+                    role: "RECRUITER"
+                }
+            })
+        }
+        else {
+            await prisma.recruiter.create({
+                data: {
+                    clerkId,
+                    name,
+                    email,
+                    imgUrl,
+                    officeName,
+                    role: "RECRUITER"
+                }
+            })
+            const client = await clerkClient()
+            const role: Role = "RECRUITER"
+            await client.users.updateUser(clerkId, {
+                publicMetadata: {
+                    role
+                }
+            })
+        }
 
     } catch (error: any) {
         console.log(error)
