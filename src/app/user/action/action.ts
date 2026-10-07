@@ -3,7 +3,9 @@
 import cloudinary from "@/lib/cloudinary"
 import { prisma } from "@/lib/prisma"
 import { auth } from "@clerk/nextjs/server"
+import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
+import { use } from "react"
 
 
 export default async function GetAppliedJobs({ clerkId }: { clerkId: string }) {
@@ -89,4 +91,37 @@ export async function createUser(formData: FormData) {
         throw new Error("Failed to save profile");
     }
     redirect("/user")
+}
+
+export async function WithdrawApplication({ postId }: { postId: string }) {
+    const { userId: clerkId } = await auth();
+    if (!clerkId)
+        return { success: false, message: "Please Login", status: 401 }
+    const user = await prisma.user.findUnique({
+        where: { clerkId },
+        select: {
+            userId: true
+        }
+    })
+    if (!user)
+        return { success: false, message: "User Not Found", status: 400 }
+    const application = await prisma.application.findUnique({
+        where: {
+            userId_postId: { userId: user.userId, postId }
+        }
+    })
+    if (!application)
+        return { success: false, message: "Application Not Found", status: 400 }
+
+    if (application.status !== "PENDING")
+        return { success: false, message: "You can only withdraw a pending application", status: 400 }
+    try {
+        await prisma.application.delete({
+            where: { userId_postId: { userId: user.userId, postId } }
+        })
+        revalidatePath("/user/appliedJobs")
+        return { success: true, message: "Application withdrawn", status: 200 };
+    } catch (error: any) {
+        return { success: false, message: "Something went wrong", status: 400 }
+    }
 }

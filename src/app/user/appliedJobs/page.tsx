@@ -1,6 +1,7 @@
 import { currentUser } from "@clerk/nextjs/server"
 import GetAppliedJobs from "../action/action"
 import Link from "next/link"
+import WithdrawButton from "./Withdraw"
 export default async function AppliedJobs() {
     const authObj = await currentUser()
 
@@ -39,6 +40,9 @@ export default async function AppliedJobs() {
                         </th>
                         <th className="px-4 py-4 font-semibold text-white text-[18px]">
                             Status
+                        </th>
+                        <th className="px-4 py-4 font-semibold text-white text-[18px]">
+                            Withdraw
                         </th>
                     </tr>
                 </thead>
@@ -81,6 +85,9 @@ export default async function AppliedJobs() {
                                 >
                                     {job.status}
                                 </span>
+                            </td>
+                            <td>
+                                <WithdrawButton postId={job.postId}/>
                             </td>
                         </tr>
                     ))}
