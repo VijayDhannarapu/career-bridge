@@ -1,10 +1,10 @@
 import { Status } from "@/generated/enums"
 import { GetApplications, UpdateStatus } from "../actions/actions"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faFilePdf } from "@fortawesome/free-solid-svg-icons"
+import Link from "next/link"
+import JobStatus from "./JobStatus"
 
+export const status = ["PENDING", "ACCEPTED", "REJECTED"]
 export default async function JobApplications() {
-    const status = ["PENDING", "ACCEPTED", "REJECTED"]
     const applications = await GetApplications()
     return <div className="mt-6 mx-auto w-full max-w-7xl overflow-x-auto rounded-lg border border-gray-200 bg-white shadow-xl">
         <table className="w-full border-collapse text-left text-sm ">
@@ -23,7 +23,11 @@ export default async function JobApplications() {
                     <tbody key={index}>
                         <tr className="border-t border-gray-300 hover:bg-gray-50">
                             <td className="px-4 py-3">{index + 1}</td>
-                            <td className="px-4 py-3">{job.user.name}</td>
+                            <td className="px-4 py-3">
+                                <Link href={`/recruiter/applications/${job.userId}`}
+                                    className="hover:text-blue-700 hover:underline">{job.user.name}
+                                </Link>
+                            </td>
                             <td className="px-4 py-3">{job.postJob.title}</td>
                             <td className="px-4 py-3">{job.postJob.location}</td>
                             <td className="px-4 py-3">
@@ -33,24 +37,11 @@ export default async function JobApplications() {
                                     rel="noopener noreferrer"
                                     className="text-blue-600 hover:underline"
                                 >
-                                    {job.user.resumeUrl?.split("/").slice(job.user.resumeUrl?.split("/").length-1)}
+                                    {job.user.resumeUrl?.split("/").slice(job.user.resumeUrl?.split("/").length - 1)}
                                 </a>
                             </td>
                             <td className="px-4 py-3" >
-                                <form action={UpdateStatus}>
-                                    <input type="hidden" name="postId" value={job.postId} />
-                                    <input type="hidden" name="userId" value={job.userId} />
-                                    <select name="status" id="status" defaultValue={job.status}
-                                        className="border border-gray-400 p-1 rounded-md outline-0"
-                                    >
-                                        {
-                                            status.map((st, index) => (
-                                                <option key={index} value={st}>{st.toLocaleLowerCase()}</option>
-                                            ))
-                                        }
-                                    </select>
-                                    <button type="submit" className="border-2 p-1 text-white bg-blue-700 rounded-md hover:bg-blue-800">Update</button>
-                                </form>
+                                <JobStatus postId={job.postId} userId={job.userId} defaultStatus={job.status} />
                             </td>
                         </tr>
                     </tbody>
