@@ -7,7 +7,9 @@ import ApplyButton from "@/app/components/ApplyBtn"
 type Porp = {
     params: Promise<{ postId: string }>
 }
-
+export const metadata = {
+    title: "Job Details"
+}
 export default async function detailsDetails({ params }: Porp) {
     const pid = (await params).postId
     const details = await prisma.postJob.findUnique({

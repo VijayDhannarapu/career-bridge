@@ -194,5 +194,4 @@ export default function AddJob() {
             </form>
         </div>
     </div>
-
 } 

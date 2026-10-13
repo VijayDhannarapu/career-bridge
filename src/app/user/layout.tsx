@@ -4,13 +4,18 @@ import NavBar from "../components/NavBar";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import { ClerkProvider } from '@clerk/nextjs'
-import {  currentUser } from "@clerk/nextjs/server";
-// Tell Font Awesome to skip adding the CSS automatically 
-// since it's already imported above
+
 config.autoAddCss = false;
 export const metadata: Metadata = {
-  title: "Portal"
-}
+  title: {
+    default: "Job Portal | Find Jobs & Hire Talent",
+    template: "%s | Job Portal",
+  },
+  description:
+    "Find your next career opportunity or hire talented candidates with our job portal. Explore job openings, apply for jobs, and manage recruitment easily.",
+  applicationName: "Job Portal",
+};
+
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (

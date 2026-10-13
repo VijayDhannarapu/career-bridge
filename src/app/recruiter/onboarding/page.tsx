@@ -1,7 +1,8 @@
 import { createRecruiter } from "../actions/actions";
-
+export const metadata = {
+    title: "Recruiter Dashboard"
+}
 export default function OnBoarding() {
-
     return <div className="w-full max-w-md mx-auto mt-16 rounded-xl border border-gray-200 bg-white p-8 shadow-md">
         <h1 className="text-xl font-bold text-gray-900 mb-1">
             Set up your recruiter profile

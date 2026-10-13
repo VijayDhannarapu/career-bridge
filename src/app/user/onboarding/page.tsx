@@ -3,12 +3,15 @@ import { createUser } from "../action/action";
 import ContinueButton from "@/app/recruiter/onboarding/Button";
 import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
+import { title } from "process";
+export const metadata = {
+    title: "Profile"
+}
 export default async function OnBoarding() {
     const { userId: clerkId } = await auth()
     if (!clerkId)
         redirect("/")
     const user = await prisma.user.findUnique({ where: { clerkId } });
-
 
     return <div className="w-full max-w-md mx-auto mt-12 mb-12 rounded-xl border border-gray-200 bg-white p-8 shadow-md">
         <h1 className="text-xl font-bold text-gray-900 mb-1">

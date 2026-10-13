@@ -3,6 +3,9 @@ import { faEdit } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Link from "next/link"
 import JobVisibilityControl from "./JobVisibilityControl"
+export const metadata = {
+    title: "Manage Job"
+}
 export default async function ManageJobs() {
     const jobs = await PostedJobs()
 

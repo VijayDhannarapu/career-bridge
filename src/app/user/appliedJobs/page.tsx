@@ -2,6 +2,9 @@ import { currentUser } from "@clerk/nextjs/server"
 import GetAppliedJobs from "../action/action"
 import Link from "next/link"
 import WithdrawButton from "./Withdraw"
+export const metadata = {
+    title: "Applied Jobs"
+}
 export default async function AppliedJobs() {
     const authObj = await currentUser()
 

@@ -1,9 +1,12 @@
-import { Status } from "@/generated/enums"
 import { GetApplications, UpdateStatus } from "../actions/actions"
 import Link from "next/link"
 import JobStatus from "./JobStatus"
+import { title } from "process"
 
 export const status = ["PENDING", "ACCEPTED", "REJECTED"]
+export const metadata = {
+    title: "Job Applications"
+}
 export default async function JobApplications() {
     const applications = await GetApplications()
     return <div className="mt-6 mx-auto w-full max-w-7xl overflow-x-auto rounded-lg border border-gray-200 bg-white shadow-xl">
