@@ -7,15 +7,41 @@ import { currentUser, auth, clerkClient } from "@clerk/nextjs/server"
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 import { Role } from "@/generated/enums"
-export async function GetApplications() {
+export async function GetApplications({ categories, locations }: { categories?: string, locations?: string }) {
     const authObj = await currentUser()
     const clerkId = authObj?.raw?.id
+
     const recruiter = await prisma.recruiter.findUnique({
         where: {
             clerkId
         },
     })
     const recruiterId = recruiter?.recId
+    const cat = categories?.split(',').map((category) => category.trim()).filter(Boolean) ?? []
+    const loc = locations?.split(',').map((location) => location.trim()).filter(Boolean) ?? []
+    if (cat.length > 0 || loc.length > 0) {
+
+        return await prisma.application.findMany({
+            include: {
+                user: true,
+                postJob: true,
+            },
+            orderBy: {
+                appliedAt: "asc",
+            },
+            where: {
+                postJob: {
+                        recruiterId,
+                        ...(loc.length > 0 && {
+                            location: { in: loc },
+                        }),
+                        ...(cat.length > 0 && {
+                            category: {in: cat}
+                        }),
+                },
+            },
+        });
+    }
     return await prisma.application.findMany({
         where: {
             postJob: {

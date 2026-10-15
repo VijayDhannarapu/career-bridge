@@ -3,56 +3,64 @@ import { faEdit } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Link from "next/link"
 import JobVisibilityControl from "./JobVisibilityControl"
+import ApplicationFilter from "@/app/components/recruiter/ApplicartionFilter"
+import { SearchParamsProps } from "../applications/page"
 export const metadata = {
     title: "Manage Job"
 }
-export default async function ManageJobs() {
-    const jobs = await PostedJobs()
 
-    return <div className=" mt-6 mx-auto w-full max-w-7xl overflow-x-auto rounded-lg border border-gray-200 bg-white shadow-xl">
-        <table className="w-full border-collapse text-left text-sm ">
-            <thead className=" bg-blue-700 text-xl text-white">
-                <tr>
-                    <th className="px-4 py-3 font-bold">S.No</th>
-                    <th className="px-4 py-3 font-bold">Job Title</th>
-                    <th className="px-4 py-3 font-bold">Location</th>
-                    <th className="px-4 py-3 font-bold">Date</th>
-                    <th className="px-4 py-3 font-bold">Applications</th>
-                    <th className="px-4 py-3 font-bold">Edit</th>
-                    <th className="px-4 py-3 font-bold">Visible</th>
-                </tr>
-            </thead>
-            {
-                jobs.map((job, index) => (
-                    <tbody key={index}>
-                        <tr className="border-t border-gray-300 hover:bg-gray-50">
-                            <td className="px-4 py-3">{index + 1}</td>
-                            <td className="px-4 py-3">{job.title}</td>
-                            <td className="px-4 py-3">{job.location}</td>
-                            <td className="px-4 py-3">{job.posted.toDateString()}</td>
-                            <td className="px-4 py-3">{job._count.applications}</td>
-                            <td className="px-4 py-3">
-                                <div className="flex justify-center">
-                                    <Link href={`/recruiter/editJob/?id=${job.postId}`}><FontAwesomeIcon icon={faEdit} className="h-4 w-4 " /></Link>
-                                </div>
-                            </td>
-                            <td>
-                                <JobVisibilityControl isVisible={job.isVisible} postId={job.postId} />
+export default async function ManageJobs({ searchParams }: SearchParamsProps) {
+    const { categories, locations } = await searchParams
+    const jobs = await PostedJobs({ categories, locations })
+    return <div className="mx-auto w-full max-w-7xl">
+        <div className="flex mt-6 justify-end">
+            <ApplicationFilter routeName="/recruiter/manageJob" />
+        </div>
+        <div className=" mt-6 mx-auto w-full max-w-7xl overflow-x-auto rounded-lg border border-gray-200 bg-white shadow-xl">
+            <table className="w-full border-collapse text-left text-sm ">
+                <thead className=" bg-blue-700 text-xl text-white">
+                    <tr>
+                        <th className="px-4 py-3 font-bold">S.No</th>
+                        <th className="px-4 py-3 font-bold">Job Title</th>
+                        <th className="px-4 py-3 font-bold">Location</th>
+                        <th className="px-4 py-3 font-bold">Date</th>
+                        <th className="px-4 py-3 font-bold">Applications</th>
+                        <th className="px-4 py-3 font-bold">Edit</th>
+                        <th className="px-4 py-3 font-bold">Visible</th>
+                    </tr>
+                </thead>
+                {
+                    jobs.map((job, index) => (
+                        <tbody key={index}>
+                            <tr className="border-t border-gray-300 hover:bg-gray-50">
+                                <td className="px-4 py-3">{index + 1}</td>
+                                <td className="px-4 py-3">{job.title}</td>
+                                <td className="px-4 py-3">{job.location}</td>
+                                <td className="px-4 py-3">{job.posted.toDateString()}</td>
+                                <td className="px-4 py-3">{job._count.applications}</td>
+                                <td className="px-4 py-3">
+                                    <div className="flex justify-center">
+                                        <Link href={`/recruiter/editJob/?id=${job.postId}`}><FontAwesomeIcon icon={faEdit} className="h-4 w-4 " /></Link>
+                                    </div>
+                                </td>
+                                <td>
+                                    <JobVisibilityControl isVisible={job.isVisible} postId={job.postId} />
+                                </td>
+                            </tr>
+                        </tbody>
+                    ))
+                }
+                {
+                    jobs.length == 0 &&
+                    <tbody>
+                        <tr>
+                            <td colSpan={7} className="text-center py-6 text-gray-500">
+                                Yet Not Posted Any jobs
                             </td>
                         </tr>
                     </tbody>
-                ))
-            }
-            {
-                jobs.length == 0 &&
-                <tbody>
-                    <tr>
-                        <td colSpan={7} className="text-center py-6 text-gray-500">
-                            Yet Not Posted Any jobs
-                        </td>
-                    </tr>
-                </tbody>
-            }
-        </table>
+                }
+            </table>
+        </div>
     </div>
 }

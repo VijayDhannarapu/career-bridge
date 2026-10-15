@@ -11,9 +11,15 @@ export type FormProps = {
     message: string
     status: number
 }
-
-export default function AddJob() {
-    const JOB_CATEGORIES = [
+export const JOB_LOCATIONS = [
+    "Hyderabad",
+    "Warangal",
+    "Bengaluru",
+    "Mumbai",
+    "Visakhapatnam",
+    "Chennai"
+]
+export const JOB_CATEGORIES = [
         "Software Development",
         "Data Science & Analytics",
         "Design & Creative",
@@ -21,14 +27,8 @@ export default function AddJob() {
         "Cyber security",
         "Other"
     ]
-    const JOB_LOCATIONS = [
-        "Hyderabad",
-        "Warangal",
-        "Bengaluru",
-        "Mumbai",
-        "Visakhapatnam",
-        "Chennai"
-    ]
+export default function AddJob() {
+    
     const JOB_LEVEL = [
         "Beginner level",
         "Intermediate level",
