@@ -3,7 +3,6 @@ import { createUser } from "../action/action";
 import ContinueButton from "@/app/recruiter/onboarding/Button";
 import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
-import { title } from "process";
 export const metadata = {
     title: "Profile"
 }
@@ -22,6 +21,20 @@ export default async function OnBoarding() {
         </p>
 
         <form action={createUser} className="flex flex-col gap-5">
+            <div className="flex flex-col gap-1">
+                <label htmlFor="name" className="text-sm font-medium text-gray-700">
+                    Name
+                </label>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="e.g. John"
+                    defaultValue={user?.name ?? ""}
+                    className="border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    required
+                />
+            </div>
             <div className="flex flex-col gap-1">
                 <label htmlFor="college" className="text-sm font-medium text-gray-700">
                     College Name

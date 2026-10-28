@@ -1,7 +1,6 @@
 "use client"
 import { PostJob } from "@/app/components/actions/action";
 import RichTextEditor from "@/app/components/recruiter/RichTextEditor";
-import Link from "next/link";
 import SubmitButton from "./Button";
 import { useActionState, useEffect, useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';

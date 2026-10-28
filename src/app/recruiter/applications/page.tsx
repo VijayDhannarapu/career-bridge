@@ -13,6 +13,7 @@ export type SearchParamsProps = {
 export default async function JobApplications({ searchParams }: SearchParamsProps) {
     const { categories, locations } = await searchParams;
     const applications = await GetApplications({ categories, locations })
+    
     return <div className="mx-auto w-full max-w-7xl">
         <div className="flex justify-end mt-6">
             <ApplicationFilter routeName="/recruiter/applications" />

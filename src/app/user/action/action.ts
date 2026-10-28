@@ -66,7 +66,7 @@ export async function createUser(formData: FormData) {
 
         resumeUrl = uploadResult.secure_url
     }
-
+    const name = formData.get("name") as string
     const college = formData.get("college") as string
     const branch = formData.get("branch") as string
     const startYear = Number(formData.get("startYear") as string)
@@ -77,6 +77,7 @@ export async function createUser(formData: FormData) {
         await prisma.user.update({
             where: { clerkId },
             data: {
+                name,
                 college,
                 branch,
                 startYear,

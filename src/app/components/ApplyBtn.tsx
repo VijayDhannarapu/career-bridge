@@ -6,12 +6,13 @@ import { ApplyJob } from "./actions/action"
 import { toast, ToastContainer } from "react-toastify"
 import { RedirectToSignIn, SignInButton } from "@clerk/nextjs"
 import { redirect } from "next/navigation"
+import { useFormStatus } from "react-dom"
 type ButtonProps = {
     postId: string
 }
 
 export default function ApplyButton({ postId }: ButtonProps) {
-    const [state, formAction] = useActionState(ApplyJob, initialState)
+    const [state, formAction, pending] = useActionState(ApplyJob, initialState)
     useEffect(() => {
         if (!state.message) return
         if (state.success)
@@ -24,7 +25,9 @@ export default function ApplyButton({ postId }: ButtonProps) {
         redirect("/user/onboarding")
     return <form action={formAction}>
         <input type="hidden" name="postId" value={postId} />
-        <button type="submit" className="border-2 p-2 text-white bg-blue-700 rounded-md hover:bg-blue-800 ">Apply Now</button>
+        <button type="submit" className="border-2 p-2 text-white bg-blue-700 rounded-md hover:bg-blue-800 disabled:bg-blue-800 disabled:cursor-not-allowed" disabled={pending}>
+            {pending ? "Loading..." : "Apply Now"}
+        </button>
         <ToastContainer />
         {
             state.message === "User Not Found" && <RedirectToSignIn />

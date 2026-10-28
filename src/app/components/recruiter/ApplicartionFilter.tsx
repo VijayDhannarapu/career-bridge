@@ -7,7 +7,6 @@ export default function ApplicationFilter({ routeName }: { routeName: string }) 
     const [filterType, setFilterType] = useState<"location" | "jobCategory">(
         "location"
     );
-    console.log("routeName: ", routeName)
     const [selectedLocations, setSelectedLocations] = useState<string[]>([]);
     const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
     const [isOpen, setIsOpen] = useState<Boolean>(false)
