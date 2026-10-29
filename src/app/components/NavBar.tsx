@@ -65,8 +65,8 @@ export default function NavBar() {
 
                     <li>
                         <Link
-                            href={"/user/onboarding"}
-                            className={`px-4 py-2.5 rounded-lg transition-all duration-200 border ${pathName.endsWith("/onboarding")
+                            href={"/user/profile"}
+                            className={`px-4 py-2.5 rounded-lg transition-all duration-200 border ${pathName.endsWith("/profile")
                                     ? 'text-blue-600 bg-blue-50 border-blue-100'
                                     : 'text-gray-600 border-transparent hover:text-blue-600 hover:bg-gray-50'
                                 }`}
