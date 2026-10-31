@@ -1,4 +1,5 @@
 import { Role } from "@/generated/enums";
+import { redirect } from "next/navigation";
 export type UserProp = {
     email: string;
     name: string;
@@ -16,6 +17,9 @@ export type UserProp = {
 
 
 export default function UserProfile({ user}: { user: UserProp}) {
+    if(!user?.name)
+        redirect("/user/onboarding");
+
     return <div className="min-w-0 lg:col-span-2">
         <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-md">
 

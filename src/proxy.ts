@@ -13,6 +13,10 @@ export default clerkMiddleware(async (auth, req) => {
     const url = new URL("/", req.url);
     return NextResponse.redirect(url);
   }
+  if(!isRecruiterRoute && isRecruiter){
+    const url = new URL("recruiter/addJob", req.url);
+    return NextResponse.redirect(url);
+  }
 });
 
 export const config = {

@@ -31,13 +31,13 @@ export async function GetApplications({ categories, locations }: { categories?: 
             },
             where: {
                 postJob: {
-                        recruiterId,
-                        ...(loc.length > 0 && {
-                            location: { in: loc },
-                        }),
-                        ...(cat.length > 0 && {
-                            category: {in: cat}
-                        }),
+                    recruiterId,
+                    ...(loc.length > 0 && {
+                        location: { in: loc },
+                    }),
+                    ...(cat.length > 0 && {
+                        category: { in: cat }
+                    }),
                 },
             },
         });

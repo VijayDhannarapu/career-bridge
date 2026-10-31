@@ -44,7 +44,7 @@ model Recruiter {
   clerkId    String    @unique
   name       String
   email      String    @unique
-  officeName String
+  officeName String?
   imgUrl     String?
   role       Role
   createdAt  DateTime  @default(now())

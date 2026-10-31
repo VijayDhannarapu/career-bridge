@@ -31,8 +31,8 @@ export default function NavBar() {
                         <Link
                             href={"/"}
                             className={`px-4 py-2.5 rounded-lg transition-all duration-200 border ${pathName === "/user"
-                                    ? 'text-blue-600 bg-blue-50 border-blue-100'
-                                    : 'text-gray-600 border-transparent hover:text-blue-600 hover:bg-gray-50'
+                                ? 'text-blue-600 bg-blue-50 border-blue-100'
+                                : 'text-gray-600 border-transparent hover:text-blue-600 hover:bg-gray-50'
                                 }`}
                         >
                             Home
@@ -43,8 +43,8 @@ export default function NavBar() {
                         <Link
                             href={"/user/appliedJobs"}
                             className={`px-4 py-2.5 rounded-lg transition-all duration-200 border ${pathName.endsWith("/appliedJobs")
-                                    ? 'text-blue-600 bg-blue-50 border-blue-100'
-                                    : 'text-gray-600 border-transparent hover:text-blue-600 hover:bg-gray-50'
+                                ? 'text-blue-600 bg-blue-50 border-blue-100'
+                                : 'text-gray-600 border-transparent hover:text-blue-600 hover:bg-gray-50'
                                 }`}
                         >
                             Applied Jobs
@@ -55,8 +55,8 @@ export default function NavBar() {
                         <Link
                             href={"/"}
                             className={`px-4 py-2.5 rounded-lg transition-all duration-200 border ${pathName.endsWith("/browsecompanies")
-                                    ? 'text-blue-600 bg-blue-50 border-blue-100'
-                                    : 'text-gray-600 border-transparent hover:text-blue-600 hover:bg-gray-50'
+                                ? 'text-blue-600 bg-blue-50 border-blue-100'
+                                : 'text-gray-600 border-transparent hover:text-blue-600 hover:bg-gray-50'
                                 }`}
                         >
                             Browse Companies
@@ -67,8 +67,8 @@ export default function NavBar() {
                         <Link
                             href={"/user/profile"}
                             className={`px-4 py-2.5 rounded-lg transition-all duration-200 border ${pathName.endsWith("/profile")
-                                    ? 'text-blue-600 bg-blue-50 border-blue-100'
-                                    : 'text-gray-600 border-transparent hover:text-blue-600 hover:bg-gray-50'
+                                ? 'text-blue-600 bg-blue-50 border-blue-100'
+                                : 'text-gray-600 border-transparent hover:text-blue-600 hover:bg-gray-50'
                                 }`}
                         >
                             Profile
@@ -121,32 +121,34 @@ export default function NavBar() {
 
                     <Show when={"signed-out"}>
 
-                        <SignInButton
+                        <SignUpButton
                             mode="modal"
                             forceRedirectUrl={"/recruiter/onboarding"}
+                            unsafeMetadata={{role: "RECRUITER"}}
                         >
                             <button className="px-4 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-all duration-200">
                                 For Recruiters
                             </button>
-                        </SignInButton>
+                        </SignUpButton>
 
                         <SignInButton
                             mode="modal"
-                            forceRedirectUrl={"/user/onboarding"}
+                            forceRedirectUrl={"/user/profile"}
                         >
                             <button className="px-5 py-2.5 rounded-lg bg-blue-600 text-white text-sm font-medium shadow-sm hover:bg-blue-700 hover:shadow-md transition-all duration-200">
                                 Log In
                             </button>
                         </SignInButton>
 
-                        <SignInButton
+                        <SignUpButton
                             mode="modal"
                             forceRedirectUrl={"/user/onboarding"}
+                            unsafeMetadata={{role: "USER"}}
                         >
                             <button className="px-5 py-2.5 rounded-lg border border-blue-600 text-blue-600 bg-white text-sm font-medium hover:bg-blue-50 transition-all duration-200">
                                 Sign Up
                             </button>
-                        </SignInButton>
+                        </SignUpButton>
 
                     </Show>
 
@@ -202,8 +204,8 @@ export default function NavBar() {
                     <Link
                         href={"/user/onboarding"}
                         className={`flex items-center px-4 py-3 rounded-lg transition-all duration-200 ${pathName === "/user"
-                                ? 'text-blue-600 bg-blue-50'
-                                : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
+                            ? 'text-blue-600 bg-blue-50'
+                            : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
                             }`}
                     >
                         Profile
