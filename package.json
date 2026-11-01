@@ -9,6 +9,9 @@
     "lint": "eslint",
     "postinstall": "prisma generate"
   },
+  "overrides": {
+    "jsdom": "26.1.0"
+  },
   "dependencies": {
     "@clerk/nextjs": "^7.9.7",
     "@fortawesome/fontawesome-svg-core": "^7.3.1",
