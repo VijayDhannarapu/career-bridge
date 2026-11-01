@@ -1,3 +1,5 @@
+import { redirect } from "next/navigation";
+
 export default function Recruiter(){
-    return <h1>This is recruiter page</h1>
+    return redirect("/recruiter/addJob");
 }

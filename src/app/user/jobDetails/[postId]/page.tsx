@@ -32,7 +32,7 @@ export default async function detailsDetails({ params }: Porp) {
                         {details.recruiter.imgUrl
                             ? <img src={details.recruiter.imgUrl} alt="logo" className="w-full h-full object-contain rounded-lg" />
                             : <div className="w-14 h-14 rounded-full bg-blue-100 text-blue-700 font-semibold flex items-center justify-center text-lg ring-2 ring-white shadow-sm cursor-pointer">
-                                {details.recruiter.officeName.charAt(0)}
+                                {details.recruiter.officeName?.charAt(0)}
                             </div>
                         }
                     </div>

@@ -170,7 +170,7 @@ export type RecruiterGroupByOutputType = {
   clerkId: string
   name: string
   email: string
-  officeName: string
+  officeName: string | null
   imgUrl: string | null
   role: $Enums.Role
   createdAt: Date
@@ -202,7 +202,7 @@ export type RecruiterWhereInput = {
   clerkId?: Prisma.StringFilter<"Recruiter"> | string
   name?: Prisma.StringFilter<"Recruiter"> | string
   email?: Prisma.StringFilter<"Recruiter"> | string
-  officeName?: Prisma.StringFilter<"Recruiter"> | string
+  officeName?: Prisma.StringNullableFilter<"Recruiter"> | string | null
   imgUrl?: Prisma.StringNullableFilter<"Recruiter"> | string | null
   role?: Prisma.EnumRoleFilter<"Recruiter"> | $Enums.Role
   createdAt?: Prisma.DateTimeFilter<"Recruiter"> | Date | string
@@ -214,7 +214,7 @@ export type RecruiterOrderByWithRelationInput = {
   clerkId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  officeName?: Prisma.SortOrder
+  officeName?: Prisma.SortOrderInput | Prisma.SortOrder
   imgUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   role?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -229,7 +229,7 @@ export type RecruiterWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.RecruiterWhereInput[]
   NOT?: Prisma.RecruiterWhereInput | Prisma.RecruiterWhereInput[]
   name?: Prisma.StringFilter<"Recruiter"> | string
-  officeName?: Prisma.StringFilter<"Recruiter"> | string
+  officeName?: Prisma.StringNullableFilter<"Recruiter"> | string | null
   imgUrl?: Prisma.StringNullableFilter<"Recruiter"> | string | null
   role?: Prisma.EnumRoleFilter<"Recruiter"> | $Enums.Role
   createdAt?: Prisma.DateTimeFilter<"Recruiter"> | Date | string
@@ -241,7 +241,7 @@ export type RecruiterOrderByWithAggregationInput = {
   clerkId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  officeName?: Prisma.SortOrder
+  officeName?: Prisma.SortOrderInput | Prisma.SortOrder
   imgUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   role?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -258,7 +258,7 @@ export type RecruiterScalarWhereWithAggregatesInput = {
   clerkId?: Prisma.StringWithAggregatesFilter<"Recruiter"> | string
   name?: Prisma.StringWithAggregatesFilter<"Recruiter"> | string
   email?: Prisma.StringWithAggregatesFilter<"Recruiter"> | string
-  officeName?: Prisma.StringWithAggregatesFilter<"Recruiter"> | string
+  officeName?: Prisma.StringNullableWithAggregatesFilter<"Recruiter"> | string | null
   imgUrl?: Prisma.StringNullableWithAggregatesFilter<"Recruiter"> | string | null
   role?: Prisma.EnumRoleWithAggregatesFilter<"Recruiter"> | $Enums.Role
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Recruiter"> | Date | string
@@ -269,7 +269,7 @@ export type RecruiterCreateInput = {
   clerkId: string
   name: string
   email: string
-  officeName: string
+  officeName?: string | null
   imgUrl?: string | null
   role: $Enums.Role
   createdAt?: Date | string
@@ -281,7 +281,7 @@ export type RecruiterUncheckedCreateInput = {
   clerkId: string
   name: string
   email: string
-  officeName: string
+  officeName?: string | null
   imgUrl?: string | null
   role: $Enums.Role
   createdAt?: Date | string
@@ -293,7 +293,7 @@ export type RecruiterUpdateInput = {
   clerkId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  officeName?: Prisma.StringFieldUpdateOperationsInput | string
+  officeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imgUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -305,7 +305,7 @@ export type RecruiterUncheckedUpdateInput = {
   clerkId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  officeName?: Prisma.StringFieldUpdateOperationsInput | string
+  officeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imgUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -317,7 +317,7 @@ export type RecruiterCreateManyInput = {
   clerkId: string
   name: string
   email: string
-  officeName: string
+  officeName?: string | null
   imgUrl?: string | null
   role: $Enums.Role
   createdAt?: Date | string
@@ -328,7 +328,7 @@ export type RecruiterUpdateManyMutationInput = {
   clerkId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  officeName?: Prisma.StringFieldUpdateOperationsInput | string
+  officeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imgUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -339,7 +339,7 @@ export type RecruiterUncheckedUpdateManyInput = {
   clerkId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  officeName?: Prisma.StringFieldUpdateOperationsInput | string
+  officeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imgUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -406,7 +406,7 @@ export type RecruiterCreateWithoutPostJobInput = {
   clerkId: string
   name: string
   email: string
-  officeName: string
+  officeName?: string | null
   imgUrl?: string | null
   role: $Enums.Role
   createdAt?: Date | string
@@ -417,7 +417,7 @@ export type RecruiterUncheckedCreateWithoutPostJobInput = {
   clerkId: string
   name: string
   email: string
-  officeName: string
+  officeName?: string | null
   imgUrl?: string | null
   role: $Enums.Role
   createdAt?: Date | string
@@ -444,7 +444,7 @@ export type RecruiterUpdateWithoutPostJobInput = {
   clerkId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  officeName?: Prisma.StringFieldUpdateOperationsInput | string
+  officeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imgUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -455,7 +455,7 @@ export type RecruiterUncheckedUpdateWithoutPostJobInput = {
   clerkId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  officeName?: Prisma.StringFieldUpdateOperationsInput | string
+  officeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imgUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -556,7 +556,7 @@ export type $RecruiterPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     clerkId: string
     name: string
     email: string
-    officeName: string
+    officeName: string | null
     imgUrl: string | null
     role: $Enums.Role
     createdAt: Date
