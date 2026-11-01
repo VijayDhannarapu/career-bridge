@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Career-Bridge Project Workflow</title>
+    <style>
+      :root {
+        --bg: #f6f9ff;
+        --panel: #ffffff;
+        --primary: #2563eb;
+        --secondary: #0f172a;
+        --accent: #10b981;
+        --warning: #f59e0b;
+        --danger: #ef4444;
+        --muted: #475569;
+        --border: #dfe7f5;
+        --shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(180deg, #edf5ff 0%, #f8fafc 100%);
+        color: var(--secondary);
+      }
+
+      .page {
+        max-width: 1300px;
+        margin: 40px auto;
+        padding: 28px;
+      }
+
+      .header {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+        padding: 26px 28px;
+        margin-bottom: 24px;
+      }
+
+      h1 {
+        margin: 0 0 8px;
+        font-size: 34px;
+        color: var(--secondary);
+      }
+
+      .subtitle {
+        margin: 0;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.6;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(220px, 1fr));
+        gap: 20px;
+        margin: 24px 0 28px;
+      }
+
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+        padding: 18px 18px 16px;
+      }
+
+      .card h3 {
+        margin: 0 0 12px;
+        font-size: 18px;
+      }
+
+      .pill {
+        display: inline-block;
+        font-size: 11px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        margin-bottom: 10px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .blue { background: rgba(37, 99, 235, 0.12); color: var(--primary); }
+      .green { background: rgba(16, 185, 129, 0.12); color: #047857; }
+      .amber { background: rgba(245, 158, 11, 0.12); color: #b45309; }
+
+      ul {
+        margin: 0;
+        padding-left: 18px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .diagram-wrap {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+        padding: 26px;
+        margin-bottom: 24px;
+      }
+
+      .diagram-title {
+        margin: 0 0 18px;
+        font-size: 24px;
+      }
+
+      .flow {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(170px, 1fr));
+        gap: 18px;
+        align-items: center;
+      }
+
+      .node {
+        min-height: 126px;
+        background: #f8fbff;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 14px 12px;
+        text-align: center;
+        position: relative;
+      }
+
+      .node strong {
+        display: block;
+        font-size: 14px;
+        margin-bottom: 8px;
+      }
+
+      .node .small {
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .arrow {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 26px;
+        color: var(--primary);
+      }
+
+      .section {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+        padding: 22px 24px;
+        margin-bottom: 24px;
+      }
+
+      .section h2 {
+        margin: 0 0 16px;
+        font-size: 24px;
+      }
+
+      .two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+
+      .step-box {
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 16px;
+        background: #fbfdff;
+      }
+
+      .step-box h4 {
+        margin: 0 0 10px;
+        font-size: 18px;
+      }
+
+      .step-box ol {
+        margin: 0;
+        padding-left: 20px;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .tech-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 8px;
+      }
+
+      .tag {
+        background: #edf4ff;
+        border: 1px solid #bfd6ff;
+        color: #1d4ed8;
+        border-radius: 999px;
+        padding: 8px 12px;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      @media (max-width: 900px) {
+        .grid, .two-col, .flow {
+          grid-template-columns: 1fr;
+        }
+
+        .arrow {
+          transform: rotate(90deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="header">
+        <h1>Career-Bridge</h1>
+        <p class="subtitle">
+          A full-stack job portal that connects job seekers and recruiters through role-based authentication,\n          profile creation, job listings, application management, and cloud-based storage.
+        </p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <span class="pill blue">Users</span>
+          <h3>Candidate Flow</h3>
+          <ul>
+            <li>Sign up with Clerk</li>
+            <li>Complete profile</li>
+            <li>Upload resume PDF</li>
+            <li>Browse and filter jobs</li>
+            <li>Apply and monitor status</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <span class="pill green">Recruiters</span>
+          <h3>Employer Flow</h3>
+          <ul>
+            <li>Create recruiter account</li>
+            <li>Add company info and logo</li>
+            <li>Post jobs</li>
+            <li>Review applicants</li>
+            <li>Update application decisions</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <span class="pill amber">Core Platform</span>
+          <h3>System Layer</h3>
+          <ul>
+            <li>Next.js front-end</li>
+            <li>Prisma + PostgreSQL</li>
+            <li>Clerk auth & webhooks</li>
+            <li>Cloudinary file storage</li>
+            <li>Role-based routing</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="diagram-wrap">
+        <h2 class="diagram-title">Project Workflow Diagram</h2>
+        <div class="flow">
+          <div class="node">
+            <strong>1. User / Recruiter</strong>
+            <div class="small">Signs up using Clerk authentication</div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="node">
+            <strong>2. Next.js App</strong>
+            <div class="small">Routes to /user or /recruiter based on role</div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="node">
+            <strong>3. Clerk Webhook</strong>
+            <div class="small">Creates user/recruiter DB record automatically</div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="node">
+            <strong>4. Prisma + PostgreSQL</strong>
+            <div class="small">Stores User, Recruiter, PostJob, Application records</div>
+          </div>
+
+          <div class="node">
+            <strong>5. Profile Setup</strong>
+            <div class="small">Candidate enters skills, education, resume; recruiter adds company details</div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="node">
+            <strong>6. Cloudinary</strong>
+            <div class="small">Uploads resumes and recruiter logos securely</div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="node">
+            <strong>7. Job Listing</strong>
+            <div class="small">Candidates browse jobs and filter listings</div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="node">
+            <strong>8. Application</strong>
+            <div class="small">User applies; recruiter reviews and updates status</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Candidate Workflow</h2>
+        <div class="two-col">
+          <div class="step-box">
+            <h4>1. Authentication</h4>
+            <ol>
+              <li>User signs up or signs in through Clerk.</li>
+              <li>Role is determined as USER or RECRUITER.</li>
+              <li>App redirects to the correct dashboard.</li>
+            </ol>
+          </div>
+
+          <div class="step-box">
+            <h4>2. Profile Completion</h4>
+            <ol>
+              <li>Candidate fills college, branch, skills, phone, and passout year.</li>
+              <li>Resume PDF is uploaded and stored in Cloudinary.</li>
+              <li>The profile is saved in Prisma database.</li>
+            </ol>
+          </div>
+
+          <div class="step-box">
+            <h4>3. Job Discovery</h4>
+            <ol>
+              <li>Candidate lands on the home/job listing page.</li>
+              <li>Jobs are filtered by query or location/category.</li>
+              <li>Candidate clicks job details page for more information.</li>
+            </ol>
+          </div>
+
+          <div class="step-box">
+            <h4>4. Application Process</h4>
+            <ol>
+              <li>User applies to a job posting.</li>
+              <li>Application is saved with status = PENDING.</li>
+              <li>Candidate can view or withdraw pending applications.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Recruiter Workflow</h2>
+        <div class="two-col">
+          <div class="step-box">
+            <h4>1. Recruiter Onboarding</h4>
+            <ol>
+              <li>Recruiter signs up and sets company name.</li>
+              <li>Company logo is uploaded via Cloudinary.</li>
+              <li>Recruiter profile is created in database.</li>
+            </ol>
+          </div>
+
+          <div class="step-box">
+            <h4>2. Job Posting</h4>
+            <ol>
+              <li>Recruiter adds a job title, description, category, and location.</li>
+              <li>CTC, visibility, and role details are stored.</li>
+              <li>Job is published to job listings.</li>
+            </ol>
+          </div>
+
+          <div class="step-box">
+            <h4>3. Candidate Review</h4>
+            <ol>
+              <li>All applications tied to that recruiter are queried.</li>
+              <li>Recruiter filters by category or location.</li>
+              <li>Candidate details, resume, and application information are reviewed.</li>
+            </ol>
+          </div>
+
+          <div class="step-box">
+            <h4>4. Decision Making</h4>
+            <ol>
+              <li>Recruiter updates application status: PENDING, ACCEPTED, or REJECTED.</li>
+              <li>Application dashboard revalidates and refreshes.</li>
+              <li>Candidate sees updated decision through the portal.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Technology Stack</h2>
+        <div class="tech-list">
+          <span class="tag">Next.js</span>
+          <span class="tag">React</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">Tailwind CSS</span>
+          <span class="tag">Clerk</span>
+          <span class="tag">Prisma</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">Cloudinary</span>
+          <span class="tag">Vercel</span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
