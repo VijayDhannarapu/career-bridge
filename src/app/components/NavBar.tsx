@@ -124,7 +124,7 @@ export default function NavBar() {
                         <SignUpButton
                             mode="modal"
                             forceRedirectUrl={"/recruiter/onboarding"}
-                            unsafeMetadata={{role: "RECRUITER"}}
+                            unsafeMetadata={{ role: "RECRUITER" }}
                         >
                             <button className="px-4 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-all duration-200">
                                 For Recruiters
@@ -143,7 +143,7 @@ export default function NavBar() {
                         <SignUpButton
                             mode="modal"
                             forceRedirectUrl={"/user/onboarding"}
-                            unsafeMetadata={{role: "USER"}}
+                            unsafeMetadata={{ role: "USER" }}
                         >
                             <button className="px-5 py-2.5 rounded-lg border border-blue-600 text-blue-600 bg-white text-sm font-medium hover:bg-blue-50 transition-all duration-200">
                                 Sign Up
@@ -215,30 +215,36 @@ export default function NavBar() {
                 <li className="flex flex-wrap items-center gap-3 px-4 py-4 mt-2 border-t border-gray-100">
 
                     <Show when={"signed-out"}>
-                        <SignInButton
+
+                        <SignUpButton
                             mode="modal"
                             forceRedirectUrl={"/recruiter/onboarding"}
+                            unsafeMetadata={{ role: "RECRUITER" }}
                         >
-                            <button className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">
+                            <button className="px-4 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-all duration-200">
                                 For Recruiters
                             </button>
-                        </SignInButton>
+                        </SignUpButton>
+
                         <SignInButton
                             mode="modal"
-                            forceRedirectUrl={"/user/onboarding"}
+                            forceRedirectUrl={"/user/profile"}
                         >
-                            <button className="px-4 py-2 rounded-lg bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 transition-colors">
+                            <button className="px-5 py-2.5 rounded-lg bg-blue-600 text-white text-sm font-medium shadow-sm hover:bg-blue-700 hover:shadow-md transition-all duration-200">
                                 Log In
                             </button>
                         </SignInButton>
+
                         <SignUpButton
                             mode="modal"
                             forceRedirectUrl={"/user/onboarding"}
+                            unsafeMetadata={{ role: "USER" }}
                         >
-                            <button className="px-4 py-2 rounded-lg border border-blue-600 text-blue-600 text-sm font-medium hover:bg-blue-50 transition-colors">
+                            <button className="px-5 py-2.5 rounded-lg border border-blue-600 text-blue-600 bg-white text-sm font-medium hover:bg-blue-50 transition-all duration-200">
                                 Sign Up
                             </button>
                         </SignUpButton>
+
                     </Show>
                     <Show when={"signed-in"}>
                         <UserButton />
