@@ -65,7 +65,7 @@ export default async function OnBoarding() {
                 />
             </div>
 
-            <div className="flex gap-4">
+            <div className="flex gap-4 flex-wrap">
                 <div className="flex flex-col gap-1 flex-1">
                     <label htmlFor="startYear" className="text-sm font-medium text-gray-700">
                         Start Year

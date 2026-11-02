@@ -101,16 +101,16 @@ export async function JobVisibility({ visibility, postId }: {
 }
 
 export async function createRecruiter(formData: FormData) {
+    const { userId: clerkId } = await auth();
+    console.log(clerkId)
+    if (clerkId === null) {
+        redirect("/user")
+    }
     try {
-        const { userId: clerkId } = await auth();
-        if (!clerkId)
-            redirect("/");
-
+        console.log("outside")
         const existing = await prisma.recruiter.findUnique({
             where: { clerkId }
         })
-
-
         const fileData = formData.get("uploaded_image") as File
         let imgUrl: string | undefined
 

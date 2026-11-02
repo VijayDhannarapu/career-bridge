@@ -20,10 +20,11 @@ export default async function Profile() {
             </div>
 
             <Link href={"/user/onboarding"}
-                className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2.5
-                 text-sm font-semibold text-white shadow-sm transition
-                 hover:bg-blue-700 focus:outline-none focus:ring-2
-                 focus:ring-blue-500 focus:ring-offset-2"
+                className="inline-flex h-10 items-center 
+                justify-center gap-2 rounded-lg bg-blue-600 px-4 text-[10px] 
+                font-semibold text-white shadow-sm transition 
+                hover:bg-blue-700 focus:outline-none focus:ring-2 
+                focus:ring-blue-500 focus:ring-offset-2 sm:text-sm"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"

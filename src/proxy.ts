@@ -1,19 +1,21 @@
 import { clerkMiddleware } from '@clerk/nextjs/server';
 import { Role } from './generated/enums';
 import { NextRequest, NextResponse } from 'next/server';
-import { redirect } from 'next/navigation';
+import { prisma } from './lib/prisma';
 
 export default clerkMiddleware(async (auth, req) => {
-  const isRecruiter = ((await auth()).sessionClaims?.metadata as { role?: Role } | undefined)?.role === "RECRUITER";
+  const {sessionClaims} = await auth();
+  const isRecruiter = (sessionClaims?.metadata as { role?: Role } | undefined)?.role === "RECRUITER";
 
   const { pathname } = req.nextUrl;
   const isRecruiterRoute = pathname.startsWith("/recruiter");
+  const isRecruiterOnboarding =
+    pathname.startsWith("/recruiter/onboarding");
 
-  if (isRecruiterRoute && !isRecruiter) {
-    const url = new URL("/", req.url);
-    return NextResponse.redirect(url);
+  if (isRecruiterRoute && !isRecruiter && !isRecruiterOnboarding) {
+    return NextResponse.redirect(new URL("/", req.url));
   }
-  if(!isRecruiterRoute && isRecruiter){
+  if (!isRecruiterRoute && isRecruiter) {
     const url = new URL("recruiter/addJob", req.url);
     return NextResponse.redirect(url);
   }

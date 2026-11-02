@@ -8,10 +8,10 @@ export async function POST(request: Request) {
     const evt = await verifyWebhook(request);
 
     if (evt.type === "user.created") {
+      console.log("Came ")
       const user = evt.data;
       const requestedRole = user.unsafe_metadata?.role;
       const role: Role = requestedRole === "RECRUITER" ? "RECRUITER" : "USER";
-      console.log("role: ", role)
       if (role === "USER") {
         await prisma.user.create({
           data: {
@@ -35,7 +35,7 @@ export async function POST(request: Request) {
         const client = await clerkClient();
         await client.users.updateUser(user.id, {
           publicMetadata: {
-            role: "RECRUITER"
+            role: role
           }
         })
       }
