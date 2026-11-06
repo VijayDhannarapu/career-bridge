@@ -133,7 +133,6 @@ export default function NavBar() {
 
                         <SignInButton
                             mode="modal"
-                            forceRedirectUrl={"/user/profile"}
                         >
                             <button className="px-5 py-2.5 rounded-lg bg-blue-600 text-white text-sm font-medium shadow-sm hover:bg-blue-700 hover:shadow-md transition-all duration-200">
                                 Log In
